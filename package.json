@@ -1,0 +1,16 @@
+{
+  "name": "zeitbook-frontend",
+  "version": "0.1.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "webpack && node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2",
+    "webpack": "^3.8.1"
+  }
+}
