@@ -9,7 +9,5 @@ app.get('/', (request, response) => {
 });
 
 app.listen(3000, () => {
-  console.log();
   console.log('To use Zeitbook, open http://localhost:3000 in your browser.')
-  console.log();
 });
