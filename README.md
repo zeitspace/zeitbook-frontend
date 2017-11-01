@@ -9,7 +9,7 @@ Make sure you have the following software installed:
 1. A recent version of Google Chrome.
 1. [Web Server for Chrome](https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb) or any other basic HTTP server that suits your fancy.
 1. A text editor or an IDE. If you don’t have one installed, we recommend [Atom](https://atom.io).
-1. [Git](starter application repository). After installing Git, clone the this repository by running `git clone https://github.com/zeitspace/zeitbook-frontend.git`. If you don't want to install Git, you can [download the starter application as a ZIP file](https://github.com/zeitspace/zeitbook-frontend/archive/master.zip).
+1. [Git](https://git-scm.com). After installing Git, clone the this repository by running `git clone https://github.com/zeitspace/zeitbook-frontend.git`. If you don't want to install Git, you can [download the starter application as a ZIP file](https://github.com/zeitspace/zeitbook-frontend/archive/master.zip).
 
 ## Setup
 
