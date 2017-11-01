@@ -21,3 +21,4 @@ Optionally, you can install the following software to improve your development e
 1. In your command line, navigate to the directory containing the source code for this starter application.
 1. Run `npm install`, then `npm start`.
 1. Open [localhost:3000](localhost:3000) in Google Chrome.
+1. If you have installed the LiveReload Chrome extension, click on its icon in the Chrome toolbar. This should change the icon so that the small circle in the center is filled in, indicating that LiveReload has been activated.
