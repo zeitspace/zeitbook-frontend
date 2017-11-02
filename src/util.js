@@ -1,4 +1,4 @@
-function buildPostOrCommentElement({ username, title, body }) {
+const buildPostOrCommentElement = type => ({ id, username, title, body }) => {
   const articleElement = document.createElement('article');
 
   const titleElement = document.createElement('h2');
@@ -17,11 +17,21 @@ function buildPostOrCommentElement({ username, title, body }) {
   articleElement.appendChild(usernameElement);
   articleElement.appendChild(bodyElement);
 
-  return articleElement;
-}
+  if (type === 'post') {
+    const linkToCommentsElement = document.createElement('a');
+    linkToCommentsElement.href = `/posts/${id}`;
 
-const buildPostElement = buildPostOrCommentElement;
-const buildCommentElement = buildPostOrCommentElement;
+    const linkToCommentsTextNode = document.createTextNode('See comments');
+    linkToCommentsElement.appendChild(linkToCommentsTextNode);
+
+    articleElement.appendChild(linkToCommentsElement);
+  }
+
+  return articleElement;
+};
+
+const buildPostElement = buildPostOrCommentElement('post');
+const buildCommentElement = buildPostOrCommentElement('comment');
 
 export {
   buildPostElement,
