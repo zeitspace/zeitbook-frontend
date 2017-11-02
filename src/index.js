@@ -35,10 +35,11 @@ function buildPostElement({ username, title, body }) {
 }
 
 const postsContainer = document.getElementById('posts');
+const noPostsMessage = document.getElementById('no-posts');
 
 getPosts().then(posts => {
   if (posts.length > 0) {
-    document.getElementById('no-posts').style.display = 'none';
+    noPostsMessage.style.display = 'none';
     posts.forEach(post => {
       postsContainer.appendChild(buildPostElement(post));
     });
@@ -52,5 +53,8 @@ document.getElementById('post-submit').addEventListener('click', () => {
     username,
     title: postTitleInput.value,
     body: postBodyInput.value,
-  }).then(post => postsContainer.appendChild(buildPostElement(post)));
+  }).then(post => {
+    noPostsMessage.style.display = 'none';
+    postsContainer.appendChild(buildPostElement(post));
+  });
 });
