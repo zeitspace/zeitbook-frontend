@@ -1,0 +1,16 @@
+section {
+  margin-bottom: 1rem;
+}
+
+@each $type in post, comment {
+  #create-#{$type} {
+    label {
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    input, textarea {
+      display: block;
+    }
+  }
+}

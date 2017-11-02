@@ -4,7 +4,7 @@ import { getPostAndComments, createComment, } from './api';
 import username from './username';
 import { buildPostElement, buildCommentElement } from './util';
 
-import '../assets/stylesheets/index.css';
+import '../assets/stylesheets/index.scss';
 
 const commentsContainer = document.getElementById('comments');
 const noCommentsMessage = document.getElementById('no-comments');
