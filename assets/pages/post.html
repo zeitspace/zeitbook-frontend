@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <title>Zeitbook | Loading...</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <h1>Zeitbook</h1>
+
+    <section id="post"></section>
+
+    <section id="create-comment">
+      <label for="comment-title">
+        Title
+        <input type="text" id="comment-title">
+      </label>
+
+      <label for="comment-body">
+        Body
+        <textarea id="comment-body" rows="6" cols="80"></textarea>
+      </label>
+
+      <button type="button" id="comment-submit">Submit</button>
+    </section>
+
+    <section id="comments">
+      <article id="no-comments">
+        Uh oh, nobody's commented on this post yet.
+      </article>
+    </section>
+
+    <script src="post.js"></script>
+    <script src="http://localhost:35729/livereload.js"></script>
+  </body>
+</html>

@@ -2,9 +2,12 @@ const path = require('path');
 const LiveReloadPlugin = require('webpack-livereload-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: {
+    'index': './src/index.js',
+    'post': './src/post.js',
+  },
   output: {
-    filename: 'bundle.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
   },
   watch: true,
