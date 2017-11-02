@@ -2,11 +2,11 @@ section {
   margin-bottom: 1rem;
 }
 
-#create-post label {
+#create-post label, #create-comment label {
   display: block;
   margin-bottom: 1rem;
 }
 
-#create-post input, #create-post textarea {
+#create-post input, #create-post textarea, #create-comment input, #create-comment textarea {
   display: block;
 }
