@@ -12,6 +12,10 @@ const noCommentsMessage = document.getElementById('no-comments');
 const postId = _.toInteger(window.location.pathname.match(/\/posts\/(.*)/)[1]);
 
 getPostAndComments(postId).then(postAndComments => {
+  if (!postAndComments) {
+    return;
+  }
+
   document.getElementById('post').appendChild(buildPostElement(postAndComments));
 
   const { comments } = postAndComments;
