@@ -5,7 +5,7 @@ import {
   createPost,
 } from './api';
 
-import 'style-loader!css-loader!../style/index.css';
+import 'style-loader!../assets/stylesheets/index.css';
 
 // TODO: replace this randomly-generated username with one of your choosing
 const username = _(_.times(6, () => _.random(25)))

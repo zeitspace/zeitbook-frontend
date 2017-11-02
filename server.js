@@ -5,7 +5,7 @@ const app = express();
 app.use(express.static('dist'));
 
 app.get('/', (request, response) => {
-  response.sendFile('index.html', { root: __dirname });
+  response.sendFile('assets/pages/index.html', { root: __dirname });
 });
 
 app.listen(3000, () => {
