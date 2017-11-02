@@ -5,7 +5,7 @@ let nextPostId = 1;
 let nextCommentId = 1;
 
 function getPosts() {
-  return Promise.resolve(_.map(posts, post => _.pick(post, ['username', 'title', 'body'])));
+  return Promise.resolve(_.map(posts, post => _.pick(post, ['id', 'username', 'title', 'body'])));
 }
 
 function getPostAndComments(postId) {

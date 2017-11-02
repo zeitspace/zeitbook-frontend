@@ -33,6 +33,7 @@ function buildPostElement({ username, title, body }) {
 }
 
 const postsContainer = document.getElementById('posts');
+
 getPosts().then(posts => {
   if (posts.length > 0) {
     document.getElementById('no-posts').style.display = 'none';
@@ -40,4 +41,14 @@ getPosts().then(posts => {
       postsContainer.appendChild(buildPostElement(post));
     });
   }
+});
+
+const postTitleInput = document.getElementById('post-title');
+const postBodyInput = document.getElementById('post-body');
+document.getElementById('post-submit').addEventListener('click', () => {
+  createPost({
+    username,
+    title: postTitleInput.value,
+    body: postBodyInput.value,
+  }).then(post => postsContainer.appendChild(buildPostElement(post)));
 });
