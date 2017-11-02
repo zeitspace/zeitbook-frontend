@@ -1,0 +1,12 @@
+section {
+  margin-bottom: 1rem;
+}
+
+#create-post label {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+#create-post input, #create-post textarea {
+  display: block;
+}

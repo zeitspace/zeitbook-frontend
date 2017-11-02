@@ -5,6 +5,8 @@ import {
   createPost,
 } from './api';
 
+import 'style-loader!css-loader!../style/index.css';
+
 // TODO: replace this randomly-generated username with one of your choosing
 const username = _(_.times(6, () => _.random(25)))
   .map(n => String.fromCharCode(97 + n))
