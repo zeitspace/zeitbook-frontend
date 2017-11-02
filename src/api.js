@@ -5,11 +5,11 @@ let nextPostId = 1;
 let nextCommentId = 1;
 
 function getPosts() {
-  return _.map(posts, post => _.pick(post, ['username', 'title', 'body']));
+  return Promise.resolve(_.map(posts, post => _.pick(post, ['username', 'title', 'body'])));
 }
 
 function getPostAndComments(postId) {
-  return _.find(posts, { id: postId });
+  return Promise.resolve(_.find(posts, { id: postId }));
 }
 
 function createPost({ username, title, body }) {
@@ -22,7 +22,7 @@ function createPost({ username, title, body }) {
   };
   nextPostId += 1;
   posts.push(post);
-  return post;
+  return Promise.resolve(post);
 }
 
 function createComment({ username, title, body, postId }) {
@@ -38,7 +38,7 @@ function createComment({ username, title, body, postId }) {
   const post = _.find(posts, { id: postId });
   post.comments.push(comment);
 
-  return comment;
+  return Promise.resolve(comment);
 }
 
 export {
