@@ -1,1 +1,1 @@
-export default username = '[replace this string with a username of your choosing]';
+export default '[replace this string with a username of your choosing]';

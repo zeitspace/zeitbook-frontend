@@ -4,7 +4,7 @@ import { getPosts, createPost } from './api';
 import username from './username';
 import { buildPostElement } from './util';
 
-import 'style-loader!../assets/stylesheets/index.css';
+import '../assets/stylesheets/index.css';
 
 const postsContainer = document.getElementById('posts');
 const noPostsMessage = document.getElementById('no-posts');
