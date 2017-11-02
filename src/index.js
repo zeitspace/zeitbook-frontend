@@ -33,6 +33,11 @@ function buildPostElement({ username, title, body }) {
 }
 
 const postsContainer = document.getElementById('posts');
-getPosts().then(posts => posts.forEach(post => {
-  postsContainer.appendChild(buildPostElement(post));
-}));
+getPosts().then(posts => {
+  if (posts.length > 0) {
+    document.getElementById('no-posts').style.display = 'none';
+    posts.forEach(post => {
+      postsContainer.appendChild(buildPostElement(post));
+    });
+  }
+});
