@@ -16,9 +16,12 @@ getPostAndComments(postId).then(postAndComments => {
     return;
   }
 
+  const { title, comments } = postAndComments;
+
+  document.title = `Zeitbook | ${_.truncate(title)}`;
+
   document.getElementById('post').appendChild(buildPostElement(postAndComments));
 
-  const { comments } = postAndComments;
   if (comments.length > 0) {
     noCommentsMessage.style.display = 'none';
     comments.forEach(comment => {
