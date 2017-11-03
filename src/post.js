@@ -30,13 +30,11 @@ getPostAndComments(postId).then(postAndComments => {
   }
 });
 
-const commentTitleInput = document.getElementById('comment-title');
 const commentBodyInput = document.getElementById('comment-body');
 document.getElementById('comment-submit').addEventListener('click', () => {
   createComment({
     postId,
     username,
-    title: commentTitleInput.value,
     body: commentBodyInput.value,
   }).then(comment => {
     noCommentsMessage.style.display = 'none';
