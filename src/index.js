@@ -13,7 +13,7 @@ getPosts().then(posts => {
   if (posts.length > 0) {
     noPostsMessage.style.display = 'none';
     posts.forEach(post => {
-      postsContainer.appendChild(buildPostElement(post));
+      postsContainer.appendChild(buildPostElement(post, { showCommentsLink: true }));
     });
   }
 });
@@ -30,7 +30,7 @@ document.getElementById('post-submit').addEventListener('click', () => {
       noPostsMessage.style.display = 'none';
       postTitleInput.value = '';
       postBodyInput.value = '';
-      postsContainer.appendChild(buildPostElement(post));
+      postsContainer.appendChild(buildPostElement(post, { showCommentsLink: true }));
     });
   }
 });

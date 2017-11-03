@@ -20,7 +20,7 @@ getPostAndComments(postId).then(postAndComments => {
 
   document.title = `Zeitbook | ${_.truncate(title)}`;
 
-  document.getElementById('post').appendChild(buildPostElement(postAndComments));
+  document.getElementById('post').appendChild(buildPostElement(postAndComments, { showCommentsLink: false }));
 
   if (comments.length > 0) {
     noCommentsMessage.style.display = 'none';
