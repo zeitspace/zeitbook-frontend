@@ -1,6 +1,8 @@
 import moment from 'moment';
 
-function buildPostElement({ id, time, username, title, body }, { showCommentsLink }) {
+function buildPostElement({
+  id, time, username, title, body,
+}, { showCommentsLink }) {
   const articleElement = document.createElement('article');
 
   const titleElement = document.createElement('h2');

@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import _ from 'lodash';
 
-import { getPostAndComments, createComment, } from './api';
+import { getPostAndComments, createComment } from './api';
 import username from './username';
 import { buildPostElement, buildCommentElement } from './util';
 
@@ -13,10 +13,8 @@ const noCommentsMessage = $('#no-comments');
 const postId = window.location.pathname.match(/\/posts\/(.*)/)[1];
 
 getPostAndComments(postId)
-  .then(postAndComments => {
-    return _.update(postAndComments, 'comments', comments => _.orderBy(comments, ['time'], ['asc']));
-  })
-  .then(postAndComments => {
+  .then(postAndComments => _.update(postAndComments, 'comments', comments => _.orderBy(comments, ['time'], ['asc'])))
+  .then((postAndComments) => {
     if (!postAndComments) {
       return;
     }
@@ -28,7 +26,7 @@ getPostAndComments(postId)
     $('post').append(buildPostElement(postAndComments, { showCommentsLink: false }));
 
     if (comments.length > 0) {
-      comments.forEach(comment => {
+      comments.forEach((comment) => {
         commentsContainer.append(buildCommentElement(comment));
       });
     } else {
@@ -47,7 +45,7 @@ $('#comment-submit').click(() => {
       username,
       body: commentBodyInput.val(),
     })
-      .then(comment => {
+      .then((comment) => {
         noCommentsMessage.show();
         commentBodyInput.val('');
         commentsContainer.append(buildCommentElement(comment));

@@ -5,12 +5,22 @@ const API_ROOT = 'http://localhost:3001';
 function json(response) {
   if (response.ok) {
     return response.json();
-  } else {
-    throw response.status;
   }
+  throw response.status;
 }
 
-const buildPost = ({ withComments }) => ({ id, time, user, title, content, comments }) => {
+const buildComment = ({
+  id, time, user, comment,
+}) => ({
+  id,
+  time: new Date(time),
+  username: user,
+  body: comment,
+});
+
+const buildPost = ({ withComments }) => ({
+  id, time, user, title, content, comments,
+}) => {
   const result = {
     id,
     time: new Date(time),
@@ -23,13 +33,6 @@ const buildPost = ({ withComments }) => ({ id, time, user, title, content, comme
   }
   return result;
 };
-
-const buildComment = ({ id, time, user, comment }) => ({
-  id,
-  time: new Date(time),
-  username: user,
-  body: comment,
-});
 
 function getPosts() {
   return fetch(`${API_ROOT}/posts`)

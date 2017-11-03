@@ -12,9 +12,9 @@ const noPostsMessage = $('#no-posts');
 
 getPosts()
   .then(posts => _.orderBy(posts, ['time'], ['desc']))
-  .then(posts => {
+  .then((posts) => {
     if (posts.length > 0) {
-      posts.forEach(post => {
+      posts.forEach((post) => {
         postsContainer.append(buildPostElement(post, { showCommentsLink: true }));
       });
     } else {
@@ -34,7 +34,7 @@ $('#post-submit').click(() => {
       title: postTitleInput.val(),
       body: postBodyInput.val(),
     })
-      .then(post => {
+      .then((post) => {
         noPostsMessage.hide();
         postTitleInput.val('');
         postBodyInput.val('');
