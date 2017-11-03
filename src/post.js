@@ -6,12 +6,15 @@ import { buildPostElement, buildCommentElement } from './util';
 
 import '../assets/stylesheets/index.scss';
 
-const commentsContainer = document.getElementById('comments');
-const noCommentsMessage = document.getElementById('no-comments');
+const commentsContainer = $('#comments');
+const noCommentsMessage = $('#no-comments');
 
 const postId = window.location.pathname.match(/\/posts\/(.*)/)[1];
 
 getPostAndComments(postId)
+  .then(postAndComments => {
+    return _.update(postAndComments, 'comments', comments => _.orderBy(comments, ['time'], ['asc']));
+  })
   .then(postAndComments => {
     if (!postAndComments) {
       return;

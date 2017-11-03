@@ -10,6 +10,7 @@ const postsContainer = document.getElementById('posts');
 const noPostsMessage = document.getElementById('no-posts');
 
 getPosts()
+  .then(posts => _.orderBy(posts, ['time'], ['desc']))
   .then(posts => {
     if (posts.length > 0) {
       posts.forEach(post => {
