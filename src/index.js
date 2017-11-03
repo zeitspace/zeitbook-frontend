@@ -21,12 +21,16 @@ getPosts().then(posts => {
 const postTitleInput = document.getElementById('post-title');
 const postBodyInput = document.getElementById('post-body');
 document.getElementById('post-submit').addEventListener('click', () => {
-  createPost({
-    username,
-    title: postTitleInput.value,
-    body: postBodyInput.value,
-  }).then(post => {
-    noPostsMessage.style.display = 'none';
-    postsContainer.appendChild(buildPostElement(post));
-  });
+  if (document.getElementById('create-post').checkValidity()) {
+    createPost({
+      username,
+      title: postTitleInput.value,
+      body: postBodyInput.value,
+    }).then(post => {
+      noPostsMessage.style.display = 'none';
+      postTitleInput.value = '';
+      postBodyInput.value = '';
+      postsContainer.appendChild(buildPostElement(post));
+    });
+  }
 });
