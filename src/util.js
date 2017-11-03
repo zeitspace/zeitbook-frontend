@@ -12,6 +12,8 @@ function buildPostElement({ id, time, username, title, body }, { showCommentsLin
   usernameElement.appendChild(usernameTextNode);
 
   const timeElement = document.createElement('p');
+  timeElement.title = moment(time).format('MMMM Do, YYYY [at] h:mm:ss A');
+
   const timeTextNode = document.createTextNode(moment(time).fromNow());
   timeElement.appendChild(timeTextNode);
 
@@ -45,6 +47,8 @@ function buildCommentElement({ time, username, body }) {
   usernameElement.appendChild(usernameTextNode);
 
   const timeElement = document.createElement('p');
+  timeElement.title = moment(time).format('MMMM Do, YYYY [at] h:mm:ss A');
+
   const timeTextNode = document.createTextNode(moment(time).fromNow());
   timeElement.appendChild(timeTextNode);
 
