@@ -32,12 +32,15 @@ getPostAndComments(postId).then(postAndComments => {
 
 const commentBodyInput = document.getElementById('comment-body');
 document.getElementById('comment-submit').addEventListener('click', () => {
-  createComment({
-    postId,
-    username,
-    body: commentBodyInput.value,
-  }).then(comment => {
-    noCommentsMessage.style.display = 'none';
-    commentsContainer.appendChild(buildCommentElement(comment));
-  });
+  if (document.getElementById('create-comment').checkValidity()) {
+    createComment({
+      postId,
+      username,
+      body: commentBodyInput.value,
+    }).then(comment => {
+      noCommentsMessage.style.display = 'none';
+      commentBodyInput.value = '';
+      commentsContainer.appendChild(buildCommentElement(comment));
+    });
+  }
 });
