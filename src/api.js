@@ -1,59 +1,64 @@
 import _ from 'lodash';
 
-const storage = window.localStorage;
+const API_ROOT = 'http://localhost:3001';
 
-function get(key, defaultValue) {
-  return JSON.parse(storage.getItem(key)) || defaultValue;
-}
+const json = response => response.json();
 
-function set(key, value) {
-  storage.setItem(key, JSON.stringify(value));
-}
+const buildPost = ({ withComments }) => ({ id, time, user, title, content, comments }) => {
+  const result = {
+    id,
+    time,
+    username: user,
+    title,
+    body: content,
+  };
+  if (withComments) {
+    result.comments = _.map(comments, buildComment);
+  }
+  return result;
+};
+
+const buildComment = ({ id, time, user, comment }) => ({
+  id,
+  time,
+  username: user,
+  body: comment,
+});
 
 function getPosts() {
-  return Promise.resolve(_.map(get('posts', []), post => _.pick(post, ['id', 'username', 'title', 'body'])));
+  return fetch(`${API_ROOT}/posts`)
+    .then(json)
+    .then(posts => _.map(posts, buildPost({ withComments: false })));
 }
 
 function getPostAndComments(postId) {
-  return Promise.resolve(_.find(get('posts', []), { id: postId }));
+  return fetch(`${API_ROOT}/posts/${postId}`)
+    .then(json)
+    .then(buildPost({ withComments: true }));
 }
 
 function createPost({ username, title, body }) {
-  const id = get('nextPostId', 1);
-  set('nextPostId', id + 1);
-
-  const post = {
-    username,
-    title,
-    body,
-    id,
-    comments: [],
-  };
-  set('posts', _.concat(get('posts', []), [post]));
-  return Promise.resolve(post);
+  return fetch(`${API_ROOT}/posts`, {
+    method: 'post',
+    headers: {
+      'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+    },
+    body: `user=${username}&title=${title}&content=${body}`,
+  })
+    .then(json)
+    .then(buildPost({ withComments: false }));
 }
 
-function createComment({ username, title, body, postId }) {
-  const id = get('nextCommentId', 1);
-  set('nextCommentId', id + 1);
-
-  const comment = {
-    username,
-    title,
-    body,
-    postId,
-    id,
-  };
-
-  const posts = get('posts');
-  posts.forEach(post => {
-    if (post.id === postId) {
-      post.comments.push(comment);
-    }
-  });
-  set('posts', posts);
-
-  return Promise.resolve(comment);
+function createComment({ username, body, postId }) {
+  return fetch(`${API_ROOT}/posts/${postId}/comments`, {
+    method: 'post',
+    headers: {
+      'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+    },
+    body: `user=${username}&content=${body}`,
+  })
+    .then(json)
+    .then(buildComment);
 }
 
 export {
