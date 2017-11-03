@@ -13,4 +13,8 @@ section {
       display: block;
     }
   }
+
+  #no-#{$type}s, ##{$type}s-error, #create-#{$type}-error {
+    display: none;
+  }
 }

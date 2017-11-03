@@ -2,7 +2,13 @@ import _ from 'lodash';
 
 const API_ROOT = 'http://localhost:3001';
 
-const json = response => response.json();
+function json(response) {
+  if (response.ok) {
+    return response.json();
+  } else {
+    throw response.status;
+  }
+}
 
 const buildPost = ({ withComments }) => ({ id, time, user, title, content, comments }) => {
   const result = {
@@ -38,7 +44,7 @@ function getPostAndComments(postId) {
 }
 
 function createPost({ username, title, body }) {
-  return fetch(`${API_ROOT}/posts`, {
+  return fetch(`${API_ROOT}/poasts`, {
     method: 'post',
     headers: {
       'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8',

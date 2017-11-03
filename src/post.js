@@ -11,24 +11,29 @@ const noCommentsMessage = document.getElementById('no-comments');
 
 const postId = window.location.pathname.match(/\/posts\/(.*)/)[1];
 
-getPostAndComments(postId).then(postAndComments => {
-  if (!postAndComments) {
-    return;
-  }
+getPostAndComments(postId)
+  .then(postAndComments => {
+    if (!postAndComments) {
+      return;
+    }
 
-  const { title, comments } = postAndComments;
+    const { title, comments } = postAndComments;
 
-  document.title = `Zeitbook | ${_.truncate(title)}`;
+    document.title = `Zeitbook | ${_.truncate(title)}`;
 
-  document.getElementById('post').appendChild(buildPostElement(postAndComments, { showCommentsLink: false }));
+    document.getElementById('post').appendChild(buildPostElement(postAndComments, { showCommentsLink: false }));
 
-  if (comments.length > 0) {
-    noCommentsMessage.style.display = 'none';
-    comments.forEach(comment => {
-      commentsContainer.appendChild(buildCommentElement(comment));
-    });
-  }
-});
+    if (comments.length > 0) {
+      comments.forEach(comment => {
+        commentsContainer.appendChild(buildCommentElement(comment));
+      });
+    } else {
+      noCommentsMessage.style.display = 'block';
+    }
+  })
+  .catch(() => {
+    document.getElementById('comments-error').style.display = 'block';
+  });
 
 const commentBodyInput = document.getElementById('comment-body');
 document.getElementById('comment-submit').addEventListener('click', () => {
@@ -37,10 +42,14 @@ document.getElementById('comment-submit').addEventListener('click', () => {
       postId,
       username,
       body: commentBodyInput.value,
-    }).then(comment => {
-      noCommentsMessage.style.display = 'none';
-      commentBodyInput.value = '';
-      commentsContainer.appendChild(buildCommentElement(comment));
-    });
+    })
+      .then(comment => {
+        noCommentsMessage.style.display = ' none';
+        commentBodyInput.value = '';
+        commentsContainer.appendChild(buildCommentElement(comment));
+      })
+      .catch(() => {
+        document.getElementById('create-comment-error').style.display = 'block';
+      });
   }
 });
