@@ -59,12 +59,12 @@ function createPost({ username, title, body }) {
 }
 
 function createComment({ username, body, postId }) {
-  return fetch(`${API_ROOT}/posts/${postId}/comments`, {
+  return fetch(`${API_ROOT}/posts/${postId}/comment`, {
     method: 'post',
     headers: {
       'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
     },
-    body: `user=${username}&content=${body}`,
+    body: `user=${username}&comment=${body}`,
   })
     .then(json)
     .then(buildComment);
