@@ -9,7 +9,7 @@ import '../assets/stylesheets/index.scss';
 const commentsContainer = document.getElementById('comments');
 const noCommentsMessage = document.getElementById('no-comments');
 
-const postId = _.toInteger(window.location.pathname.match(/\/posts\/(.*)/)[1]);
+const postId = window.location.pathname.match(/\/posts\/(.*)/)[1];
 
 getPostAndComments(postId).then(postAndComments => {
   if (!postAndComments) {
