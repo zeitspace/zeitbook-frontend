@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import _ from 'lodash';
 
 import { getPostAndComments, createComment, } from './api';
@@ -24,35 +25,35 @@ getPostAndComments(postId)
 
     document.title = `Zeitbook | ${_.truncate(title)}`;
 
-    document.getElementById('post').appendChild(buildPostElement(postAndComments, { showCommentsLink: false }));
+    $('post').append(buildPostElement(postAndComments, { showCommentsLink: false }));
 
     if (comments.length > 0) {
       comments.forEach(comment => {
-        commentsContainer.appendChild(buildCommentElement(comment));
+        commentsContainer.append(buildCommentElement(comment));
       });
     } else {
-      noCommentsMessage.style.display = 'block';
+      noCommentsMessage.show();
     }
   })
   .catch(() => {
-    document.getElementById('comments-error').style.display = 'block';
+    $('#comments-error').show();
   });
 
-const commentBodyInput = document.getElementById('comment-body');
-document.getElementById('comment-submit').addEventListener('click', () => {
-  if (document.getElementById('create-comment').checkValidity()) {
+const commentBodyInput = $('#comment-body');
+$('#comment-submit').click(() => {
+  if ($('#create-comment')[0].checkValidity()) {
     createComment({
       postId,
       username,
-      body: commentBodyInput.value,
+      body: commentBodyInput.val(),
     })
       .then(comment => {
-        noCommentsMessage.style.display = ' none';
-        commentBodyInput.value = '';
-        commentsContainer.appendChild(buildCommentElement(comment));
+        noCommentsMessage.show();
+        commentBodyInput.val('');
+        commentsContainer.append(buildCommentElement(comment));
       })
       .catch(() => {
-        document.getElementById('create-comment-error').style.display = 'block';
+        $('#create-comment-error').show();
       });
   }
 });
