@@ -13,7 +13,7 @@ function json(response) {
 const buildPost = ({ withComments }) => ({ id, time, user, title, content, comments }) => {
   const result = {
     id,
-    time,
+    time: new Date(time),
     username: user,
     title,
     body: content,
@@ -26,7 +26,7 @@ const buildPost = ({ withComments }) => ({ id, time, user, title, content, comme
 
 const buildComment = ({ id, time, user, comment }) => ({
   id,
-  time,
+  time: new Date(time),
   username: user,
   body: comment,
 });
@@ -44,7 +44,7 @@ function getPostAndComments(postId) {
 }
 
 function createPost({ username, title, body }) {
-  return fetch(`${API_ROOT}/poasts`, {
+  return fetch(`${API_ROOT}/posts`, {
     method: 'post',
     headers: {
       'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
