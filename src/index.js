@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import _ from 'lodash';
 
 import { getPosts, createPost } from './api';
@@ -6,41 +7,41 @@ import { buildPostElement } from './util';
 
 import '../assets/stylesheets/index.scss';
 
-const postsContainer = document.getElementById('posts');
-const noPostsMessage = document.getElementById('no-posts');
+const postsContainer = $('#posts');
+const noPostsMessage = $('#no-posts');
 
 getPosts()
   .then(posts => _.orderBy(posts, ['time'], ['desc']))
   .then(posts => {
     if (posts.length > 0) {
       posts.forEach(post => {
-        postsContainer.appendChild(buildPostElement(post, { showCommentsLink: true }));
+        postsContainer.append(buildPostElement(post, { showCommentsLink: true }));
       });
     } else {
-      noPostsMessage.style.display = 'block';
+      noPostsMessage.show();
     }
   })
   .catch(() => {
-    document.getElementById('posts-error').style.display = 'block';
+    $('#posts-error').show();
   });
 
-const postTitleInput = document.getElementById('post-title');
-const postBodyInput = document.getElementById('post-body');
-document.getElementById('post-submit').addEventListener('click', () => {
-  if (document.getElementById('create-post').checkValidity()) {
+const postTitleInput = $('#post-title');
+const postBodyInput = $('#post-body');
+$('#post-submit').click(() => {
+  if ($('#create-post')[0].checkValidity()) {
     createPost({
       username,
-      title: postTitleInput.value,
-      body: postBodyInput.value,
+      title: postTitleInput.val(),
+      body: postBodyInput.val(),
     })
       .then(post => {
-        noPostsMessage.style.display = 'none';
-        postTitleInput.value = '';
-        postBodyInput.value = '';
-        postsContainer.appendChild(buildPostElement(post, { showCommentsLink: true }));
+        noPostsMessage.hide();
+        postTitleInput.val('');
+        postBodyInput.val('');
+        postsContainer.prepend(buildPostElement(post, { showCommentsLink: true }));
       })
       .catch(() => {
-        document.getElementById('create-post-error').style.display = 'block';
+        $('#create-post-error').show();
       });
   }
 });
