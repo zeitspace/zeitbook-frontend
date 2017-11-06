@@ -88,7 +88,7 @@ body {
   }
 
   #submit-container {
-    display:flex; 
+    display:flex;
     justify-content: flex-end;
   }
 
@@ -96,7 +96,7 @@ body {
     padding: 0.5em 1.2em;
     border-radius: $std-border-radius;
     background: $primary-blue;
-    box-shadow: $std-box-shadow; 
+    box-shadow: $std-box-shadow;
     border: none;
     color: white;
     margin-top: 0.8em;
@@ -152,6 +152,7 @@ a.post {
 .post {
   padding: 1em;
   color: $dark-text-color;
+  white-space: pre-line;
 
   .post-author {
     font-weight: bold;
@@ -166,7 +167,7 @@ a.post {
   }
 
   .post-comment-count {
-    margin-top: 0.6em;    
+    margin-top: 0.6em;
     color: $light-text-color;
     font-size: 0.9em;
     display: flex;
@@ -196,7 +197,7 @@ a.post {
   .comment {
     padding: 1em;
     color: $dark-text-color;
-    border-bottom: 1px solid $light-gray;    
+    border-bottom: 1px solid $light-gray;
   }
 
   .comment-author {
