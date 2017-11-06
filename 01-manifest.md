@@ -11,7 +11,7 @@ It will contains important information about:
 
 - Create a new file inside the assets folder called `manifest.json`
 - Insert the code above:
-```
+```json
 {
     "short_name": "Zeitbook",
     "name": "Zeitbook: A Social Network",
@@ -34,7 +34,7 @@ It will contains important information about:
 
 - Create new icons inside the assets/icons
 - Add a reference for them on the `manifest.json` inside the icon list, like:
-```
+```json
 {
     "src": "/android-chrome-192x192.png",
     "sizes": "192x192",
@@ -60,5 +60,6 @@ It will contains important information about:
 - Click on Manifest on the left side bar
 
 - You can also test your app using the [Lighthouse](https://developers.google.com/web/tools/lighthouse/) an external tool to audits performance, accessibility, progressive web apps, and more.
+
 
 [Move on to the next step: Create Service Worker](./02-service-worker.md)
