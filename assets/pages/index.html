@@ -1,38 +1,40 @@
 <html>
   <head>
     <title>Zeitbook | Newest posts</title>
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
   </head>
   <body>
-    <h1>Zeitbook</h1>
 
-    <form id="create-post" action="javascript:void(0);">
-      <label for="post-title">
-        Title
-        <input type="text" id="post-title" required>
-      </label>
+    <div id="header">
+      <div class="content">
+        <img src="/images/zeitspace-logo.png" alt="Zeitspace logo">
+        <h1>zeitbook</h1>
+      </div>
+    </div>
 
-      <label for="post-body">
-        Body
-        <textarea id="post-body" rows="6" cols="80" required></textarea>
-      </label>
+    <div id="main" class="content">
+      <form id="create-post" action="javascript:void(0);">
+        <div id="input-container">
+          <textarea id="post-body" placeholder="What's on your mind?" required></textarea>
+        </div>
 
-      <button type="submit" id="post-submit">Submit</button>
+        <div id="submit-container">
+          <button type="submit" id="post-submit">Post</button>
+        </div>
 
-      <p id="create-post-error">
-        Sorry, we weren't able to create your post.
-      </p>
-    </section>
+        <p id="create-post-error">
+          Sorry, we weren't able to create your post.
+        </p>
+      </form>
 
-    <section id="posts">
-      <article id="no-posts">
-        Uh oh, nobody's posted anything yet.
-      </article>
-      <article id="posts-error">
-        Sorry, we weren't able to load the newest posts.
-      </article>
-    </section>
+      <div id="feed">
+          <h3 class="section-header">Your Feed</h3>
+          <section id="posts">
+          </section>
+      </div>
+   
+    </div>
 
     <script src="/index.js"></script>
     <script src="http://localhost:35729/livereload.js"></script>

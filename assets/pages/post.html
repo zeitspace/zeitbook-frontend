@@ -1,38 +1,44 @@
 <html>
   <head>
     <title>Zeitbook | Loading...</title>
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
   </head>
   <body>
-    <h1>Zeitbook</h1>
 
-    <a href="/">Back</a>
+    <div id="header">
+      <div class="content">
+        <a href="/">
+          <img class="back" alt="Back arrow" src="/images/back-arrow.png">
+        </a>
+        <h1>Post</h1>
+      </div>
+    </div>
 
-    <section id="post"></section>
+    <div id="main" class="content">
+      <div class="post-container">
 
-    <form id="create-comment" action="javascript:void(0);">
-      <label for="comment-body">
-        Body
-        <textarea id="comment-body" rows="6" cols="80" required></textarea>
-      </label>
+          <div id="post"></div>
 
-      <button type="submit" id="comment-submit">Submit</button>
+          <section id="comments">
+            <article id="comments-error">
+              Sorry, we weren't able to load this post's comments.
+            </article>
+          </section>
+  
+          <form id="create-comment" action="javascript:void(0);">
+            <textarea id="comment-body" rows="1" placeholder="Add a comment..." required></textarea>
+            <button type="submit" id="comment-submit">
+              <img alt="Up arrow" src="/images/up-arrow.png">
+            </button>
+            <p id="create-comment-error">
+              Sorry, we weren't able to create your comment.
+            </p>
+          </form>
 
-      <p id="create-comment-error">
-        Sorry, we weren't able to create your comment.
-      </p>
-    </section>
-
-    <section id="comments">
-      <article id="no-comments">
-        Uh oh, nobody's commented on this post yet.
-      </article>
-      <article id="comments-error">
-        Sorry, we weren't able to load this post's comments.
-      </article>
-    </section>
-
+      </div>
+    </div>
+    
     <script src="/post.js"></script>
     <script src="http://localhost:35729/livereload.js"></script>
   </body>
