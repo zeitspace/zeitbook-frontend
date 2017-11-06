@@ -19,9 +19,9 @@ getPostAndComments(postId)
       return;
     }
 
-    const { username, comments } = postAndComments;
+    const { username: postUsername, comments } = postAndComments;
 
-    document.title = `Zeitbook | ${username}'s post`;
+    document.title = `Zeitbook | ${postUsername}'s post`;
 
     $('#post').append(buildPostElement(postAndComments, { linkToComments: false }));
 

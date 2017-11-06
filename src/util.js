@@ -1,9 +1,8 @@
 import moment from 'moment';
 
 function buildPostElement({
-  id, time, username, title, body,
+  id, time, username, body,
 }, { linkToComments }) {
-
   let postElement;
   if (linkToComments) {
     postElement = document.createElement('a');
@@ -11,24 +10,24 @@ function buildPostElement({
   } else {
     postElement = document.createElement('div');
   }
-  postElement.classList.add("post");
+  postElement.classList.add('post');
 
   const timeElement = document.createElement('div');
   timeElement.title = moment(time).format('MMMM Do, YYYY [at] h:mm:ss A');
 
   const timeTextNode = document.createTextNode(moment(time).subtract(2, 'second').fromNow());
   timeElement.appendChild(timeTextNode);
-  timeElement.classList.add("post-date");
+  timeElement.classList.add('post-date');
 
   const usernameElement = document.createElement('div');
   const usernameTextNode = document.createTextNode(username);
   usernameElement.appendChild(usernameTextNode);
-  usernameElement.classList.add("post-author");
+  usernameElement.classList.add('post-author');
 
   const bodyElement = document.createElement('div');
   const bodyTextNode = document.createTextNode(body);
   bodyElement.appendChild(bodyTextNode);
-  bodyElement.classList.add("post-body");
+  bodyElement.classList.add('post-body');
 
   postElement.appendChild(usernameElement);
   postElement.appendChild(timeElement);
@@ -38,7 +37,7 @@ function buildPostElement({
     const commentsElement = document.createElement('div');
     const commentsTextNode = document.createTextNode('X comments');
     commentsElement.appendChild(commentsTextNode);
-    commentsElement.classList.add("post-comment-count");
+    commentsElement.classList.add('post-comment-count');
 
     postElement.appendChild(commentsElement);
   }
@@ -48,18 +47,18 @@ function buildPostElement({
 
 function buildCommentElement({ time, username, body }) {
   const commentElement = document.createElement('article');
-  commentElement.classList.add("comment");
+  commentElement.classList.add('comment');
 
   const commentContainer = document.createElement('div');
   commentContainer.classList.add('comment-container');
 
   const usernameElement = document.createElement('span');
-  usernameElement.classList.add("comment-author");
+  usernameElement.classList.add('comment-author');
   const usernameTextNode = document.createTextNode(username);
   usernameElement.appendChild(usernameTextNode);
 
   const bodyElement = document.createElement('span');
-  bodyElement.classList.add("comment-body");
+  bodyElement.classList.add('comment-body');
   const bodyTextNode = document.createTextNode(body);
   bodyElement.appendChild(bodyTextNode);
 
@@ -68,7 +67,7 @@ function buildCommentElement({ time, username, body }) {
 
   const timeElement = document.createElement('div');
   timeElement.title = moment(time).format('MMMM Do, YYYY [at] h:mm:ss A');
-  timeElement.classList.add("comment-date");
+  timeElement.classList.add('comment-date');
   const timeTextNode = document.createTextNode(moment(time).fromNow());
   timeElement.appendChild(timeTextNode);
 
