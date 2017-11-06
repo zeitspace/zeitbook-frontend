@@ -1,0 +1,103 @@
+#create-post {
+    #post-body {
+        width: 100%;
+        background: none;
+        border: none;
+        outline: none;
+        color: $std-text-color;
+        &::placeholder {
+            color: #9c9c9c;
+        }
+    }
+    #post-body {
+        resize: vertical;
+    }
+    #input-container {
+        background: #ffffff;
+        border-radius: $std-border-radius;
+        box-shadow: $std-box-shadow;
+        padding: 0.8em;
+    }
+    #submit-container {
+        display: flex;
+        justify-content: flex-end;
+    }
+    #post-submit {
+        padding: 0.5em 1.2em;
+        border-radius: $std-border-radius;
+        background: $primary-blue;
+        box-shadow: $std-box-shadow;
+        border: none;
+        color: white;
+        margin-top: 0.8em;
+    }
+}
+
+@each $type in post,
+comment {
+    #create-#{$type} {
+        label {
+            display: block;
+            margin-bottom: 1rem;
+        }
+        input,
+        textarea {
+            display: block;
+        }
+    }
+    #no-#{$type}s,
+    ##{$type}s-error,
+    #create-#{$type}-error {
+        display: none;
+    }
+} // POSTS section
+#feed {
+    background-color: #ffffff;
+    box-shadow: $std-box-shadow;
+    border-radius: $std-border-radius;
+    margin-top: 2em;
+    margin-bottom: 1em;
+    .section-header {
+        margin: 0;
+        padding-top: 0.8em;
+        padding-bottom: 0.8em;
+        text-align: center;
+        color: $dark-text-color;
+        border-bottom: 1px solid $light-gray;
+    }
+}
+
+#no-posts {
+    text-align: center;
+}
+
+a.post {
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.post {
+    padding: 1em;
+    color: $dark-text-color;
+    .post-author {
+        font-weight: bold;
+    }
+    .post-body {
+        margin-top: 0.6em;
+    }
+    .post-date {
+        font-size: 0.85em;
+    }
+    .post-comment-count {
+        margin-top: 0.6em;
+        color: $light-text-color;
+        font-size: 0.9em;
+        display: flex;
+        justify-content: flex-end;
+    }
+}
+
+.post+.post {
+    border-top: 1px solid $light-gray;
+}
