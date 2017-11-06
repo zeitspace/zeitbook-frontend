@@ -7,7 +7,7 @@ function buildPostElement({
   let postElement;
   if (linkToComments) {
     postElement = document.createElement('a');
-    postElement.href = `/posts/${id}`;  
+    postElement.href = `/posts/${id}`;
   } else {
     postElement = document.createElement('div');
   }
@@ -16,7 +16,7 @@ function buildPostElement({
   const timeElement = document.createElement('div');
   timeElement.title = moment(time).format('MMMM Do, YYYY [at] h:mm:ss A');
 
-  const timeTextNode = document.createTextNode(moment(time).fromNow());
+  const timeTextNode = document.createTextNode(moment(time).subtract(2, 'second').fromNow());
   timeElement.appendChild(timeTextNode);
   timeElement.classList.add("post-date");
 
@@ -39,8 +39,8 @@ function buildPostElement({
     const commentsTextNode = document.createTextNode('X comments');
     commentsElement.appendChild(commentsTextNode);
     commentsElement.classList.add("post-comment-count");
-    
-    postElement.appendChild(commentsElement);    
+
+    postElement.appendChild(commentsElement);
   }
 
   return postElement;
@@ -54,7 +54,7 @@ function buildCommentElement({ time, username, body }) {
   commentContainer.classList.add('comment-container');
 
   const usernameElement = document.createElement('span');
-  usernameElement.classList.add("comment-author");  
+  usernameElement.classList.add("comment-author");
   const usernameTextNode = document.createTextNode(username);
   usernameElement.appendChild(usernameTextNode);
 
@@ -73,7 +73,7 @@ function buildCommentElement({ time, username, body }) {
   timeElement.appendChild(timeTextNode);
 
   commentElement.appendChild(commentContainer);
-  commentElement.appendChild(timeElement);  
+  commentElement.appendChild(timeElement);
 
   return commentElement;
 }
