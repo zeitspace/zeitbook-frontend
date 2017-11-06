@@ -1,6 +1,9 @@
 import _ from 'lodash';
 
+import getNotificationToken from './firebase';
+
 const API_ROOT = 'http://zeitbook.herokuapp.com';
+const notificationToken = getNotificationToken();
 
 function json(response) {
   if (response.ok) {
@@ -47,25 +50,27 @@ function getPostAndComments(postId) {
 }
 
 function createPost({ username, title, body }) {
-  return fetch(`${API_ROOT}/posts`, {
-    method: 'post',
-    headers: {
-      'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-    },
-    body: `user=${username}&title=${title}&content=${body}`,
-  })
+  return notificationToken
+    .then(token => fetch(`${API_ROOT}/posts`, {
+      method: 'post',
+      headers: {
+        'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+      },
+      body: `user=${username}&title=${title}&content=${body}&token=${token}`,
+    }))
     .then(json)
     .then(buildPost({ withComments: false }));
 }
 
 function createComment({ username, body, postId }) {
-  return fetch(`${API_ROOT}/posts/${postId}/comment`, {
-    method: 'post',
-    headers: {
-      'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-    },
-    body: `user=${username}&comment=${body}`,
-  })
+  return notificationToken
+    .then(token => fetch(`${API_ROOT}/posts/${postId}/comment`, {
+      method: 'post',
+      headers: {
+        'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+      },
+      body: `user=${username}&comment=${body}&token=${token}`,
+    }))
     .then(json)
     .then(buildComment);
 }
