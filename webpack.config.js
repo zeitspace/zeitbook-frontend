@@ -3,8 +3,8 @@ const LiveReloadPlugin = require('webpack-livereload-plugin');
 
 module.exports = {
   entry: {
-    'index': './src/index.js',
-    'post': './src/post.js',
+    index: './src/index.js',
+    post: './src/post.js',
   },
   output: {
     filename: '[name].js',

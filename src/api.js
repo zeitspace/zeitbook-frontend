@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-const API_ROOT = 'http://localhost:3001';
+const API_ROOT = 'http://zeitbook.herokuapp.com';
 
 function json(response) {
   if (response.ok) {

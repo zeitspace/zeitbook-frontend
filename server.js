@@ -14,5 +14,6 @@ app.get('/posts/:id', (request, response) => {
 });
 
 app.listen(3000, () => {
-  console.log('To use Zeitbook, open http://localhost:3000 in your browser.')
+  // eslint-disable-next-line no-console
+  console.log('To use Zeitbook, open http://localhost:3000 in your browser.');
 });
