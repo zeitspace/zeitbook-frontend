@@ -2,6 +2,10 @@ section {
   margin-bottom: 1rem;
 }
 
+article {
+  white-space: pre;
+}
+
 @each $type in post, comment {
   #create-#{$type} {
     label {
