@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 
 app.use(express.static('dist'));
+app.use(express.static('assets'));
 
 app.get('/', (request, response) => {
   response.sendFile('assets/pages/index.html', { root: __dirname });

@@ -1,5 +1,95 @@
-section {
+// Variables
+$std-box-shadow: 0 0 20px 0 rgba(153, 153, 153, 0.50);
+
+// Styles
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  background: linear-gradient(to bottom left, #8AC6CD, #84BDDE);
+}
+
+.header {
+  background: linear-gradient(to bottom right, #337CC8, #0D95C5);
+  color: #ffffff;
+  height: 50px;
   margin-bottom: 1rem;
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.50);
+
+  img {
+    width: 38px;
+    height: auto;
+    float: left;
+    margin-right: 20px;
+    margin-top: 5px;
+    position: absolute;
+  }
+
+  h1 {
+    font-weight: normal;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 1.3em;
+    line-height: 50px;
+    text-align: center;
+    font-weight: lighter;
+  }
+}
+
+.content {
+  padding-left: 1em;
+  padding-right: 1em;
+  max-width: 768px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#create-post {
+
+  #post-title, #post-body {
+    width: 100%;
+    background: none;
+    border: none;
+    outline: none;
+    color: #686868;
+
+    &::placeholder {
+      color: #9c9c9c;
+    }
+  }
+
+  #post-title {
+    margin-bottom: 0.4em;
+    font-weight: bold;
+  }
+
+  #post-body {
+    resize: vertical;
+  }
+
+  #input-container {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: $std-box-shadow;
+    padding: 0.8em;
+  }
+
+  #submit-container {
+    display:flex; 
+    justify-content: flex-end;
+  }
+
+  #post-submit {
+    padding: 0.5em 1.2em;
+    border-radius: 10px;
+    background: #2F7EC7;
+    box-shadow: $std-box-shadow; 
+    border: none;
+    color: white;
+    margin-top: 0.8em;
+  }
 }
 
 @each $type in post, comment {
