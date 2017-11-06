@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 import getNotificationToken from './firebase';
 
-const API_ROOT = 'http://zeitbook.herokuapp.com';
+const API_ROOT = 'https://zeitbook.herokuapp.com';
 const notificationToken = getNotificationToken();
 
 function json(response) {
