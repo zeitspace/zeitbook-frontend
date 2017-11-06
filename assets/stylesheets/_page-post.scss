@@ -13,7 +13,8 @@
     .comment {
       padding: 1em;
       color: $dark-text-color;
-      border-bottom: 1px solid $light-gray;    
+      border-bottom: 1px solid $light-gray;
+      white-space: pre-line; 
     }
   
     .comment-author {
