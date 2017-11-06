@@ -9,11 +9,14 @@ import '../assets/stylesheets/index.scss';
 
 const postsContainer = $('#posts');
 const noPostsMessage = $('#no-posts');
+const spinner = $('#spinner');
 
 getPosts()
   .then(posts => _.orderBy(posts, ['time'], ['desc']))
   .then((posts) => {
+    spinner.remove();
     if (posts.length > 0) {
+      noPostsMessage.remove();
       posts.forEach((post) => {
         postsContainer.append(buildPostElement(post, {linkToComments: true}));
       });
@@ -22,6 +25,7 @@ getPosts()
     }
   })
   .catch(() => {
+    spinner.remove();
     $('#posts-error').show();
   });
 
