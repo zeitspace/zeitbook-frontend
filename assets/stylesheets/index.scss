@@ -62,6 +62,39 @@ body {
   margin-right: auto;
 }
 
+
+a.post {
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.post {
+  padding: 1em;
+  color: $dark-text-color;
+  .post-author {
+      font-weight: bold;
+  }
+  .post-body {
+      margin-top: 0.6em;
+      white-space: pre-line;
+  }
+  .post-date {
+      font-size: 0.85em;
+  }
+  .post-comment-count {
+      margin-top: 0.6em;
+      color: $light-text-color;
+      font-size: 0.9em;
+      display: flex;
+      justify-content: flex-end;
+  }
+}
+
+.post + .post {
+  border-top: 1px solid $light-gray;
+}
+
 @import "spinner";
 @import "page-index";
 @import "page-post";

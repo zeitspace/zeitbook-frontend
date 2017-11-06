@@ -46,7 +46,7 @@ $('#comment-submit').click(() => {
       body: commentBodyInput.val(),
     })
       .then((comment) => {
-        noCommentsMessage.show();
+        noCommentsMessage.hide();
         commentBodyInput.val('');
         commentsContainer.append(buildCommentElement(comment));
       })
