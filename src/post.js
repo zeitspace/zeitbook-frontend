@@ -23,7 +23,7 @@ getPostAndComments(postId)
 
     document.title = `Zeitbook | ${_.truncate(title)}`;
 
-    $('#post').append(buildPostElement(postAndComments, { showCommentsLink: false }));
+    $('#post').append(buildPostElement(postAndComments, { linkToComments: false }));
 
     if (comments.length > 0) {
       comments.forEach((comment) => {

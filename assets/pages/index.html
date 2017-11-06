@@ -6,17 +6,16 @@
   </head>
   <body>
 
-    <div class="header">
+    <div id="header">
       <div class="content">
         <img src="/images/zeitspace-logo.png" alt="Zeitspace logo">
         <h1>zeitbook</h1>
       </div>
     </div>
 
-    <div class="content">
+    <div id="main" class="content">
       <form id="create-post" action="javascript:void(0);">
         <div id="input-container">
-          <input type="text" id="post-title" placeholder="Add title" required>
           <textarea id="post-body" placeholder="What's on your mind?" required></textarea>
         </div>
 
@@ -29,14 +28,12 @@
         </p>
       </form>
 
-      <section id="posts">
-        <article id="no-posts">
-          Uh oh, nobody's posted anything yet.
-        </article>
-        <article id="posts-error">
-          Sorry, we weren't able to load the newest posts.
-        </article>
-      </section>
+      <div id="feed">
+          <h3 class="section-header">Your Feed</h3>
+          <section id="posts">
+          </section>
+      </div>
+   
     </div>
 
     <script src="/index.js"></script>

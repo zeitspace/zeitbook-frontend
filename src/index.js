@@ -15,7 +15,7 @@ getPosts()
   .then((posts) => {
     if (posts.length > 0) {
       posts.forEach((post) => {
-        postsContainer.append(buildPostElement(post, { showCommentsLink: true }));
+        postsContainer.append(buildPostElement(post, {linkToComments: true}));
       });
     } else {
       noPostsMessage.show();
@@ -38,7 +38,7 @@ $('#post-submit').click(() => {
         noPostsMessage.hide();
         postTitleInput.val('');
         postBodyInput.val('');
-        postsContainer.prepend(buildPostElement(post, { showCommentsLink: true }));
+        postsContainer.prepend(buildPostElement(post, {linkToComments: true}));
       })
       .catch(() => {
         $('#create-post-error').show();
