@@ -57,7 +57,7 @@ body {
 .content {
   padding-left: 1em;
   padding-right: 1em;
-  max-width: 768px;
+  max-width: 600px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -223,11 +223,18 @@ a.post {
   #comment-submit {
     background: $primary-blue;
     border: none;
+    padding: 0;
     color: white;
     border-radius: 100%;
     width: 2em;
     height: 2em;
     margin-left: 1em;
+
+    img {
+      height: 14px;
+      width: 14px;
+    }
+
   }
 }
 
