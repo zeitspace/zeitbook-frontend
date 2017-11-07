@@ -26,19 +26,19 @@ Optionally, you can install the following software to improve your development e
 
 # Steps
 
-## [Step 1: Manifest.json](./01-manifest.md)
+## [Step 1: Manifest.json](./steps/01-web-app-manifest.md)
 
 - Create a manifest file
 - Create icons
 
-## [Step 2: Service Worker](./02-service-worker.md)
+## [Step 2: Service Worker](./steps/02-service-worker.md)
 
 - Create a service worker
 - Register it
 - Cache files
 - Cache api request
 
-## [Step 3: Push Notifications](./03-push-notifications.md)
+## [Step 3: Push Notifications](./steps/03-push-notifications.md)
 
 - Import Firebase module
 - Setup Firebase messagins
