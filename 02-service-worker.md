@@ -1,4 +1,4 @@
-A service worker is a script that your browser runs in the background, and provides functionalities such as push notifications, background sync, resource caching and request caching etc. It is a [JavaScript Worker](https://www.html5rocks.com/en/tutorials/workers/basics/), as such it does not have access to DOM elements. You can read more about service workers on the (Google Developers Website)[https://developers.google.com/web/fundamentals/primers/service-workers/].
+A service worker is a script that your browser runs in the background, and provides functionalities such as push notifications, background sync, resource caching and request caching etc. It is a [JavaScript Worker](https://www.html5rocks.com/en/tutorials/workers/basics/), as such it does not have access to DOM elements. You can read more about service workers on the [Google Developers Website](https://developers.google.com/web/fundamentals/primers/service-workers/).
 
 ## Create a service worker file to cache files
 
