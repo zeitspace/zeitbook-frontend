@@ -30,6 +30,15 @@ self.addEventListener('install', (event) => {
 
 # Registering service worker
 
+- Open the file `firebase.js` on the folder `src`
+- Insert the code bellow:
+
+```javascript
+const registerServiceWorker = navigator.serviceWorker.register('/service-worker.js')
+  .then(registration => messaging.useServiceWorker(registration));
+```
+
+- It will register the service worker when the browser opened the `index.html` and `post.html`
 
 # Caching API requests
 
