@@ -36,10 +36,11 @@
   
     #comment-body {
       flex-grow: 1;
-      resize: vertical;
+      resize: none;
       border: none;
       outline: none;
       margin-top: 0.3em;
+      height: 1em;
     }
   
     #comment-submit {
@@ -51,6 +52,7 @@
       width: 2em;
       height: 2em;
       margin-left: 1em;
+      align-self: center;
   
       img {
         height: 14px;

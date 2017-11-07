@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "autosize": "^4.0.0",
     "concurrently": "^3.5.0",
     "css-loader": "^0.28.7",
     "express": "^4.16.2",

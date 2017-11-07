@@ -1,11 +1,15 @@
 import $ from 'jquery';
 import _ from 'lodash';
+import autosize from 'autosize';
 
 import { getPostAndComments, createComment } from './api';
 import username from './username';
 import { buildPostElement, buildCommentElement } from './util';
 
 import '../assets/stylesheets/index.scss';
+
+// make all textareas auto resize based on content
+autosize(document.querySelectorAll('textarea'));
 
 const commentsContainer = $('#comments');
 const noCommentsMessage = $('#no-comments');
