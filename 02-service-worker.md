@@ -28,7 +28,7 @@ self.addEventListener('install', (event) => {
 });
 ```
 
-# Registering service worker
+# Register service worker
 
 - Open the file `firebase.js` on the folder `src`
 - Insert the code bellow:
@@ -40,7 +40,7 @@ const registerServiceWorker = navigator.serviceWorker.register('/service-worker.
 
 - It will register the service worker when the browser opened the `index.html` and `post.html`
 
-# Caching API requests
+# Cache API requests
 
 - Open the `service-worker.js` file
 - Insert the code bellow:
