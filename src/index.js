@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import _ from 'lodash';
+import orderBy from 'lodash/orderBy';
 import autosize from 'autosize';
 
 import { getPosts, createPost } from './api';
@@ -14,7 +14,7 @@ const noPostsMessage = $('#no-posts');
 const spinner = $('#spinner');
 
 getPosts()
-  .then(posts => _.orderBy(posts, ['time'], ['desc']))
+  .then(posts => orderBy(posts, ['time'], ['desc']))
   .then((posts) => {
     spinner.remove();
     if (posts.length > 0) {

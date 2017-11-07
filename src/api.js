@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 import getNotificationToken from './firebase';
 
 const API_ROOT = 'https://zeitbook.herokuapp.com';
@@ -32,7 +30,7 @@ const buildPost = ({ withComments }) => ({
     body: content,
   };
   if (withComments) {
-    result.comments = _.map(comments, buildComment);
+    result.comments = comments.map(buildComment);
   }
   return result;
 };
@@ -40,7 +38,7 @@ const buildPost = ({ withComments }) => ({
 function getPosts() {
   return fetch(`${API_ROOT}/posts`)
     .then(json)
-    .then(posts => _.map(posts, buildPost({ withComments: false })));
+    .then(posts => posts.map(buildPost({ withComments: false })));
 }
 
 function getPostAndComments(postId) {

@@ -1,5 +1,6 @@
 import $ from 'jquery';
-import _ from 'lodash';
+import orderBy from 'lodash/orderBy';
+import update from 'lodash/update';
 import autosize from 'autosize';
 
 import { getPostAndComments, createComment } from './api';
@@ -15,7 +16,7 @@ const noCommentsMessage = $('#no-comments');
 const postId = window.location.pathname.match(/\/posts\/(.*)/)[1];
 
 getPostAndComments(postId)
-  .then(postAndComments => _.update(postAndComments, 'comments', comments => _.orderBy(comments, ['time'], ['asc'])))
+  .then(postAndComments => update(postAndComments, 'comments', comments => orderBy(comments, ['time'], ['asc'])))
   .then((postAndComments) => {
     if (!postAndComments) {
       return;

@@ -1,5 +1,6 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
+const webpack = require('webpack');
 const LiveReloadPlugin = require('webpack-livereload-plugin');
 
 module.exports = {
@@ -26,6 +27,7 @@ module.exports = {
     new ExtractTextPlugin({
       filename: '[name].css',
     }),
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new LiveReloadPlugin(),
   ],
 };
