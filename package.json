@@ -4,11 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-<<<<<<< 53f017f1fba4c83564c2fb2f89c757d84440a249
     "start": "concurrently \"webpack --watch\" \"node server.js\" --names webpack,server",
     "lint": "eslint \"*.js\" \"src/*.js\" \"assets/javascripts/*.js\"",
     "lint:fix": "eslint \"*.js\" \"src/*.js\" \"assets/javascripts/*.js\" --fix",
->>>>>>> Add service worker
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
