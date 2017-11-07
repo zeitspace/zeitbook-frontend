@@ -1,7 +1,6 @@
+The manifest is a JSON file that contains important information about the app. It contains information that will personalize your app and define how it works based on the target device. It is useful to show your app correctly on a mobile device or to add it to the home screen.
 
-The manifest is a JSON file that contains important information about the app. It contains information that will personalize your app and define how it works based on the execution device. It is usefull to show your app correctly on a mobile device or to add it to the homescreen.
-
-It will contains important information about:
+It will contain important information about:
 
 - App name
 - Background color, theme color, icons, etc.
@@ -32,8 +31,8 @@ It will contains important information about:
 
 # Create icon files
 
-- Create new icons inside the assets/icons
-- Add a reference for them on the `manifest.json` inside the icon list, like:
+- Create new icons inside the assets/icons, you should create icons for different screen sizes.
+- Add a reference for them on the `manifest.json` inside the icon list, see a example bellow:
 ```json
 {
     "src": "/android-chrome-192x192.png",
@@ -50,16 +49,19 @@ It will contains important information about:
 # Add manifest to index
 
 - Open the index.html
-- Create a referrence to the manifest file inside the head section, like:
-`<link rel="manifest" href="/manifest.json">`
+- Create a referrence to the manifest file inside the head section, see a example bellow:
+```html
+<link rel="manifest" href="/manifest.json">
+```
 
 # Test
 
-- Open it using the Chrome DevTools
+- Open it using Chrome browser
+- Open the Chrome DevTools
 - Go to the Application tab
-- Click on Manifest on the left side bar
+- Click on Manifest on the left side bar and see the manifest data
 
-- You can also test your app using the [Lighthouse](https://developers.google.com/web/tools/lighthouse/) an external tool to audits performance, accessibility, progressive web apps, and more.
+- You can also test your app using the [Lighthouse](https://developers.google.com/web/tools/lighthouse/), an external tool to audits performance, accessibility, progressive web apps, and more.
 
 
 [Move on to the next step: Create Service Worker](./02-service-worker.md)
