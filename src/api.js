@@ -22,7 +22,7 @@ const buildComment = ({
 });
 
 const buildPost = ({ withComments }) => ({
-  id, time, user, title, content, comments,
+  id, time, user, title, content, comments, numComments,
 }) => {
   const result = {
     id,
@@ -30,6 +30,7 @@ const buildPost = ({ withComments }) => ({
     username: user,
     title,
     body: content,
+    numComments,
   };
   if (withComments) {
     result.comments = _.map(comments, buildComment);
