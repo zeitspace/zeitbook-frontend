@@ -1,7 +1,7 @@
 import moment from 'moment';
 
 function buildPostElement({
-  id, time, username, body,
+  id, time, username, body, numComments,
 }, { linkToComments }) {
   let postElement;
   if (linkToComments) {
@@ -35,7 +35,7 @@ function buildPostElement({
 
   if (linkToComments) {
     const commentsElement = document.createElement('div');
-    const commentsTextNode = document.createTextNode('X comments');
+    const commentsTextNode = document.createTextNode(`${numComments || 0} comments`);
     commentsElement.appendChild(commentsTextNode);
     commentsElement.classList.add('post-comment-count');
 
