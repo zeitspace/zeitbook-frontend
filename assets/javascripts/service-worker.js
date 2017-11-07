@@ -11,6 +11,7 @@ const CACHE_NAME = 'zeitbook-cache-v1';
 const urlsToCache = [
   '/',
   '/index.js',
+  '/index.css',
   '/post.js',
   '/icons/192x192.png',
   '/icons/256x256.png',
