@@ -1,8 +1,8 @@
-A service worker is a script, coded in Javscript, used to a lot of functionalities in the background like push notifications, background sync, cache pages, cache requests to an api, etc. It runs in a different scope than your web site, this way it's not possible to access DOM elemets, interact with the webpage, etc.
+A service worker is a script that your browser runs in the background, and provides functionalities such as push notifications, background sync, resource caching and request caching etc. It is a [JavaScript Worker](https://www.html5rocks.com/en/tutorials/workers/basics/), as such it does not have access to DOM elements. You can read more about service workers on the (Google Developers Website)[https://developers.google.com/web/fundamentals/primers/service-workers/].
 
-# Create a service worker file to cache files
+## Create a service worker file to cache files
 
-- Create a new file inside the assets/javascript folder called `service-worker.js`
+- Create a new file inside the assets/javascript folder called `service-worker.js`.
 - Insert the code bellow:
 
 ```javascript
@@ -28,21 +28,21 @@ self.addEventListener('install', (event) => {
 });
 ```
 
-# Register service worker
+## Register your service worker
 
-- Open the file `firebase.js` on the folder `src`
-- Insert the code bellow:
+- Open the file `firebase.js` in the folder `src`.
+- Insert the code below:
 
 ```javascript
 const registerServiceWorker = navigator.serviceWorker.register('/service-worker.js')
   .then(registration => messaging.useServiceWorker(registration));
 ```
 
-- It will register the service worker when the browser opened the `index.html` and `post.html`
+- It will register the service worker when the browser opens `index.html` and `post.html`.
 
-# Cache API requests
+## Cache API requests
 
-- Open the `service-worker.js` file
+- Open the `service-worker.js` file.
 - Insert the code bellow:
 
 ```javascript
@@ -73,19 +73,19 @@ self.addEventListener('fetch', (event) => {
 });
 ```
 
-# Test
+## Test
 
-- Open it using Chrome browser
-- Open the Chrome DevTools
-- Go to the Application tab
-- Click on `Service Workers` on the left side bar and see it loaded
-- Click on `Cache Storage` on the left side bar inside the `Cache` section and see all the files cached
-- Go back to `Service Workers`
-- Click on the Offline checkbox, to test it running offline
-- Reload the page, the page will be loaded using the cached files and requests
+- Open it using Google Chrome.
+- Open Chrome DevTools (`F12` on Windows or `cmd + option + j` on macOS).
+- Go to the Application tab.
+- Click on `Service Workers` on the left side bar. You should see your service worker loaded.
+- Click on `Cache Storage` on the left side bar inside the `Cache` section to see the cached resources.
+- Go back to `Service Workers`.
+- Click on the offline checkbox to simulate and offline environment.
+- Reload the page. Despite being offline, the page will still load using the cached resources and requests.
 
 
-- You can also test your app using the [Lighthouse](https://developers.google.com/web/tools/lighthouse/), an external tool to audits performance, accessibility, progressive web apps, and more.
+- Once again, you generate a report using [Lighthouse](https://developers.google.com/web/tools/lighthouse/). You should see an increase in your Progressive Web App score.
 
 
 [Move on to the next step: Push Notifications](./03-push-notifications.md)

@@ -58,7 +58,7 @@ It will contain important information about:
 ## Test
 
 - Open it using Google Chrome
-- Open the Chrome DevTools
+- Open Chrome DevTools (`F12` on Windows or `cmd + option + j` on macOS)
 - Go to the Application tab
 - Click on Manifest on the left side bar and see the manifest data. You should see the icons that you just added.
 
