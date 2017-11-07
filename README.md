@@ -30,3 +30,17 @@ Optionally, you can install the following software to improve your development e
 
 - Create a manifest file
 - Create icons
+
+## [Step 2: Service Worker](./02-service-worker.md)
+
+- Create a service worker
+- Register it
+- Cache files
+- Cache api request
+
+## [Step 3: Push Notifications](./03-push-notifications.md)
+
+- Import Firebase module
+- Setup Firebase messagins
+- Get a token and save it on local storage
+- Allow push notifications
