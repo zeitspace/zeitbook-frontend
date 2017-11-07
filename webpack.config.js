@@ -1,9 +1,10 @@
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
 const LiveReloadPlugin = require('webpack-livereload-plugin');
 
 module.exports = {
   entry: {
-    index: './src/index.js',
+    index: ['./src/index.js', './assets/stylesheets/index.scss'],
     post: './src/post.js',
   },
   output: {
@@ -15,15 +16,17 @@ module.exports = {
     rules: [
       {
         test: /\.scss$/,
-        use: [
-          'style-loader',
+        use: ExtractTextPlugin.extract([
           'css-loader',
           'sass-loader',
-        ],
+        ]),
       },
     ],
   },
   plugins: [
+    new ExtractTextPlugin({
+      filename: '[name].css',
+    }),
     new LiveReloadPlugin(),
   ],
 };

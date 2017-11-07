@@ -6,8 +6,6 @@ import { getPostAndComments, createComment } from './api';
 import username from './username';
 import { buildPostElement, buildCommentElement } from './util';
 
-import '../assets/stylesheets/index.scss';
-
 // make all textareas auto resize based on content
 autosize(document.querySelectorAll('textarea'));
 
