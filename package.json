@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "concurrently \"webpack\" \"node server.js\" --names webpack,server",
+    "start": "concurrently \"webpack --watch\" \"node server.js\" --names webpack,server",
     "lint": "eslint \"*.js\" \"src/*.js\"",
     "lint:fix": "eslint \"*.js\" \"src/*.js\" --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
