@@ -6,10 +6,10 @@ It will contain important information about:
 - Background color, theme color, icons, etc.
 - Display characteristics
 
-# Create a manifest file
+## Create a manifest file
 
 - Create a new file inside the assets folder called `manifest.json`
-- Insert the code above:
+- Insert the code below:
 ```json
 {
     "short_name": "Zeitbook",
@@ -22,17 +22,18 @@ It will contain important information about:
     "display": "standalone"
 }
 ```
-- short_name is the display name on mobile devices when added to the home screen
-- name is the full name of you app
+- short_name is the display name of the app on mobile devices when added to the home screen
+- name is the full name of your app
 - theme_color is the toolbar color when your app is running over a browser
 - background_color is the background color of your app splash screen
 - start_url is the main page of your app
-- display define if you app will hide the browser UI or not
+- display defines if your app will hide the browser UI or not
 
-# Create icon files
+## Create icon files
 
-- Create new icons inside the assets/icons, you should create icons for different screen sizes.
-- Add a reference for them on the `manifest.json` inside the icon list, see a example bellow:
+- Download the ZIP file containing the icons [here].
+- Unzip the file and move the contents to the assets/icons folder
+- Add references to them in the `manifest.json` file, inside the icons list. For example:
 ```json
 {
     "src": "/android-chrome-192x192.png",
@@ -46,22 +47,22 @@ It will contain important information about:
 }
 ```
 
-# Add manifest to index
+## Add manifest to index
 
-- Open the index.html
-- Create a referrence to the manifest file inside the head section, see a example bellow:
+- Open `index.html`
+- Add the following line within the `<head>` tags:
 ```html
 <link rel="manifest" href="/manifest.json">
 ```
 
-# Test
+## Test
 
-- Open it using Chrome browser
+- Open it using Google Chrome
 - Open the Chrome DevTools
 - Go to the Application tab
-- Click on Manifest on the left side bar and see the manifest data
+- Click on Manifest on the left side bar and see the manifest data. You should see the icons that you just added.
 
-- You can also test your app using the [Lighthouse](https://developers.google.com/web/tools/lighthouse/), an external tool to audits performance, accessibility, progressive web apps, and more.
+- You can generate a report for your app using [Lighthouse](https://developers.google.com/web/tools/lighthouse/), a tool developed by Google. It has audits for performance, accessibility, and progressive web apps.
 
 
 [Move on to the next step: Create Service Worker](./02-service-worker.md)
