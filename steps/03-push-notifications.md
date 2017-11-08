@@ -4,7 +4,7 @@ You can start from this step by cloning this repository and checking out the `st
 
 # Push notifications
 
-Push notifications are great for keeping users engaged with your application. Here, we'll use [Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging/) to display push notifications when someone comments on your post or comments on a post that you've also commented on.
+Push notifications are great for keeping users engaged with your application. Here, you'll use [Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging/) to display push notifications when someone comments on your post or comments on a post that you've also commented on.
 
 ## Configure Firebase
 
@@ -33,7 +33,7 @@ This code sets up your application to connect to the Zeitbook API's Firebase pro
 
 ## Include your application's notification token in API requests
 
-Firebase Cloud Messaging assigns your application a notification token. Zeitbook's backend can use this token to send push messages to your application. Here, we'll set up your application to send its notification token to the backend.
+Firebase Cloud Messaging assigns your application a notification token. Zeitbook's backend can use this token to send push messages to your application. Here, you'll set up your application to send its notification token to the backend.
 
 To keep this demo application simple, we've decided not to have a concept of user accounts. In a real-world application, instead of storing tokens as a part of each post and comment by a user, you would store them as attributes of users. See [the Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging/js/first-message) documentation for more details.
 
@@ -65,7 +65,7 @@ Before making POST requests to the backend, the functions in `src/api.js` wait f
 
 ## Display notifications when your application receives a message from the server
 
-Add the following code to the top of `assets/javascripts/service-worker.js`:
+Add the following code to the top of `assets/service-worker.js`:
 
 ```javascript
 importScripts('https://www.gstatic.com/firebasejs/3.9.0/firebase-app.js');
