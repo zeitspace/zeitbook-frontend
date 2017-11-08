@@ -1,4 +1,4 @@
-## Arriving late?
+### Arriving late?
 
 You can start from this step by cloning this repository and checking out the `step-2` branch, or by [downloading the code as a ZIP file](https://github.com/zeitspace/zeitbook-frontend/archive/step-2.zip).
 
