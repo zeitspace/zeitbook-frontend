@@ -12,7 +12,7 @@ function json(response) {
 }
 
 const buildComment = ({
-  id, time, user, comment, sync=true,
+  id, time, user, comment, sync = true,
 }) => ({
   id,
   time: new Date(time),
@@ -22,7 +22,7 @@ const buildComment = ({
 });
 
 const buildPost = ({ withComments }) => ({
-  id, time, user, title, content, comments, numComments, sync=true,
+  id, time, user, title, content, comments, numComments, sync = true,
 }) => {
   const result = {
     id,

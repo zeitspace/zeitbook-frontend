@@ -10,7 +10,7 @@ function addPenddingBlock(parentElement) {
 }
 
 function buildPostElement({
-  id, time, username, body, numComments, sync=true,
+  id, time, username, body, numComments, sync = true,
 }, { linkToComments }) {
   let postElement;
   if (linkToComments) {
@@ -61,7 +61,7 @@ function buildPostElement({
 }
 
 function buildCommentElement({
-  time, username, body, id, sync=true,
+  time, username, body, id, sync = true,
 }) {
   const commentElement = document.createElement('article');
   commentElement.classList.add('comment');
