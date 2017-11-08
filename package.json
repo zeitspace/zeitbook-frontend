@@ -5,14 +5,15 @@
   "main": "server.js",
   "scripts": {
     "start": "concurrently \"webpack --watch\" \"node server.js\" --names webpack,server",
-    "lint": "eslint \"*.js\" \"src/*.js\" \"assets/javascripts/*.js\"",
-    "lint:fix": "eslint \"*.js\" \"src/*.js\" \"assets/javascripts/*.js\" --fix",
+    "lint": "eslint \"*.js\" \"src/*.js\" \"assets/service-worker.js\"",
+    "lint:fix": "eslint \"*.js\" \"src/*.js\" \"assets/service-worker.js\" --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "autosize": "^4.0.0",
+    "compression": "^1.7.1",
     "concurrently": "^3.5.0",
     "css-loader": "^0.28.7",
     "express": "^4.16.2",

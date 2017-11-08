@@ -1,6 +1,8 @@
 import * as firebase from 'firebase/app';
 import 'firebase/messaging';
 
+import registerServiceWorker from './service-worker';
+
 const config = {
   apiKey: 'AIzaSyCm6wDitw69vDYVnLcNG91LrV3ClEm_rHc',
   authDomain: 'zeitspace-forum.firebaseapp.com',
@@ -13,35 +15,16 @@ firebase.initializeApp(config);
 
 const messaging = firebase.messaging();
 
-const registerServiceWorker = navigator.serviceWorker.register('/service-worker.js')
-  .then(registration => messaging.useServiceWorker(registration));
-
-function storeNotificationToken(token) {
-  localStorage.setItem('notificationToken', token);
+function getToken() {
+  return messaging.getToken()
+    .then(token => token || messaging.requestPermission().then(getToken))
+    .catch(() => null);
 }
-
-messaging.onTokenRefresh(() => {
-  messaging.getToken()
-    .then(storeNotificationToken)
-    .catch(error => console.log(error));
-});
 
 function getNotificationToken() {
   return registerServiceWorker
-    .then(() => new Promise((resolve) => {
-      const storedToken = localStorage.getItem('notificationToken');
-      if (storedToken) {
-        resolve(storedToken);
-      } else {
-        messaging.requestPermission()
-          .then(() => messaging.getToken())
-          .then((token) => {
-            storeNotificationToken(token);
-            resolve(token);
-          })
-          .catch(error => console.log(error));
-      }
-    }));
+    .then(registration => messaging.useServiceWorker(registration))
+    .then(getToken);
 }
 
 export default getNotificationToken;

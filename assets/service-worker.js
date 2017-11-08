@@ -6,6 +6,8 @@ importScripts('https://cdn.jsdelivr.net/npm/idb-keyval@2.3.0/idb-keyval.min.js')
 firebase.initializeApp({
   messagingSenderId: '81782109643',
 });
+
+firebase.messaging().setBackgroundMessageHandler();
 /* eslint-enable no-undef */
 
 const API_ROOT = 'https://zeitbook.herokuapp.com';

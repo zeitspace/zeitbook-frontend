@@ -36,7 +36,7 @@ function buildPostElement({
 
   if (linkToComments) {
     const commentsElement = document.createElement('div');
-    const commentsTextNode = document.createTextNode(`${numComments || 0} comments`);
+    const commentsTextNode = document.createTextNode(`${numComments || 0} comment${numComments === 1 ? '' : 's'}`);
     commentsElement.appendChild(commentsTextNode);
     commentsElement.classList.add('post-comment-count');
 
