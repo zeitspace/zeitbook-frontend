@@ -50,7 +50,7 @@ export default navigator.serviceWorker.register('/service-worker.js');
 
 This will allow you to load the HTML for the pages displaying all posts (`localhost:3000/`) and a single post (e.g. `localhost:3000/posts/abcde`) even when you're offline.
 
-Add the following code to `assets/javascripts/service-worker.js`:
+Add the following code to the bottom of `assets/service-worker.js`:
 
 ```javascript
 function fetchAndCache(request, cache) {
@@ -106,7 +106,7 @@ Add the following code inside your service worker's `fetch` event listener, wrap
           })));
     event.respondWith(networkFirst);
   } else if (request.method === 'GET') {
-    // const cacheFirst = caches.open(CACHE_NAME)
+    // const cacheFirst = caches.open(CACHE_NAME);
     // Other existing code...
   }
 ```
