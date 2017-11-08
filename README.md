@@ -17,7 +17,7 @@ Make sure you have the following software installed:
 
 Optionally, you can install the following software to improve your development experience:
 
-1. The [LiveReload Chrome extension](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en). This extension will automatically refresh the browser after you make a change to a JavaScript source file. Even cooler, it will update changed CSS files without reloading the page.
+- The [LiveReload Chrome extension](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en). This extension will automatically refresh the browser after you make a change to a JavaScript source file. Even cooler, it will update changed CSS files without reloading the page.
 
 ## Setup
 
