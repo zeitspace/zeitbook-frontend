@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "concurrently \"webpack --watch\" \"node server.js\" --names webpack,server",
-    "lint": "eslint \"*.js\" \"src/*.js\" \"assets/javascripts/*.js\"",
-    "lint:fix": "eslint \"*.js\" \"src/*.js\" \"assets/javascripts/*.js\" --fix",
+    "lint": "eslint \"*.js\" \"src/*.js\" \"assets/service-worker.js\"",
+    "lint:fix": "eslint \"*.js\" \"src/*.js\" \"assets/service-worker.js\" --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
