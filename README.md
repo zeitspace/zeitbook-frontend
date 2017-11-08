@@ -79,5 +79,6 @@ If you're looking for a refresher on what Progressive Web Apps are and why they'
 
 ### Developer tooling
 
+- [Workbox](https://developers.google.com/web/tools/workbox/) (tools for writing and automatically generating service workers)
 - [Lighthouse](https://developers.google.com/web/tools/lighthouse/) (automated testing of PWA criteria and other web page quality metrics)
 - [Debugging PWAs using Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools/progressive-web-apps)
