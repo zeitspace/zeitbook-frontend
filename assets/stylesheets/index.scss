@@ -18,12 +18,12 @@ html, body {
 
 body {
   font-family: Helvetica, Arial, sans-serif;
-  background: linear-gradient(to bottom left, #8AC6CD, #84BDDE);
+  background: linear-gradient(to bottom left, #81bfe2, #8abeea);
   background-attachment: fixed;
 }
 
 #header {
-  background: #0098FA;
+  background: $primary-blue;
   color: #ffffff;
   height: 50px;
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.50);
