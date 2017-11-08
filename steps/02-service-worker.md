@@ -4,7 +4,7 @@ You can start from this step by cloning this repository and checking out the `st
 
 # Service worker
 
-A service worker is a script that your browser runs in the background. It provides features such as push notifications, background data synchronization, and resource and request caching. Since it is a [JavaScript Worker](https://www.html5rocks.com/en/tutorials/workers/basics/), it doesn't have access to the DOM. However, it can interact with the DOM indirectly by communicating with your application's main thread.
+A service worker is a script that your browser runs in the background. It provides features such as push notifications, background data synchronization, and resource and request caching. Since it is a [JavaScript Worker](https://www.html5rocks.com/en/tutorials/workers/basics/), it doesn't have access to the DOM. However, it can interact with the DOM indirectly by communicating with your application's main thread. In this step, you'll create a service worker that caches static resources upon which your application depends, as well as API requests made by your application.
 
 ## Create a service worker to cache your application's resources
 
