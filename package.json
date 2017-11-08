@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "concurrently \"webpack --watch\" \"node server.js\" --names webpack,server",
-    "lint": "eslint \"*.js\" \"src/*.js\"",
-    "lint:fix": "eslint \"*.js\" \"src/*.js\" --fix",
+    "lint": "eslint \"*.js\" \"src/*.js\" \"assets/javascripts/*.js\"",
+    "lint:fix": "eslint \"*.js\" \"src/*.js\" \"assets/javascripts/*.js\" --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -18,6 +18,7 @@
     "css-loader": "^0.28.7",
     "express": "^4.16.2",
     "extract-text-webpack-plugin": "^3.0.2",
+    "firebase": "^4.6.1",
     "jquery": "^3.2.1",
     "lodash": "^4.17.4",
     "moment": "^2.19.1",
