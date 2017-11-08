@@ -21,7 +21,7 @@ const buildComment = ({
 });
 
 const buildPost = ({ withComments }) => ({
-  id, time, user, title, content, comments, numComments,
+  id, time, user, title, content, comments, numComments, sync=true
 }) => {
   const result = {
     id,
@@ -30,6 +30,7 @@ const buildPost = ({ withComments }) => ({
     title,
     body: content,
     numComments,
+    sync,
   };
   if (withComments) {
     result.comments = comments.map(buildComment);
@@ -72,7 +73,7 @@ function createPost({ username, title, body }) {
     return navigator.serviceWorker.ready;
   }).then(reg => reg.sync.register('send-post-queue')).then(() => {
     const result = {
-      id: `post-${post.id}`, time: new Date(), user: username, title, content: body,
+      id: `post-${post.id}`, time: new Date(), user: username, title, content: body, sync: false,
     };
     return buildPost({ withComments: false })(result);
   });

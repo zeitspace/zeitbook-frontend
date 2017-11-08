@@ -1,7 +1,7 @@
 import moment from 'moment';
 
 function buildPostElement({
-  id, time, username, body, numComments,
+  id, time, username, body, numComments, sync=true
 }, { linkToComments }) {
   let postElement;
   if (linkToComments) {
@@ -10,6 +10,7 @@ function buildPostElement({
   } else {
     postElement = document.createElement('div');
   }
+
   postElement.classList.add('post');
   postElement.id = id;
 
@@ -33,6 +34,15 @@ function buildPostElement({
   postElement.appendChild(usernameElement);
   postElement.appendChild(timeElement);
   postElement.appendChild(bodyElement);
+
+  if (!sync) {
+    postElement.classList.add('pendding');
+    const penddingElement = document.createElement('div');
+    const penddingTextNode = document.createTextNode('pendding');
+    penddingElement.appendChild(penddingTextNode);
+    penddingElement.classList.add('pendding-text');
+    postElement.appendChild(penddingElement);
+  }
 
   if (linkToComments) {
     const commentsElement = document.createElement('div');
