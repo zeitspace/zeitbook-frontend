@@ -6,6 +6,18 @@ You can start from this step by cloning this repository and checking out the `st
 
 Push notifications are great for keeping users engaged with your application. Here, you'll use [Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging/) to display push notifications when someone comments on your post or comments on a post that you've also commented on.
 
+## Add the `gcm_sender_id` to your web app manifest
+
+Add the following key-value pair to `assets/manifest.json`:
+
+```json
+{
+    "gcm_sender_id": "103953800507"
+}
+```
+
+This hardcoded value indicates to browsers that Firebase Cloud Messaging is authorized to send messages to your application.
+
 ## Configure Firebase
 
 Add the following code at the top of `src/firebase.js`:
