@@ -1,3 +1,7 @@
+## Arriving late?
+
+You can start from this step by cloning this repository and checking out the `step-2` branch, or by [downloading the code as a ZIP file](https://github.com/zeitspace/zeitbook-frontend/archive/step-2.zip).
+
 # Service worker
 
 A service worker is a script that your browser runs in the background. and provides functionalities such as push notifications, background sync, and resource and request caching. Since it is a [JavaScript Worker](https://www.html5rocks.com/en/tutorials/workers/basics/), it doesn't have access to the DOM. However, it can interact with the DOM indirectly by communicating with your application's main thread.

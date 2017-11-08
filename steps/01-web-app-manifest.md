@@ -1,3 +1,7 @@
+## Arriving late?
+
+You can start from this step by cloning this repository and checking out the `step-1` branch, or by [downloading the code as a ZIP file](https://github.com/zeitspace/zeitbook-frontend/archive/step-1.zip). 
+
 # Web app manifest
 
 The web app manifest is a JSON file that contains important information about your application. If your application provides a manifest, browsers will prompt your users to install it to their devices' homescreens. You can also use the manifest to control whether your application is displayed in portrait or landscape and choose a theme colour for the browser's UI (or even hide it altogether).

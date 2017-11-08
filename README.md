@@ -2,6 +2,10 @@
 
 The starter application for Zeitspace's workshop on Progressive Web Apps.
 
+## Arriving late?
+
+Complete the instructions under [Prerequisites](#prerequisites) and [Setup](#setup), then go to [the instructions for the current step](#steps).
+
 ## Prerequisites
 
 Make sure you have the following software installed:

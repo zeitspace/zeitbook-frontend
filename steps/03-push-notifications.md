@@ -1,3 +1,7 @@
+## Arriving late?
+
+You can start from this step by cloning this repository and checking out the `step-3` branch, or by [downloading the code as a ZIP file](https://github.com/zeitspace/zeitbook-frontend/archive/step-3.zip). 
+
 # Push notifications
 
 Push notifications are great for keeping users engaged with your application. Here, we'll use [Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging/) to display push notifications when someone comments on your post or comments on a post that you've also commented on.
