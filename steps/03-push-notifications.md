@@ -1,13 +1,17 @@
+# Push notifications
+
+Push notifications are great for keeping users engaged with your application. Here, we'll use [Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging/) to display push notifications when someone comments on your post or comments on a post that you've also commented on.
+
 ## Configure Firebase
 
-- Open the file `firebase.js` in the folder `src`.
-- Insert the following code to import the Firebase module.
+Add the following code at the top of `src/firebase.js`:
 
 ```javascript
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
+import 'firebase/messaging';
 ```
 
-- Now we need access to the Firebase database. Insert the following config with all the needed keys.
+Then, add the following code below `import registerServiceWorker from './service-worker';`:
 
 ```javascript
 const config = {
@@ -18,58 +22,66 @@ const config = {
   storageBucket: 'zeitspace-forum.appspot.com',
   messagingSenderId: '81782109643',
 };
-```
-
-# Setup Notifications
-
-- The following code initializes Firebase Messaging.
-
-```javascript
 firebase.initializeApp(config);
-const messaging = firebase.messaging();
 ```
 
-- Now we need to get the messaging token for our device and save it in our local storage
+This code sets up your application to connect to the Zeitbook API's Firebase project.
+
+## Include your application's notification token in API requests
+
+Firebase Cloud Messaging assigns your application a notification token. Zeitbook's backend can use this token to send push messages to your application. Here, we'll set up your application to send its notification token to the backend.
+
+To keep this demo application simple, we've decided not to have a concept of user accounts. In a real-world application, instead of storing tokens as a part of each post and comment by a user, you would store them as attributes of users. See [the Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging/js/first-message) documentation for more details.
+
+Replace the last two lines of `src/firebase.js` with the following code:
 
 ```javascript
-function storeNotificationToken(token) {
-  localStorage.setItem('notificationToken', token);
-}
+const messaging = firebase.messaging();
 
-messaging.onTokenRefresh(() => {
-  messaging.getToken()
-    .then(storeNotificationToken)
-    .catch(error => console.log(error));
-});
+function getToken() {
+  return messaging.getToken()
+    .then(token => token || messaging.requestPermission().then(getToken))
+    .catch(() => null);
+}
 
 function getNotificationToken() {
   return registerServiceWorker
-    .then(() => new Promise((resolve) => {
-      const storedToken = localStorage.getItem('notificationToken');
-      if (storedToken) {
-        resolve(storedToken);
-      } else {
-        messaging.requestPermission()
-          .then(() => messaging.getToken())
-          .then((token) => {
-            storeNotificationToken(token);
-            resolve(token);
-          })
-          .catch(error => console.log(error));
-      }
-    }));
+    .then(registration => messaging.useServiceWorker(registration))
+    .then(getToken);
 }
 
 export default getNotificationToken;
 ```
 
-# Test
+Before making POST requests to the backend, the functions in `src/api.js` wait for the Promise `getNotificationToken()` to resolve, then include the resulting token in their requests to the backend.
 
-- Open it using Google Chrome
-- When prompted, allow push notifications for your app
-- Create a new post
-- Change tabs, then open the app in an incognito window.
-- Comment on the post you just created in the incognito window
-- You should see a new comment notification
+`getNotificationToken` follows a three-step process for obtaining the notification token. First, it waits for the application's service worker to be registered. Then, it specifies that the Firebase Cloud Messaging client-side library should use this service worker to receive push messages. Finally, it calls `getToken`, which retrieves the token from the FCM library.
 
-[Move on to the next step: Offline Sync](./04-offline-sync.md)
+`messaging.getToken` returns `null` if the user hasn't granted permission to receive notifications. If this occurs, `getToken` calls `messaging.requestPermission` to ask for permission, then calls itself. If `messaging.requestPermission` throws an error, this indicates that the user has denied permission to your application to display notifications. In this case, `getToken` simply returns `null`.
+
+## Display notifications when your application receives a message from the server
+
+Add the following code to the top of `assets/javascripts/service-worker.js`:
+
+```javascript
+importScripts('https://www.gstatic.com/firebasejs/3.9.0/firebase-app.js');
+importScripts('https://www.gstatic.com/firebasejs/3.9.0/firebase-messaging.js');
+
+firebase.initializeApp({
+  messagingSenderId: '81782109643',
+});
+
+firebase.messaging().setBackgroundMessageHandler();
+```
+
+This code sets up your service worker to receive push messages from Firebase Cloud Messaging. The Cloud Messaging library will automatically display a push notification whenever a message is received.
+
+## Test that notifications work
+
+Open your application using Google Chrome. When prompted, allow push notifications for your app. Create a new post, then change tabs. (Notifications will only appear when your application is in the background, i.e. when Chrome isn't the focused window or your application isn't the focused tab.)
+
+You now have two ways to test your code. First, you can ask another workshop participant to comment on your post. Or, you can open your application in an incognito window and comment on your own post. (This works because notification tokens are unique by browser session. When the backend sends a notification using your original tab's notification token, Chrome will display the notification because your original tab is in the background.)
+
+## Next step
+
+[Use the Background Sync API to allow users to create posts and comments while offline.](./04-background-sync.md)
