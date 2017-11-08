@@ -38,9 +38,7 @@ Your web app manifest now contains the following properties:
 
 If you want browsers to prompt your users to install your application, you must provide
 
-First, download [the ZIP file containing the icons](./icons.zip). Extract the contents of this file into a new folder `assets/icons`.
-
-Next, add references to the icons in your manifest, under the `icons` key:
+First, move the icons from `steps/icons` to a new folder `assets/icons`. Next, add references to the icons in your manifest, under the `icons` key:
 
 ```json
     "icons": [
