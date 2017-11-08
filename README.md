@@ -43,24 +43,40 @@ Using the service worker you created in Step 2, you'll set up your application t
 
 ## Resources
 
-Google has created many resources on Progressive Web Apps:
+If you're looking for a refresher on what Progressive Web Apps are and why they're important, we recommend [this article](https://blog.ionic.io/what-is-a-progressive-web-app/).
+
+### Concepts
 
 - [Overview of Progressive Web Apps](https://developers.google.com/web/progressive-web-apps/)
 - [Progressive Web App checklist](https://developers.google.com/web/progressive-web-apps/checklist) (contains descriptions of the audits used by Lighthouse)
 - [App Shell model](https://developers.google.com/web/fundamentals/architecture/app-shell) (using a service worker to cache the minimal amount of static assets required to render a page, with the goal of very fast page loads)
 - [RAIL performance model](https://developers.google.com/web/fundamentals/performance/rail) (a user-centric performance model for web applications)
-- [Web push notifications](https://developers.google.com/web/fundamentals/push-notifications/)
-- [Lighthouse](https://developers.google.com/web/tools/lighthouse/) (automated testing of PWA criteria and other web page quality metrics)
-- [Debugging PWAs using Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools/progressive-web-apps)
 
-You can find technical documentation for the APIs used in this workshop on MDN (the Mozilla Developer Network):
+### Features and APIs
 
-- [Web App Manifest](https://developer.mozilla.org/en-US/docs/Web/Manifest)
-- [Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API)
-- [Push API](https://developer.mozilla.org/en-US/docs/Web/API/Push_API)
-- [Notifications API](https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API)
+#### Web app manifest
 
-Here is the best documentation for the Background Sync API:
+- [Google article](https://developers.google.com/web/fundamentals/web-app-manifest/)
+- [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/Manifest)
+
+#### Service workers
+
+- [Google article](https://developers.google.com/web/fundamentals/primers/service-workers/)
+- [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API)
+
+#### Push notifications
+
+- [Google article](https://developers.google.com/web/fundamentals/push-notifications/)
+- [MDN documentation for the Push API](https://developer.mozilla.org/en-US/docs/Web/API/Push_API)
+- [MDN documentation for the Notifications API](https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API)
+
+#### Background Sync
+
+- [Google article](https://developers.google.com/web/updates/2015/12/background-sync)
 - [WICG explainer](https://github.com/WICG/BackgroundSync/blob/master/explainer.md)
 - [WICG specification](https://wicg.github.io/BackgroundSync/spec/)
-- [Google blog post](https://developers.google.com/web/updates/2015/12/background-sync)
+
+### Developer tooling
+
+- [Lighthouse](https://developers.google.com/web/tools/lighthouse/) (automated testing of PWA criteria and other web page quality metrics)
+- [Debugging PWAs using Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools/progressive-web-apps)
