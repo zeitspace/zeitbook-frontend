@@ -27,16 +27,16 @@ Optionally, you can install the following software to improve your development e
 1. Open [localhost:3000](localhost:3000) in Google Chrome.
 1. If you have installed the LiveReload Chrome extension, click on its icon in the Chrome toolbar. This should change the icon so that the small circle in the center is filled in, indicating that LiveReload has been activated.
 
-# Steps
+## Steps
 
-## Step 1: [Web app manifest](./steps/01-web-app-manifest.md)
+### Step 1: [Web app manifest](./steps/01-web-app-manifest.md)
 
 You'll add a manifest file that tells browsers how to display your application and lets them prompt your users to install it to their homescreens.
 
-## Step 2: [Service worker](./steps/02-service-worker.md)
+### Step 2: [Service worker](./steps/02-service-worker.md)
 
 A service worker is a script that browsers run in the background and that can communicate with your application. You'll create a service worker that caches API requests and the application's own resources.
 
-## Step 3: [Push notifications](./steps/03-push-notifications.md)
+### Step 3: [Push notifications](./steps/03-push-notifications.md)
 
 Using the service worker you created in Step 2, you'll set up your application to display push notifications when someone replies to your posts or comments.
