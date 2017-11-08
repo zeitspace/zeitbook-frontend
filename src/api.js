@@ -12,16 +12,17 @@ function json(response) {
 }
 
 const buildComment = ({
-  id, time, user, comment,
+  id, time, user, comment, sync=true,
 }) => ({
   id,
   time: new Date(time),
   username: user,
   body: comment,
+  sync,
 });
 
 const buildPost = ({ withComments }) => ({
-  id, time, user, title, content, comments, numComments, sync=true
+  id, time, user, title, content, comments, numComments, sync=true,
 }) => {
   const result = {
     id,
@@ -89,7 +90,7 @@ function createComment({ username, body, postId }) {
     return navigator.serviceWorker.ready.then(reg => reg.sync.register('send-comment-queue'));
   }).then(() => {
     const result = {
-      id: `comment-${comment.id}`, time: new Date(), user: username, comment: body,
+      id: `comment-${comment.id}`, time: new Date(), user: username, comment: body, sync: false,
     };
     return buildComment(result);
   });

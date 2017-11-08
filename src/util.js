@@ -1,7 +1,16 @@
 import moment from 'moment';
 
+function addPenddingBlock(parentElement) {
+  parentElement.classList.add('pendding');
+  const penddingElement = document.createElement('div');
+  const penddingTextNode = document.createTextNode('pendding');
+  penddingElement.appendChild(penddingTextNode);
+  penddingElement.classList.add('pendding-text');
+  parentElement.appendChild(penddingElement);
+}
+
 function buildPostElement({
-  id, time, username, body, numComments, sync=true
+  id, time, username, body, numComments, sync=true,
 }, { linkToComments }) {
   let postElement;
   if (linkToComments) {
@@ -36,12 +45,7 @@ function buildPostElement({
   postElement.appendChild(bodyElement);
 
   if (!sync) {
-    postElement.classList.add('pendding');
-    const penddingElement = document.createElement('div');
-    const penddingTextNode = document.createTextNode('pendding');
-    penddingElement.appendChild(penddingTextNode);
-    penddingElement.classList.add('pendding-text');
-    postElement.appendChild(penddingElement);
+    addPenddingBlock(postElement);
   }
 
   if (linkToComments) {
@@ -57,7 +61,7 @@ function buildPostElement({
 }
 
 function buildCommentElement({
-  time, username, body, id,
+  time, username, body, id, sync=true,
 }) {
   const commentElement = document.createElement('article');
   commentElement.classList.add('comment');
@@ -86,6 +90,10 @@ function buildCommentElement({
 
   commentElement.appendChild(commentContainer);
   commentElement.appendChild(timeElement);
+
+  if (!sync) {
+    addPenddingBlock(commentElement);
+  }
 
   return commentElement;
 }
