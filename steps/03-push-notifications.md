@@ -1,13 +1,13 @@
-# Configure Firebase
+## Configure Firebase
 
-- Open the file `firebase.js` on the folder `src`
-- Import the firebase module
+- Open the file `firebase.js` in the folder `src`.
+- Insert the following code to import the Firebase module.
 
 ```javascript
 import * as firebase from 'firebase';
 ```
 
-- Create a config variable with all the needed keys
+- Now we need access to the Firebase database. Insert the following config with all the needed keys.
 
 ```javascript
 const config = {
@@ -22,14 +22,14 @@ const config = {
 
 # Setup Notifications
 
-- Initialize Firebase Messaging
+- The following code initializes Firebase Messaging.
 
 ```javascript
 firebase.initializeApp(config);
 const messaging = firebase.messaging();
 ```
 
-- Get messaging token and save it on LocalStorage
+- Now we need to get the messaging token for our device and save it in our local storage
 
 ```javascript
 function storeNotificationToken(token) {
@@ -65,10 +65,11 @@ export default getNotificationToken;
 
 # Test
 
-- Open it using Chrome browser
-- Allow push notifications for your app
+- Open it using Google Chrome
+- When prompted, allow push notifications for your app
 - Create a new post
-- Comment on it
+- Change tabs, then open the app in an incognito window.
+- Comment on the post you just created in the incognito window
 - You should see a new comment notification
 
 [Move on to the next step: Offline Sync](./04-offline-sync.md)
