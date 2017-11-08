@@ -8,18 +8,12 @@ app.use(compression());
 app.use(express.static('dist'));
 app.use(express.static('assets'));
 
-app.use(express.static('assets/icons'));
-
 app.get('/', (request, response) => {
   response.sendFile('assets/pages/index.html', { root: __dirname });
 });
 
 app.get('/posts/:id', (request, response) => {
   response.sendFile('assets/pages/post.html', { root: __dirname });
-});
-
-app.get('/manifest.json', (request, response) => {
-  response.sendFile('/assets/manifest.json', { root: __dirname });
 });
 
 app.listen(3000, () => {
