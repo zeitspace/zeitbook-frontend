@@ -36,4 +36,4 @@ A service worker is a script that browsers run in the background and that can co
 
 ## Step 3: [Push notifications](./steps/03-push-notifications.md)
 
-Using the service worker you created in Step 2, you'll set up your application to receive push notifications when someone replies to your posts or comments.
+Using the service worker you created in Step 2, you'll set up your application to display push notifications when someone replies to your posts or comments.
