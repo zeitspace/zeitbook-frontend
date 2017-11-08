@@ -1,6 +1,8 @@
 import * as firebase from 'firebase/app';
 import 'firebase/messaging';
 
+import registerServiceWorker from './service-worker';
+
 const config = {
   apiKey: 'AIzaSyCm6wDitw69vDYVnLcNG91LrV3ClEm_rHc',
   authDomain: 'zeitspace-forum.firebaseapp.com',
@@ -13,9 +15,6 @@ firebase.initializeApp(config);
 
 const messaging = firebase.messaging();
 
-const registerServiceWorker = navigator.serviceWorker.register('/service-worker.js')
-  .then(registration => messaging.useServiceWorker(registration));
-
 function getToken() {
   return messaging.getToken()
     .then(token => token || messaging.requestPermission().then(getToken))
@@ -24,6 +23,7 @@ function getToken() {
 
 function getNotificationToken() {
   return registerServiceWorker
+    .then(registration => messaging.useServiceWorker(registration))
     .then(getToken);
 }
 
