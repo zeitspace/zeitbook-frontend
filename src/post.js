@@ -1,11 +1,14 @@
 import $ from 'jquery';
-import _ from 'lodash';
+import orderBy from 'lodash/orderBy';
+import update from 'lodash/update';
+import autosize from 'autosize';
 
 import { getPostAndComments, createComment } from './api';
 import username from './username';
 import { buildPostElement, buildCommentElement } from './util';
 
-import '../assets/stylesheets/index.scss';
+// make all textareas auto resize based on content
+autosize(document.querySelectorAll('textarea'));
 
 const commentsContainer = $('#comments');
 const noCommentsMessage = $('#no-comments');
@@ -13,17 +16,17 @@ const noCommentsMessage = $('#no-comments');
 const postId = window.location.pathname.match(/\/posts\/(.*)/)[1];
 
 getPostAndComments(postId)
-  .then(postAndComments => _.update(postAndComments, 'comments', comments => _.orderBy(comments, ['time'], ['asc'])))
+  .then(postAndComments => update(postAndComments, 'comments', comments => orderBy(comments, ['time'], ['asc'])))
   .then((postAndComments) => {
     if (!postAndComments) {
       return;
     }
 
-    const { title, comments } = postAndComments;
+    const { username: postUsername, comments } = postAndComments;
 
-    document.title = `Zeitbook | ${_.truncate(title)}`;
+    document.title = `Zeitbook | ${postUsername}'s post`;
 
-    $('#post').append(buildPostElement(postAndComments, { showCommentsLink: false }));
+    $('#post').append(buildPostElement(postAndComments, { linkToComments: false }));
 
     if (comments.length > 0) {
       comments.forEach((comment) => {
@@ -46,7 +49,7 @@ $('#comment-submit').click(() => {
       body: commentBodyInput.val(),
     })
       .then((comment) => {
-        noCommentsMessage.show();
+        noCommentsMessage.hide();
         commentBodyInput.val('');
         commentsContainer.append(buildCommentElement(comment));
       })

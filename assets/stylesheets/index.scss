@@ -1,20 +1,106 @@
-section {
-  margin-bottom: 1rem;
+// Variables
+$std-box-shadow: 0 0 20px 0 rgba(153, 153, 153, 0.50);
+$std-border-radius: 10px;
+$dark-text-color: #555555;
+$std-text-color: #686868;
+$light-text-color: #9c9c9c;
+$light-gray: #dcdcdc;
+$primary-blue: #2F7EC7;
+
+@import "spinner";
+@import "page-index";
+@import "page-post";
+
+// Styles
+html, body {
+  height: 100%;
 }
 
-@each $type in post, comment {
-  #create-#{$type} {
-    label {
-      display: block;
-      margin-bottom: 1rem;
-    }
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  background: linear-gradient(to bottom left, #8AC6CD, #84BDDE);
+  background-attachment: fixed;
+}
 
-    input, textarea {
-      display: block;
-    }
+#header {
+  background: #0098FA;
+  color: #ffffff;
+  height: 50px;
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.50);
+  position: fixed;
+  width: 100%;
+
+  img {
+    width: 38px;
+    height: auto;
+    margin-right: 20px;
+    margin-top: 5px;
+    position: absolute;
   }
 
-  #no-#{$type}s, ##{$type}s-error, #create-#{$type}-error {
-    display: none;
+  img.back {
+    width: 20px;
+    margin-top: 15px;
   }
+
+  h1 {
+    font-weight: normal;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 1.3em;
+    line-height: 50px;
+    text-align: center;
+    font-weight: lighter;
+  }
+}
+
+#main {
+  padding-top: 65px;
+}
+
+@media screen and (min-width: 600px) {
+  #main {
+    padding-top: 80px;
+  }
+}
+
+.content {
+  padding-left: 1em;
+  padding-right: 1em;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+a.post {
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.post {
+  padding: 1em;
+  color: $dark-text-color;
+  .post-author {
+      font-weight: bold;
+  }
+  .post-body {
+      margin-top: 0.6em;
+      white-space: pre-line;
+  }
+  .post-date {
+      font-size: 0.85em;
+  }
+  .post-comment-count {
+      margin-top: 0.6em;
+      color: $light-text-color;
+      font-size: 0.9em;
+      display: flex;
+      justify-content: flex-end;
+  }
+}
+
+.post + .post {
+  border-top: 1px solid $light-gray;
 }

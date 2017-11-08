@@ -1,27 +1,33 @@
 import $ from 'jquery';
-import _ from 'lodash';
+import orderBy from 'lodash/orderBy';
+import autosize from 'autosize';
 
 import { getPosts, createPost } from './api';
 import username from './username';
 import { buildPostElement } from './util';
 
-import '../assets/stylesheets/index.scss';
+// make all textareas auto resize based on content
+autosize(document.querySelectorAll('textarea'));
 
 const postsContainer = $('#posts');
 const noPostsMessage = $('#no-posts');
+const spinner = $('#spinner');
 
 getPosts()
-  .then(posts => _.orderBy(posts, ['time'], ['desc']))
+  .then(posts => orderBy(posts, ['time'], ['desc']))
   .then((posts) => {
+    spinner.remove();
     if (posts.length > 0) {
+      noPostsMessage.remove();
       posts.forEach((post) => {
-        postsContainer.append(buildPostElement(post, { showCommentsLink: true }));
+        postsContainer.append(buildPostElement(post, { linkToComments: true }));
       });
     } else {
       noPostsMessage.show();
     }
   })
   .catch(() => {
+    spinner.remove();
     $('#posts-error').show();
   });
 
@@ -38,7 +44,7 @@ $('#post-submit').click(() => {
         noPostsMessage.hide();
         postTitleInput.val('');
         postBodyInput.val('');
-        postsContainer.prepend(buildPostElement(post, { showCommentsLink: true }));
+        postsContainer.prepend(buildPostElement(post, { linkToComments: true }));
       })
       .catch(() => {
         $('#create-post-error').show();
