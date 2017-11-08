@@ -19,7 +19,7 @@ Create the file `assets/manifest.json` and insert the code below:
     "theme_color": "#0098fa",
     "background_color": "#ffffff",
     "start_url": "/",
-    "display": "standalone",
+    "display": "standalone"
 }
 ```
 
