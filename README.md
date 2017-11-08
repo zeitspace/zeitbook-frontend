@@ -49,6 +49,7 @@ If you're looking for a refresher on what Progressive Web Apps are and why they'
 
 - [Overview of Progressive Web Apps](https://developers.google.com/web/progressive-web-apps/)
 - [Progressive Web App checklist](https://developers.google.com/web/progressive-web-apps/checklist) (contains descriptions of the audits used by Lighthouse)
+- [Google Chrome Developers Youtube Channel](https://www.youtube.com/user/ChromeDevelopers/videos) (many videos covering the latest web development trends and technologies, including progressive web apps)
 - [App Shell model](https://developers.google.com/web/fundamentals/architecture/app-shell) (using a service worker to cache the minimal amount of static assets required to render a page, with the goal of very fast page loads)
 - [RAIL performance model](https://developers.google.com/web/fundamentals/performance/rail) (a user-centric performance model for web applications)
 - [Web app install banners](https://developers.google.com/web/fundamentals/app-install-banners/)
