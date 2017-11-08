@@ -28,10 +28,10 @@ Your web app manifest now contains the following properties:
 | Key | Description |
 |-|-|
 | `short_name` | Display name of the application on mobile devices when added to the homescreen |
-| `name` | Name used by browsers when they display install banners to your users |
+| `name` | Name used by browsers when they prompt users to install your application |
 | `theme_color` | Colour of the toolbar when your application is running in a browser |
 | `background_color` | Colour of your application's splash screen, which is displayed after a user opens your application from their homescreen |
-| `start_url` | The page that is displayed when a user opens your application from their homescreen |
+| `start_url` | The page that is first loaded when a user opens your application from their homescreen |
 | `display` | Set this property to `"browser"` to display the browser's UI or to `"standalone"` to hide it |
 
 ## Create and reference icons
