@@ -1,1 +1,1 @@
-export default Promise.resolve('TODO: register your service worker');
+export default navigator.serviceWorker.register('/service-worker.js');
