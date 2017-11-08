@@ -51,3 +51,15 @@ $('#post-submit').click(() => {
       });
   }
 });
+
+navigator.serviceWorker.addEventListener('message', (event) => {
+  if (event.data.type === 'post-update') {
+    const postDiv = $(`#post-${event.data.id}`);
+    const postData = (({
+      content, user, token, id, numComments, title,
+    }) => ({
+      body: content, username: user, token, time: new Date(), id, numComments, title,
+    }))(event.data.post);
+    postDiv.replaceWith(buildPostElement(postData, { linkToComments: true }));
+  }
+});

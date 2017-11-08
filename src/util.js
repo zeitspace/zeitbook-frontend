@@ -11,6 +11,7 @@ function buildPostElement({
     postElement = document.createElement('div');
   }
   postElement.classList.add('post');
+  postElement.id = id;
 
   const timeElement = document.createElement('div');
   timeElement.title = moment(time).format('MMMM Do, YYYY [at] h:mm:ss A');
@@ -45,13 +46,15 @@ function buildPostElement({
   return postElement;
 }
 
-function buildCommentElement({ time, username, body }) {
+function buildCommentElement({
+  time, username, body, id,
+}) {
   const commentElement = document.createElement('article');
   commentElement.classList.add('comment');
+  commentElement.id = id;
 
   const commentContainer = document.createElement('div');
   commentContainer.classList.add('comment-container');
-
   const usernameElement = document.createElement('span');
   usernameElement.classList.add('comment-author');
   const usernameTextNode = document.createTextNode(username);

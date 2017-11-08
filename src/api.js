@@ -1,3 +1,4 @@
+import * as idbKeyval from 'idb-keyval';
 import getNotificationToken from './firebase';
 
 const API_ROOT = 'https://zeitbook.herokuapp.com';
@@ -36,6 +37,19 @@ const buildPost = ({ withComments }) => ({
   return result;
 };
 
+function getFromQueue(queueName) {
+  return idbKeyval.get(queueName).then(val => val || []);
+}
+
+function addToQueue(queueName, obj) {
+  const elem = obj;
+  return getFromQueue(queueName).then((elemQueue) => {
+    elem.id = elemQueue.length > 0 ? (Math.max(...elemQueue.map(item => item.id)) + 1) : 1;
+    elemQueue.push(elem);
+    return idbKeyval.set(queueName, elemQueue);
+  }).then(() => elem.id);
+}
+
 function getPosts() {
   return fetch(`${API_ROOT}/posts`)
     .then(json)
@@ -49,29 +63,35 @@ function getPostAndComments(postId) {
 }
 
 function createPost({ username, title, body }) {
-  return notificationToken
-    .then(token => fetch(`${API_ROOT}/posts`, {
-      method: 'post',
-      headers: {
-        'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-      },
-      body: `user=${username}&title=${title}&content=${body}&token=${token}`,
-    }))
-    .then(json)
-    .then(buildPost({ withComments: false }));
+  const post = { username, title, body };
+  return notificationToken.then((token) => {
+    post.token = token;
+    return addToQueue('postsQueue', post);
+  }).then((id) => {
+    post.id = id;
+    return navigator.serviceWorker.ready;
+  }).then(reg => reg.sync.register('send-post-queue')).then(() => {
+    const result = {
+      id: `post-${post.id}`, time: new Date(), user: username, title, content: body,
+    };
+    return buildPost({ withComments: false })(result);
+  });
 }
 
 function createComment({ username, body, postId }) {
-  return notificationToken
-    .then(token => fetch(`${API_ROOT}/posts/${postId}/comment`, {
-      method: 'post',
-      headers: {
-        'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-      },
-      body: `user=${username}&comment=${body}&token=${token}`,
-    }))
-    .then(json)
-    .then(buildComment);
+  const comment = { username, body, postId };
+  return notificationToken.then((token) => {
+    comment.token = token;
+    return addToQueue('commentsQueue', comment);
+  }).then((id) => {
+    comment.id = id;
+    return navigator.serviceWorker.ready.then(reg => reg.sync.register('send-comment-queue'));
+  }).then(() => {
+    const result = {
+      id: `comment-${comment.id}`, time: new Date(), user: username, comment: body,
+    };
+    return buildComment(result);
+  });
 }
 
 export {
