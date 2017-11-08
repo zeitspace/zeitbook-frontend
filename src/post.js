@@ -51,7 +51,7 @@ $('#comment-submit').click(() => {
       .then((comment) => {
         noCommentsMessage.hide();
         commentBodyInput.val('');
-        autosize.update(commentBodyInput);        
+        autosize.update(commentBodyInput);
         commentsContainer.append(buildCommentElement(comment));
       })
       .catch(() => {
