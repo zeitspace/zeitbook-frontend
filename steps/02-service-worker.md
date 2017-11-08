@@ -36,13 +36,10 @@ During development, you can set up Chrome DevTools to reload your application's 
 
 ## Register your service worker
 
-Your application must register its service worker with the browser. To do so, replace the contents of `src/firebase.js` with the following:
+Your application must register its service worker with the browser. To do so, replace the contents of `src/service-worker.js` with the following:
 
 ```javascript
-const registerServiceWorker = navigator.serviceWorker.register('/service-worker.js')
-  .then(registration => messaging.useServiceWorker(registration));
-
-export default () => registerServiceWorker;
+export default navigator.serviceWorker.register('/service-worker.js');
 ```
 
 ## Set up your service worker to cache your application's HTML pages
