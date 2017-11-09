@@ -2,7 +2,7 @@
 importScripts('https://www.gstatic.com/firebasejs/3.9.0/firebase-app.js');
 importScripts('https://www.gstatic.com/firebasejs/3.9.0/firebase-messaging.js');
 importScripts('https://cdn.jsdelivr.net/npm/idb-keyval@2.3.0/idb-keyval.min.js');
-importScripts('service-worker-util.js');
+importScripts('./scripts/util.js');
 
 firebase.initializeApp({
   messagingSenderId: '81782109643',
