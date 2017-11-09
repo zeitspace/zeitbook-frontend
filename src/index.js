@@ -44,10 +44,22 @@ $('#post-submit').click(() => {
         noPostsMessage.hide();
         postTitleInput.val('');
         postBodyInput.val('');
-        postsContainer.prepend(buildPostElement(post, { linkToComments: true }));
+        postsContainer.prepend(buildPostElement(post, { linkToComments: false }));
       })
       .catch(() => {
         $('#create-post-error').show();
       });
+  }
+});
+
+navigator.serviceWorker.addEventListener('message', (event) => {
+  if (event.data.type === 'post-update') {
+    const postDiv = $(`#post-${event.data.id}`);
+    const postData = (({
+      content, user, token, id, numComments, title,
+    }) => ({
+      body: content, username: user, token, time: new Date(), id, numComments, title,
+    }))(event.data.post);
+    postDiv.replaceWith(buildPostElement(postData, { linkToComments: true }));
   }
 });
