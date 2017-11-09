@@ -1,4 +1,4 @@
-/* eslint-disable no-undef */
+/* eslint-disable no-undef, no-unused-vars */
 function sendMessageToClient(client, msg) {
   return Promise.resolve(client.postMessage(msg));
 }
@@ -10,9 +10,12 @@ function sendMessageToAllClients(msg) {
 
 function hasVisibleClients() {
   return clients.matchAll({ type: 'window', includeUncontrolled: true })
-  .then(clientList => clientList.some(client => client.visibilityState === 'visible'));
+    .then(clientList => clientList.some(client => client.visibilityState === 'visible'));
 }
 
+function sendNotification(msg) {
+  hasVisibleClients().then(c => (c ? Promise.resolve() : registration.showNotification(msg, {})));
+}
 
 function getQueue(queueName) {
   // eslint-disable-next-line no-undef
@@ -24,13 +27,6 @@ function updateQueue(queueName, postsQueue) {
   return idbKeyval.set(queueName, postsQueue);
 }
 
-function json(response) {
-  if (response.ok) {
-    return response.json();
-  }
-  throw response.status;
-}
-
 function addToQueue(queueName, obj) {
   const elem = clone(obj);
   return getQueue(queueName).then((elemQueue) => {
@@ -38,4 +34,11 @@ function addToQueue(queueName, obj) {
     elemQueue.push(elem);
     return idbKeyval.set(queueName, elemQueue);
   }).then(() => elem.id);
+}
+
+function json(response) {
+  if (response.ok) {
+    return response.json();
+  }
+  throw response.status;
 }

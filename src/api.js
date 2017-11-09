@@ -1,5 +1,5 @@
 import getNotificationToken from './firebase';
-import { addToQueue, json } from './api-util';
+import { addToQueue, json } from './util';
 
 const API_ROOT = 'https://zeitbook.herokuapp.com';
 const notificationToken = getNotificationToken();

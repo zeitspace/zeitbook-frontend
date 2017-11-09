@@ -69,12 +69,6 @@ self.addEventListener('fetch', (event) => {
   }
 });
 
-// Offline
-
-function sendNotification(msg) {
-  hasVisibleClients().then(c => (c ? Promise.resolve() : registration.showNotification(msg, {})));
-}
-
 function sendPosts() {
   return getQueue('postsQueue').then((postsQueue) => {
     let postsList = postsQueue;
