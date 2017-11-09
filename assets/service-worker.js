@@ -2,13 +2,13 @@
 importScripts('https://www.gstatic.com/firebasejs/3.9.0/firebase-app.js');
 importScripts('https://www.gstatic.com/firebasejs/3.9.0/firebase-messaging.js');
 importScripts('https://cdn.jsdelivr.net/npm/idb-keyval@2.3.0/idb-keyval.min.js');
+importScripts('service-worker-util.js');
 
 firebase.initializeApp({
   messagingSenderId: '81782109643',
 });
 
 firebase.messaging().setBackgroundMessageHandler();
-/* eslint-enable no-undef */
 
 const API_ROOT = 'https://zeitbook.herokuapp.com';
 const CACHE_NAME = 'zeitbook-cache-v1';
@@ -71,41 +71,8 @@ self.addEventListener('fetch', (event) => {
 
 // Offline
 
-function sendMessageToClient(client, msg) {
-  return Promise.resolve(client.postMessage(msg));
-}
-
-/* eslint-disable no-undef */
-function sendMessageToAllClients(msg) {
-  return clients.matchAll({ includeUncontrolled: true, type: 'window' })
-    .then(clients => Promise.all(clients.map(client => sendMessageToClient(client, msg))));
-}
-
-function hasVisibleClients() {
-  return clients.matchAll({ type: 'window', includeUncontrolled: true })
-    .then(clientList => clientList.some(client => client.visibilityState === 'visible'));
-}
-
 function sendNotification(msg) {
   hasVisibleClients().then(c => (c ? Promise.resolve() : registration.showNotification(msg, {})));
-}
-/* eslint-enable no-undef */
-
-function getQueue(queueName) {
-  // eslint-disable-next-line no-undef
-  return idbKeyval.get(queueName).then(val => val || []);
-}
-
-function updateQueue(queueName, postsQueue) {
-  // eslint-disable-next-line no-undef
-  return idbKeyval.set(queueName, postsQueue);
-}
-
-function json(response) {
-  if (response.ok) {
-    return response.json();
-  }
-  throw response.status;
 }
 
 function sendPosts() {
