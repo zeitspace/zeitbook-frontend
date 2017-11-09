@@ -45,6 +45,8 @@ Using the service worker you created in Step 2, you'll set up your application t
 
 If you're looking for a refresher on what Progressive Web Apps are and why they're important, we recommend [this article](https://blog.ionic.io/what-is-a-progressive-web-app/).
 
+[pwa.rocks](https://pwa.rocks/) is a collection of PWAs, and is itself a PWA!
+
 ### Concepts
 
 - [Overview of Progressive Web Apps](https://developers.google.com/web/progressive-web-apps/)
