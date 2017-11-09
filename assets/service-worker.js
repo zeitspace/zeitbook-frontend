@@ -72,14 +72,12 @@ self.addEventListener('fetch', (event) => {
 // Offline
 
 function sendMessageToClient(client, msg) {
-  return new Promise(((resolve) => {
-    resolve(client.postMessage(msg));
-  }));
+  return Promise.resolve(client.postMessage(msg));
 }
 
 /* eslint-disable no-undef */
 function sendMessageToAllClients(msg) {
-  return clients.matchAll()
+  return clients.matchAll({includeUncontrolled: true, type: 'window'})
     .then(clients => Promise.all(clients.map(client => sendMessageToClient(client, msg))));
 }
 /* eslint-enable no-undef */
