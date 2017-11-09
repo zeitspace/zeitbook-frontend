@@ -123,7 +123,7 @@ function sendPosts() {
         postsList = postsList.filter(p => p.id !== post.id);
         return updateQueue('postsQueue', postsList);
       })));
-  }).then(() => sendNotification('Post synced'));
+  }).then(() => sendNotification('Pending posts synced'));
 }
 
 function sendComments() {
@@ -141,7 +141,7 @@ function sendComments() {
         commentsList = commentsList.filter(c => c.id !== comment.id);
         return updateQueue('commentsQueue', commentsList);
       })));
-  }).then(() => sendNotification('Comment synced'));
+  }).then(() => sendNotification('Pending comments synced'));
 }
 
 // eslint-disable-next-line no-restricted-globals
