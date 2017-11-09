@@ -59,3 +59,16 @@ $('#comment-submit').click(() => {
       });
   }
 });
+
+navigator.serviceWorker.addEventListener('message', (event) => {
+  if (event.data.type === 'comment-update') {
+    const commentData = (({
+      comment, user, token, id,
+    }) => ({
+      body: comment, username: user, token, time: new Date(), id,
+    }))(event.data.comment);
+    const commentDiv = $(`#comment-${event.data.id}`);
+    commentDiv.replaceWith(buildCommentElement(commentData));
+  }
+});
+

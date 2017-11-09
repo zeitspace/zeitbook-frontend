@@ -46,29 +46,36 @@ function getPostAndComments(postId) {
 }
 
 function createPost({ username, title, body }) {
-  return notificationToken
-    .then(token => fetch(`${API_ROOT}/posts`, {
-      method: 'post',
-      headers: {
-        'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-      },
-      body: `user=${username}&title=${title}&content=${body}&token=${token}`,
-    }))
-    .then(json)
-    .then(buildPost({ withComments: false }));
+  const post = { username, title, body };
+  return notificationToken.then((token) => {
+    post.token = token;
+    return addToQueue('postsQueue', post);
+  }).then((id) => {
+    post.id = id;
+    return navigator.serviceWorker.getRegistration();
+  }).then(reg => reg.sync.register('send-post-queue')).then(() => {
+    const result = {
+      id: `post-${post.id}`, time: new Date(), user: username, title, content: body, synced: false,
+    };
+    return buildPost({ withComments: false })(result);
+  });
 }
 
 function createComment({ username, body, postId }) {
-  return notificationToken
-    .then(token => fetch(`${API_ROOT}/posts/${postId}/comment`, {
-      method: 'post',
-      headers: {
-        'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-      },
-      body: `user=${username}&comment=${body}&token=${token}`,
-    }))
-    .then(json)
-    .then(buildComment);
+  const comment = { username, body, postId };
+  return notificationToken.then((token) => {
+    comment.token = token;
+    return addToQueue('commentsQueue', comment);
+  }).then((id) => {
+    comment.id = id;
+    return navigator.serviceWorker.getRegistration();
+  }).then(reg => reg.sync.register('send-comment-queue'))
+    .then(() => {
+      const result = {
+        id: `comment-${comment.id}`, time: new Date(), user: username, comment: body, synced: false,
+      };
+      return buildComment(result);
+    });
 }
 
 export {
