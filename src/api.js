@@ -88,7 +88,7 @@ function createComment({ username, body, postId }) {
     return addToQueue('commentsQueue', comment);
   }).then((id) => {
     comment.id = id;
-    return navigator.serviceWorker.ready.then(reg => reg.sync.register('send-comment-queue'));
+    return navigator.serviceWorker.getRegistration().then(reg => reg.sync.register('send-comment-queue'));
   }).then(() => {
     const result = {
       id: `comment-${comment.id}`, time: new Date(), user: username, comment: body, sync: false,
