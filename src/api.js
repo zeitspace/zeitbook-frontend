@@ -1,4 +1,5 @@
 import getNotificationToken from './firebase';
+// eslint-disable-next-line no-unused-vars
 import { addToQueue, json } from './util';
 
 const API_ROOT = 'https://zeitbook.herokuapp.com';
