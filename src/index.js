@@ -44,7 +44,7 @@ $('#post-submit').click(() => {
         noPostsMessage.hide();
         postTitleInput.val('');
         postBodyInput.val('');
-        postsContainer.prepend(buildPostElement(post, { linkToComments: true }));
+        postsContainer.prepend(buildPostElement(post, { linkToComments: false }));
       })
       .catch(() => {
         $('#create-post-error').show();
