@@ -13,17 +13,17 @@ function json(response) {
 }
 
 const buildComment = ({
-  id, time, user, comment, sync = true,
+  id, time, user, comment, synced = true,
 }) => ({
   id,
   time: new Date(time),
   username: user,
   body: comment,
-  sync,
+  synced,
 });
 
 const buildPost = ({ withComments }) => ({
-  id, time, user, title, content, comments, numComments, sync = true,
+  id, time, user, title, content, comments, numComments, synced = true,
 }) => {
   const result = {
     id,
@@ -32,7 +32,7 @@ const buildPost = ({ withComments }) => ({
     title,
     body: content,
     numComments,
-    sync,
+    synced,
   };
   if (withComments) {
     result.comments = comments.map(buildComment);
@@ -72,10 +72,10 @@ function createPost({ username, title, body }) {
     return addToQueue('postsQueue', post);
   }).then((id) => {
     post.id = id;
-    return navigator.serviceWorker.ready;
+    return navigator.serviceWorker.getRegistration();
   }).then(reg => reg.sync.register('send-post-queue')).then(() => {
     const result = {
-      id: `post-${post.id}`, time: new Date(), user: username, title, content: body, sync: false,
+      id: `post-${post.id}`, time: new Date(), user: username, title, content: body, synced: false,
     };
     return buildPost({ withComments: false })(result);
   });
@@ -88,13 +88,14 @@ function createComment({ username, body, postId }) {
     return addToQueue('commentsQueue', comment);
   }).then((id) => {
     comment.id = id;
-    return navigator.serviceWorker.getRegistration().then(reg => reg.sync.register('send-comment-queue'));
-  }).then(() => {
-    const result = {
-      id: `comment-${comment.id}`, time: new Date(), user: username, comment: body, sync: false,
-    };
-    return buildComment(result);
-  });
+    return navigator.serviceWorker.getRegistration();
+  }).then(reg => reg.sync.register('send-comment-queue'))
+    .then(() => {
+      const result = {
+        id: `comment-${comment.id}`, time: new Date(), user: username, comment: body, synced: false,
+      };
+      return buildComment(result);
+    });
 }
 
 export {

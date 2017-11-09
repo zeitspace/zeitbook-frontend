@@ -72,18 +72,8 @@ self.addEventListener('fetch', (event) => {
 // Offline
 
 function sendMessageToClient(client, msg) {
-  return new Promise(((resolve, reject) => {
-    const msgChan = new MessageChannel();
-
-    msgChan.port1.onmessage = (event) => {
-      if (event.data.error) {
-        reject(event.data.error);
-      } else {
-        resolve(event.data);
-      }
-    };
-
-    client.postMessage(msg, [msgChan.port2]);
+  return new Promise(((resolve) => {
+    resolve(client.postMessage(msg));
   }));
 }
 
@@ -122,18 +112,18 @@ function sendPosts() {
       body: `user=${post.username}&title=${post.title}&content=${post.body}&token=${post.token}`,
     }).then(json)
       .then(response => sendMessageToAllClients({ type: 'post-update', id: post.id, post: response }))
-      .then(() => registration.showNotification('Post synced', {})) // eslint-disable-line no-undef
       .then(() => {
         postsList = postsList.filter(p => p.id !== post.id);
         return updateQueue('postsQueue', postsList);
-      })));
+      })
+      .then(() => registration.showNotification('Post synced', {})))); // eslint-disable-line no-undef
   });
 }
 
 function sendComments() {
   return getQueue('commentsQueue').then((commentsQueue) => {
     let commentsList = commentsQueue;
-    return commentsQueue.map(comment => fetch(`${API_ROOT}/posts/${comment.postId}/comment`, {
+    return Promise.all(commentsQueue.map(comment => fetch(`${API_ROOT}/posts/${comment.postId}/comment`, {
       method: 'post',
       headers: {
         'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
@@ -141,11 +131,11 @@ function sendComments() {
       body: `user=${comment.username}&comment=${comment.body}&token=${comment.token}`,
     }).then(json)
       .then(response => sendMessageToAllClients({ type: 'comment-update', id: comment.id, comment: response }))
-      .then(() => registration.showNotification('Comment synced', {})) // eslint-disable-line no-undef
       .then(() => {
         commentsList = commentsList.filter(c => c.id !== comment.id);
         return updateQueue('commentsQueue', commentsList);
-      }));
+      })
+      .then(() => registration.showNotification('Comment synced', {})))); // eslint-disable-line no-undef
   });
 }
 

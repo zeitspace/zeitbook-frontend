@@ -10,7 +10,7 @@ function addPendingBlock(parentElement) {
 }
 
 function buildPostElement({
-  id, time, username, body, numComments, sync = true,
+  id, time, username, body, numComments, synced = true,
 }, { linkToComments }) {
   let postElement;
   if (linkToComments) {
@@ -44,7 +44,7 @@ function buildPostElement({
   postElement.appendChild(timeElement);
   postElement.appendChild(bodyElement);
 
-  if (!sync) {
+  if (!synced) {
     addPendingBlock(postElement);
   }
 
@@ -61,7 +61,7 @@ function buildPostElement({
 }
 
 function buildCommentElement({
-  time, username, body, id, sync = true,
+  time, username, body, id, synced = true,
 }) {
   const commentElement = document.createElement('article');
   commentElement.classList.add('comment');
@@ -91,7 +91,7 @@ function buildCommentElement({
   commentElement.appendChild(commentContainer);
   commentElement.appendChild(timeElement);
 
-  if (!sync) {
+  if (!synced) {
     addPendingBlock(commentElement);
   }
 
