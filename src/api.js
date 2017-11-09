@@ -1,26 +1,22 @@
 import getNotificationToken from './firebase';
+// eslint-disable-next-line no-unused-vars
+import { addToQueue, json } from './util';
 
 const API_ROOT = 'https://zeitbook.herokuapp.com';
 const notificationToken = getNotificationToken();
 
-function json(response) {
-  if (response.ok) {
-    return response.json();
-  }
-  throw response.status;
-}
-
 const buildComment = ({
-  id, time, user, comment,
+  id, time, user, comment, synced = true,
 }) => ({
   id,
   time: new Date(time),
   username: user,
   body: comment,
+  synced,
 });
 
 const buildPost = ({ withComments }) => ({
-  id, time, user, title, content, comments, numComments,
+  id, time, user, title, content, comments, numComments, synced = true,
 }) => {
   const result = {
     id,
@@ -29,6 +25,7 @@ const buildPost = ({ withComments }) => ({
     title,
     body: content,
     numComments,
+    synced,
   };
   if (withComments) {
     result.comments = comments.map(buildComment);

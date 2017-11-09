@@ -1,7 +1,18 @@
+import clone from 'lodash/clone';
+import * as idbKeyval from 'idb-keyval';
 import moment from 'moment';
 
+function addPendingBlock(parentElement) {
+  parentElement.classList.add('pending');
+  const pendingElement = document.createElement('div');
+  const pendingTextNode = document.createTextNode('pending');
+  pendingElement.appendChild(pendingTextNode);
+  pendingElement.classList.add('pending-text');
+  parentElement.appendChild(pendingElement);
+}
+
 function buildPostElement({
-  id, time, username, body, numComments,
+  id, time, username, body, numComments, synced = true,
 }, { linkToComments }) {
   let postElement;
   if (linkToComments) {
@@ -10,7 +21,9 @@ function buildPostElement({
   } else {
     postElement = document.createElement('div');
   }
+
   postElement.classList.add('post');
+  postElement.id = id;
 
   const timeElement = document.createElement('div');
   timeElement.title = moment(time).format('MMMM Do, YYYY [at] h:mm:ss A');
@@ -33,6 +46,10 @@ function buildPostElement({
   postElement.appendChild(timeElement);
   postElement.appendChild(bodyElement);
 
+  if (!synced) {
+    addPendingBlock(postElement);
+  }
+
   if (linkToComments) {
     const commentsElement = document.createElement('div');
     const commentsTextNode = document.createTextNode(`${numComments || 0} comment${numComments === 1 ? '' : 's'}`);
@@ -45,13 +62,15 @@ function buildPostElement({
   return postElement;
 }
 
-function buildCommentElement({ time, username, body }) {
+function buildCommentElement({
+  time, username, body, id, synced = true,
+}) {
   const commentElement = document.createElement('article');
   commentElement.classList.add('comment');
+  commentElement.id = id;
 
   const commentContainer = document.createElement('div');
   commentContainer.classList.add('comment-container');
-
   const usernameElement = document.createElement('span');
   usernameElement.classList.add('comment-author');
   const usernameTextNode = document.createTextNode(username);
@@ -74,10 +93,38 @@ function buildCommentElement({ time, username, body }) {
   commentElement.appendChild(commentContainer);
   commentElement.appendChild(timeElement);
 
+  if (!synced) {
+    addPendingBlock(commentElement);
+  }
+
   return commentElement;
 }
 
+
+function getQueue(queueName) {
+  // eslint-disable-next-line no-undef
+  return idbKeyval.get(queueName).then(val => val || []);
+}
+
+function addToQueue(queueName, obj) {
+  const elem = clone(obj);
+  return getQueue(queueName).then((elemQueue) => {
+    elem.id = elemQueue.length > 0 ? (Math.max(...elemQueue.map(item => item.id)) + 1) : 1;
+    elemQueue.push(elem);
+    return idbKeyval.set(queueName, elemQueue);
+  }).then(() => elem.id);
+}
+
+function json(response) {
+  if (response.ok) {
+    return response.json();
+  }
+  throw response.status;
+}
+
 export {
+  addToQueue,
   buildPostElement,
   buildCommentElement,
+  json,
 };
