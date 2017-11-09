@@ -1,12 +1,12 @@
 import moment from 'moment';
 
-function addPenddingBlock(parentElement) {
-  parentElement.classList.add('pendding');
-  const penddingElement = document.createElement('div');
-  const penddingTextNode = document.createTextNode('pendding');
-  penddingElement.appendChild(penddingTextNode);
-  penddingElement.classList.add('pendding-text');
-  parentElement.appendChild(penddingElement);
+function addPendingBlock(parentElement) {
+  parentElement.classList.add('pending');
+  const pendingElement = document.createElement('div');
+  const pendingTextNode = document.createTextNode('pending');
+  pendingElement.appendChild(pendingTextNode);
+  pendingElement.classList.add('pending-text');
+  parentElement.appendChild(pendingElement);
 }
 
 function buildPostElement({
@@ -45,7 +45,7 @@ function buildPostElement({
   postElement.appendChild(bodyElement);
 
   if (!sync) {
-    addPenddingBlock(postElement);
+    addPendingBlock(postElement);
   }
 
   if (linkToComments) {
@@ -92,7 +92,7 @@ function buildCommentElement({
   commentElement.appendChild(timeElement);
 
   if (!sync) {
-    addPenddingBlock(commentElement);
+    addPendingBlock(commentElement);
   }
 
   return commentElement;

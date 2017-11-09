@@ -87,11 +87,12 @@ function sendMessageToClient(client, msg) {
   }));
 }
 
+/* eslint-disable no-undef */
 function sendMessageToAllClients(msg) {
-  clients.matchAll().then((clients) => { // eslint-disable-line no-undef
-    clients.forEach(client => sendMessageToClient(client, msg));
-  });
+  return clients.matchAll()
+    .then(clients => Promise.all(clients.map(client => sendMessageToClient(client, msg))));
 }
+/* eslint-enable no-undef */
 
 function getQueue(queueName) {
   // eslint-disable-next-line no-undef
@@ -113,7 +114,7 @@ function json(response) {
 function sendPosts() {
   return getQueue('postsQueue').then((postsQueue) => {
     let postsList = postsQueue;
-    return postsQueue.forEach((post) => {
+    return Promise.all(postsQueue.map((post) => {
       fetch(`${API_ROOT}/posts`, {
         method: 'post',
         headers: {
@@ -121,20 +122,20 @@ function sendPosts() {
         },
         body: `user=${post.username}&title=${post.title}&content=${post.body}&token=${post.token}`,
       }).then(json)
-        .then((response) => {
-          sendMessageToAllClients({ type: 'post-update', id: post.id, post: response });
-          registration.showNotification('Post synced', {}); // eslint-disable-line no-undef
-          postsList = postsList.slice(1);
+        .then(response => sendMessageToAllClients({ type: 'post-update', id: post.id, post: response }))
+        .then(() => registration.showNotification('Post synced', {})) // eslint-disable-line no-undef
+        .then(() => {
+          postsList = postsList.filter(p => p.id !== post.id);
           return updateQueue('postsQueue', postsList);
         });
-    });
+    }));
   });
 }
 
 function sendComments() {
   return getQueue('commentsQueue').then((commentsQueue) => {
     let commentsList = commentsQueue;
-    return commentsQueue.forEach((comment) => {
+    return commentsQueue.map((comment) => {
       fetch(`${API_ROOT}/posts/${comment.postId}/comment`, {
         method: 'post',
         headers: {
@@ -142,10 +143,10 @@ function sendComments() {
         },
         body: `user=${comment.username}&comment=${comment.body}&token=${comment.token}`,
       }).then(json)
-        .then((response) => {
-          sendMessageToAllClients({ type: 'comment-update', id: comment.id, comment: response });
-          registration.showNotification('Comment synced', {}); // eslint-disable-line no-undef
-          commentsList = commentsList.slice(1);
+        .then(response => sendMessageToAllClients({ type: 'comment-update', id: comment.id, comment: response }))
+        .then(() => registration.showNotification('Comment synced', {})) // eslint-disable-line no-undef
+        .then(() => {
+          commentsList = commentsList.filter(c => c.id !== comment.id);
           return updateQueue('commentsQueue', commentsList);
         });
     });

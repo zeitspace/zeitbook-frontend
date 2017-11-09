@@ -1,4 +1,5 @@
 import * as idbKeyval from 'idb-keyval';
+import clone from 'lodash/clone';
 import getNotificationToken from './firebase';
 
 const API_ROOT = 'https://zeitbook.herokuapp.com';
@@ -44,7 +45,7 @@ function getFromQueue(queueName) {
 }
 
 function addToQueue(queueName, obj) {
-  const elem = obj;
+  const elem = clone(obj);
   return getFromQueue(queueName).then((elemQueue) => {
     elem.id = elemQueue.length > 0 ? (Math.max(...elemQueue.map(item => item.id)) + 1) : 1;
     elemQueue.push(elem);
