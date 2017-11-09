@@ -77,8 +77,17 @@ function sendMessageToClient(client, msg) {
 
 /* eslint-disable no-undef */
 function sendMessageToAllClients(msg) {
-  return clients.matchAll({includeUncontrolled: true, type: 'window'})
+  return clients.matchAll({ includeUncontrolled: true, type: 'window' })
     .then(clients => Promise.all(clients.map(client => sendMessageToClient(client, msg))));
+}
+
+function hasVisibleClients() {
+  return clients.matchAll({ type: 'window', includeUncontrolled: true })
+    .then(clientList => clientList.some(client => client.visibilityState === 'visible'));
+}
+
+function sendNotification(msg) {
+  hasVisibleClients().then(c => (c ? Promise.resolve() : registration.showNotification(msg, {})));
 }
 /* eslint-enable no-undef */
 
@@ -113,9 +122,8 @@ function sendPosts() {
       .then(() => {
         postsList = postsList.filter(p => p.id !== post.id);
         return updateQueue('postsQueue', postsList);
-      })
-      .then(() => registration.showNotification('Post synced', {})))); // eslint-disable-line no-undef
-  });
+      })));
+  }).then(() => sendNotification('Post synced'));
 }
 
 function sendComments() {
@@ -132,9 +140,8 @@ function sendComments() {
       .then(() => {
         commentsList = commentsList.filter(c => c.id !== comment.id);
         return updateQueue('commentsQueue', commentsList);
-      })
-      .then(() => registration.showNotification('Comment synced', {})))); // eslint-disable-line no-undef
-  });
+      })));
+  }).then(() => sendNotification('Comment synced'));
 }
 
 // eslint-disable-next-line no-restricted-globals
