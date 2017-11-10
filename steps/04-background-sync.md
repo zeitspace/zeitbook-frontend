@@ -2,13 +2,18 @@
 
 You can start from this step by cloning this repository and checking out the `step-4` branch, or by [downloading the code as a ZIP file](https://github.com/zeitspace/zeitbook-frontend/archive/step-4.zip).
 
-# Push notifications
+# Background Sync
 
-Background Sync API is important to allow users to create posts and comments while offline. We will move the fetch functions to the service worker and let it take care of it. Background Sync API will try to communicate with the server until it works, if it gets an error it will set up a new sync event and try again.
+Background Sync is an experimental web API that lets you schedule tasks to run when the user's device has a stable connection to the Internet. In this step, you'll use the API to allow users to create posts and comments while offline. You'll change your application to follow these steps when a user creates a new post or comment:
+
+1. The main thread adds the post or comment to a queue and notifies the service worker
+1. The service worker reads the post or comment from the queue
+1. The repeatedly tries to create the post or comment on the backend, sending a message to the main thread when it succeeds
+1. The main thread updates the UI to indicate that the post or comment has been created ont he backend
 
 ## Modify the `createPost` function to register a new sync event
 
-Add the following code to `createPost` function on `src\api.js`:
+Replace the body of the `createPost` function in `src/api.js` with the following code:
 
 ```javascript
   const post = { username, title, body };
@@ -26,15 +31,15 @@ Add the following code to `createPost` function on `src\api.js`:
   });
 ```
 
-On the begging, it creates a `post` variable merging username, body and title in a single object.
-It requests the user notification token to send it to the server.
-Save the post information on a list using IndexedDB
-Register a new sync event called `send-post-queue`
-And finally, create a new post element to be showed on the frontend
+This code first creates a post object, then adds the user's notification token to it. Next, it calls the `addToQueue` function, which adds the post to a queue of posts that haven't been sent to the backend yet. This queue is stored in IndexedDB, a client-side database. `addToQueue` returns a temporary ID for the post, which is added to the post object.
 
-## Modify the `createPost` function to register a new sync event
+After storing the new post in IndexedDB, the code requests a background sync by calling `reg.sync.register('send-post-queue')`. When this function is called, your application's service worker receives a `sync` event with the tag `send-post-queue`. In a little while, you'll change your service worker to respond to this event.
 
-Add the following code to `createComment` function on `src\api.js`:
+`createPost` returns a post object that will be used to display the user's new post. Note that the parameter `synced: false` is passed to `buildPost`. With this parameter, the post will be rendered
+
+## Modify the `createComment` function to register a new sync event
+
+Replace the body of the `createComment` function in `src/api.js` with the following code:
 
 ```javascript
 const comment = { username, body, postId };
@@ -53,11 +58,11 @@ return notificationToken.then((token) => {
   });
 ```
 
-The code above is very similar to the `createPost` except that it save the comment on a different list.
+The code above is nearly identical to `createPost`, except that it adds the comment to a different queue in IndexedDB.
 
-## Modify the Service Worker to receive the sync event
+## Modify your service worker to listen for `sync` events
 
-Add the following code to `assets/service-worker.js` on the bottom of the file:
+Add the following code to the bottom of `assets/service-worker.js`:
 
 ```javascript
 self.addEventListener('sync', (event) => {
@@ -69,7 +74,9 @@ self.addEventListener('sync', (event) => {
 });
 ```
 
-## Modify the Service Worker to send posts and comments
+You'll define `sendPosts` and `sendComments` next.
+
+## Modify your service worker to send posts and comments to the backend
 
 Add the following code to `assets/service-worker.js`:
 
@@ -111,16 +118,17 @@ function sendComments() {
 }
 ```
 
-After receive a `send-post-queue` or a `send-comment-queue` the SW will call sendPost or sendComment.
-First, it will get all the posts/comments on the waiting list and go throw it.
-For each post/comment, it will call a post request on the server.
-After that, it will notify the client that the new post was synced.
-Then it will remove the post/comment from the queue list.
-And finally, it will send a notification to the user.
+After receiving a `sync` event with the tag `send-post-queue` or `send-comment-queue`, the service worker will call `sendPosts` or `sendComments` respectively. These functions read the queues of posts and comments stored in IndexedDB and make POST requests to the backend for each post and comment to be created.
 
-## Modify the `index` file to update the frontend
+After each POST request completes successfully, the code sends a message to each of the service worker's clients, which are the open web pages that have registered that service worker. The message contains the updated post or comment (which contains its permanent ID) as well as the post or comment's temporary ID. In a little while, you'll modify your application to update the UI in response to these messages.
 
-Add the following code to `src/index.js` on the bottom of the file:
+After sending a message for the post or comment, the code removes the created item from the correct queue in IndexedDB, so that the item won't be sent to the backend again when the next `sync` event is sent. Finally, once all of the posts or comments have been succesfully synced, a notification is shown to the user. (This notification will only appear when your application is in the background, i.e. when Chrome isn't the focused window or your application isn't the focused tab.)
+
+## Listen for a message from the service worker when it creates a post
+
+On line 47 of `src/index.js`, change `linkToComments: true` to `linkToComments: false`. This will cause pending posts to be rendered without a link to a comments page. This is necessary because the pending post isn't stored in the backend's database, so API requests for the post will fail.
+
+Next, add the following code to the bottom of `src/index.js`:
 
 ```javascript
 navigator.serviceWorker.addEventListener('message', (event) => {
@@ -136,11 +144,11 @@ navigator.serviceWorker.addEventListener('message', (event) => {
 });
 ```
 
-The code above will create a new post element and replace the unsynced post on the frontend after receiving a message from the server with the type `post-update`.
+A receiving a message of type `post-update` from the service worker, this event listener updates the UI to reflect the fact that the pending post has been synced to the backend.
 
-## Modify the `post` file to update the frontend
+## Listen for a message from the service worker when it creates a comment
 
-Add the following code to `src/index.js` on the bottom of the file:
+Add the following code to the bottom of `src/post.js`:
 
 ```javascript
 navigator.serviceWorker.addEventListener('message', (event) => {
@@ -156,9 +164,10 @@ navigator.serviceWorker.addEventListener('message', (event) => {
 });
 ```
 
-The code above will create a new comment element and replace the unsynced comment on the frontend after receiving a message from the server with the type `comment-update`.
+This code is identical to the code you just added to `src/index.js`, except that it listens for events of type `comment-update`.
 
-## Test that notifications work
+## Test that Background Sync works
 
-Now you can test your code creating new posts and comments. You will see that your post/comment will show a pending status until it is synced to the server. You could test it creating new post/comment when your computer WiFi is off; when the WiFi goes on all the posts/comments will be sent to the server.
-If you aren't on your app tab when the server sync, you will see a notification.
+You can test out Background Sync by disconnecting from the Internet, then creating a post or a comment. You should see a pending post added to the top of the list of posts. When you reconnect to the Internet, you should see the "pending" text removed from your post.
+
+You can test that a notification is sent by changing tabs, then reconnecting to the Internet.
