@@ -58,7 +58,14 @@ The code above is nearly identical to `createPost`, except that it adds the comm
 
 ## Modify your service worker to listen for `sync` events
 
-Add the following code to the bottom of `assets/service-worker.js`:
+Add the following code to the top of `assets/service-worker.js`:
+
+```javascript
+importScripts('https://cdn.jsdelivr.net/npm/idb-keyval@2.3.0/idb-keyval.min.js');
+importScripts('./scripts/util.js');
+```
+
+Next, add the following code to the bottom of `assets/service-worker.js`:
 
 ```javascript
 self.addEventListener('sync', (event) => {
@@ -77,6 +84,8 @@ You'll define `sendPosts` and `sendComments` next.
 Add the following code to `assets/service-worker.js`:
 
 ```javascript
+const API_ROOT = 'https://zeitbook.herokuapp.com';
+
 function sendPosts() {
   return getQueue('postsQueue').then((postsQueue) => {
     let postsList = postsQueue;
