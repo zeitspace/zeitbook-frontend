@@ -1,7 +1,3 @@
-### Arriving late?
-
-You can start from this step by cloning this repository and checking out the `step-4` branch, or by [downloading the code as a ZIP file](https://github.com/zeitspace/zeitbook-frontend/archive/step-4.zip).
-
 # Background Sync
 
 Background Sync is an experimental web API that lets you schedule tasks to run when the user's device has a stable connection to the Internet. In this step, you'll use the API to allow users to create posts and comments while offline. You'll change your application to follow these steps when a user creates a new post or comment:

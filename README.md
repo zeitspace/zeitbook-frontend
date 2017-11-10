@@ -4,7 +4,14 @@ The starter application for Zeitspace's workshop on Progressive Web Apps.
 
 ## Arriving late?
 
-Complete the instructions under [Prerequisites](#prerequisites) and [Setup](#setup), then go to [the instructions for the current step](#steps).
+Complete the instructions under [Prerequisites](#prerequisites) and [Setup](#setup), with one difference. If you're cloning this repository using Git, check out either the `step-1`, `step-2`, `step-3`, or `step-4` branch based on the current step. If you're downloading this repository as a ZIP file, use one of the following links:
+
+- [Step 1](https://github.com/zeitspace/zeitbook-frontend/archive/step-1.zip)
+- [Step 2](https://github.com/zeitspace/zeitbook-frontend/archive/step-2.zip)
+- [Step 3](https://github.com/zeitspace/zeitbook-frontend/archive/step-3.zip)
+- [Step 4](https://github.com/zeitspace/zeitbook-frontend/archive/step-4.zip)
+
+Next, go to [the instructions for the current step](#steps).
 
 ## Prerequisites
 
