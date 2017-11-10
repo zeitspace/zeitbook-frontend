@@ -144,7 +144,7 @@ navigator.serviceWorker.addEventListener('message', (event) => {
 });
 ```
 
-A receiving a message of type `post-update` from the service worker, this event listener updates the UI to reflect the fact that the pending post has been synced to the backend.
+After receiving a message of type `post-update` from the service worker, this event listener updates the UI to reflect the fact that the pending post has been synced to the backend.
 
 ## Listen for a message from the service worker when it creates a comment
 
