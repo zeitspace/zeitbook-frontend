@@ -11,7 +11,7 @@ Background Sync is an experimental web API that lets you schedule tasks to run w
 1. The service worker repeatedly tries to create the post or comment on the backend, sending a message to the main thread when it succeeds
 1. The main thread updates the UI to indicate that the post or comment has been created on the backend
 
-## Modify the `createPost` function to register a new sync event
+## Modify the `createPost` function to request a sync when a user creates a post
 
 Replace the body of the `createPost` function in `src/api.js` with the following code:
 
@@ -37,7 +37,7 @@ After storing the new post in IndexedDB, the code requests a background sync by 
 
 `createPost` returns a post object that will be used to display the user's new post. Note that the parameter `synced: false` is passed to `buildPost`. With this parameter, the post will be rendered
 
-## Modify the `createComment` function to register a new sync event
+## Modify the `createComment` function to request a sync when a user creates a comment
 
 Replace the body of the `createComment` function in `src/api.js` with the following code:
 
