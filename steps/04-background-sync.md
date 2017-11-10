@@ -35,7 +35,7 @@ This code first creates a post object, then adds the user's notification token t
 
 After storing the new post in IndexedDB, the code requests a background sync by calling `reg.sync.register('send-post-queue')`. When this function is called, your application's service worker receives a `sync` event with the tag `send-post-queue`. In a little while, you'll change your service worker to respond to this event.
 
-`createPost` returns a post object that will be used to display the user's new post. Note that the parameter `synced: false` is passed to `buildPost`. With this parameter, the post will be rendered
+`createPost` returns a post object that will be used to display the user's new post. Note that the parameter `synced: false` is passed to `buildPost`. With this parameter, the post will be rendered to indicate that it hasn't been added to the backend database yet.
 
 ## Modify the `createComment` function to request a sync when a user creates a comment
 
