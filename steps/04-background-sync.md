@@ -9,7 +9,7 @@ Background Sync is an experimental web API that lets you schedule tasks to run w
 1. The main thread adds the post or comment to a queue and notifies the service worker
 1. The service worker reads the post or comment from the queue
 1. The service worker repeatedly tries to create the post or comment on the backend, sending a message to the main thread when it succeeds
-1. The main thread updates the UI to indicate that the post or comment has been created ont he backend
+1. The main thread updates the UI to indicate that the post or comment has been created on the backend
 
 ## Modify the `createPost` function to register a new sync event
 
