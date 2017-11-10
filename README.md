@@ -41,6 +41,10 @@ A service worker is a script that browsers run in the background and that can co
 
 Using the service worker you created in Step 2, you'll set up your application to display push notifications when someone replies to your posts or comments.
 
+### Step 4: [Background Sync](./steps/04-background-sync.md)
+
+You'll use the Background Sync API to let users create posts and comments while offline.
+
 ## Resources
 
 If you're looking for a refresher on what Progressive Web Apps are and why they're important, we recommend [this article](https://blog.ionic.io/what-is-a-progressive-web-app/).
