@@ -19,6 +19,7 @@ const urlsToCache = [
   '/images/back-arrow.png',
   '/images/up-arrow.png',
   '/images/zeitspace-logo.png',
+  '/scripts/util.js',
 ];
 
 self.addEventListener('install', (event) => {
