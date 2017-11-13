@@ -16,8 +16,6 @@ Your `manifest.json` should now look like this:
 {
     "short_name": "Zeitbook",
     "name": "Zeitbook: A Social Network",
-    "icons": [
-    ],
     "theme_color": "#0098fa",
     "background_color": "#ffffff",
     "start_url": "/",
