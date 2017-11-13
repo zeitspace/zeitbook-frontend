@@ -76,7 +76,7 @@ To run Lighthouse against your application, open the Chrome DevTools and navigat
 
 Since you've added a web app manifest to your application, it should pass the "Configured for a custom splash screen" check. However, it will not pass the "User will be prompted to Install the Web App" check, even though it has a manifest. This is because your application does not have a service worker, which you will add in the next step.
 
-![](steps/screenshots/01-web-app-manifest/02-lighthouse-results.png)
+![](screenshots/01-web-app-manifest/02-lighthouse-results.png)
 
 ## Next step
 
