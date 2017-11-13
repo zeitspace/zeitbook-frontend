@@ -86,9 +86,7 @@ self.addEventListener('fetch', (event) => {
 
 ## Set up your service worker to cache API requests
 
-The "cache, falling back to network" strategy outlined above doesn't work well for requests to the Zeitbook API. If your device is connected to the Internet, your application should always load the latest posts and comments from the API, instead of loading stale data from the cache. Your application should only load data from the cache when you are offline. We'll refer to this strategy as "network, falling back to cache".
-
-Add the following code inside your service worker's `fetch` event listener. It should be placed after the first line of the function (`const { request } = event;`). Also, in the line `if (request.method === 'GET') {`, replace `if` with `} else if`.
+Add the following code inside your service worker's `fetch` event listener. It should be placed **after the first line of the function** (`const { request } = event;`). Also, in the line `if (request.method === 'GET') {`, replace `if` with `} else if`.
 
 ```javascript
   if (request.method === 'GET' && request.url.includes('zeitbook.herokuapp.com')) {
