@@ -173,6 +173,10 @@ This code is identical to the code you just added to `src/index.js`, except that
 
 ## Test that Background Sync works
 
+![](screenshots/04-background-sync/01-pending-post.png)
+
 You can test out Background Sync by disconnecting from the Internet, then creating a post or a comment. You should see a pending post added to the top of the list of posts. When you reconnect to the Internet, you should see the "pending" text removed from your post.
+
+![](screenshots/04-background-sync/02-pending-notification.png)
 
 You can test that a notification is sent by changing tabs, then reconnecting to the Internet.

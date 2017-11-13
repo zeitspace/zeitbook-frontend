@@ -121,7 +121,11 @@ This code sets up your service worker to receive push messages from Firebase Clo
 
 ## Test that notifications work
 
+![](screenshots/03-push-notifications/01-notification-modal.png)
+
 Open your application using Google Chrome. When prompted, allow push notifications for your app. Create a new post, then change tabs. (Notifications will only appear when your application is in the background, i.e. when Chrome isn't the focused window or your application isn't the focused tab.)
+
+![](screenshots/03-push-notifications/02-notification.png)
 
 You now have two ways to test your code. First, you can ask another workshop participant to comment on your post. Or, you can open your application in an incognito window and comment on your own post. (This works because notification tokens are unique by browser session. When the backend sends a notification using your original tab's notification token, Chrome will display the notification because your original tab is in the background.)
 
