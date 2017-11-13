@@ -10,8 +10,6 @@ Open the file `assets/manifest.json` and replace the contents of the file with t
 {
     "short_name": "Zeitbook",
     "name": "Zeitbook: A Social Network",
-    "icons": [
-    ],
     "theme_color": "#0098fa",
     "background_color": "#ffffff",
     "start_url": "/",
@@ -32,7 +30,7 @@ Your web app manifest now contains the following properties:
 
 ## Create and reference icons
 
-If you want browsers to prompt your users to install your application, you must list a set of icons in your manifest. First, move the directory `steps/icons` to `assets/icons`. Next, add references to the icons in your manifest, under the `icons` key:
+If you want browsers to prompt your users to install your application, you must list a set of icons in your manifest. First, move the directory `steps/icons` to `assets/icons`. Next, add the following key-value pair **below** `"display": "standalone"`:
 
 ```json
     "icons": [
@@ -51,8 +49,10 @@ If you want browsers to prompt your users to install your application, you must 
             "sizes": "512x512",
             "type": "image/png"
         }
-    ],
+    ]
 ```
+
+Make sure to add a trailing comma to the line `"display": "standalone"`.
 
 ## Reference the manifest in your application's HTML files
 

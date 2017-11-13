@@ -10,6 +10,8 @@ Add the following key-value pair to `assets/manifest.json`:
     "gcm_sender_id": "103953800507"
 ```
 
+Make sure to add a trailing comma to `"icons": [...]`.
+
 Your `manifest.json` should now look like this:
 
 ```json
