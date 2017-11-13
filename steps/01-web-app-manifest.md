@@ -32,7 +32,7 @@ Your web app manifest now contains the following properties:
 
 ## Create and reference icons
 
-If you want browsers to prompt your users to install your application, you must list a set of icons in your manifest. First, move the icons from `steps/icons` to a new folder `assets/icons`. Next, add references to the icons in your manifest, under the `icons` key:
+If you want browsers to prompt your users to install your application, you must list a set of icons in your manifest. First, move the directory `steps/icons` to `assets/icons`. Next, add references to the icons in your manifest, under the `icons` key:
 
 ```json
     "icons": [
