@@ -62,7 +62,7 @@ function fetchAndCache(request, cache) {
 
 self.addEventListener('fetch', (event) => {
   const { request } = event;
-  if (request.method === 'GET') {
+  if (request.method === 'GET') { // During the next step, replace `if` with `} else if`
     const cacheFirst = caches.open(CACHE_NAME)
       .then(cache => cache.match(request)
         .then((response) => {
@@ -88,7 +88,26 @@ Note that the listener only tries to load GET requests from the cache. This is b
 
 The "cache, falling back to network" strategy outlined above doesn't work well for requests to the Zeitbook API. If your device is connected to the Internet, your application should always load the latest posts and comments from the API, instead of loading stale data from the cache. Your application should only load data from the cache when you are offline. We'll refer to this strategy as "network, falling back to cache".
 
-Add the following code inside your service worker's `fetch` event listener, wrapping the code already inside it:
+Add the following code inside your service worker's `fetch` event listener. It should be placed after the first line of the function (`const { request } = event;`). Also, in the line `if (request.method === 'GET') {`, replace `if` with `} else if`.
+
+```javascript
+  if (request.method === 'GET' && request.url.includes('zeitbook.herokuapp.com')) {
+    const networkFirst = caches.open(CACHE_NAME)
+      .then(cache => fetchAndCache(request, cache)
+        .catch(error => cache.match(request)
+          .then((response) => {
+            if (response) {
+              return response;
+            }
+            throw error;
+          })));
+    event.respondWith(networkFirst);
+  } else if (request.method === 'GET') { // Replaced `if` with `} else if`
+    // ...
+  }
+```
+
+Your `fetch` event listener should now contain:
 
 ```javascript
   if (request.method === 'GET' && request.url.includes('zeitbook.herokuapp.com')) {
@@ -103,8 +122,15 @@ Add the following code inside your service worker's `fetch` event listener, wrap
           })));
     event.respondWith(networkFirst);
   } else if (request.method === 'GET') {
-    // const cacheFirst = caches.open(CACHE_NAME);
-    // Other existing code...
+    const cacheFirst = caches.open(CACHE_NAME)
+      .then(cache => cache.match(request)
+        .then((response) => {
+          if (response) {
+            return response;
+          }
+          return fetchAndCache(request, cache);
+        }));
+    event.respondWith(cacheFirst);
   }
 ```
 
@@ -112,7 +138,7 @@ If the request is made to the Zeitbook API, the listener first tries to load fre
 
 ## Check that your service worker installs correctly
 
-Open your application using Google Chrome and open Chrome DevTools (`F12` on Windows or `cmd + option + j` on macOS). Under the Application tab, click on "Service Workers" to check that your service worker has been installed correctly. You can also click on "Cache Storage" to view the contents of your service worker's cache.
+Open the Google Chrome tab containing your application. In Chrome DevTools, under the Application tab, click on "Service Workers" to check that your service worker has been installed correctly. You can also click on "Cache Storage" to view the contents of your service worker's cache.
 
 ## Test your application's offline capabilities
 

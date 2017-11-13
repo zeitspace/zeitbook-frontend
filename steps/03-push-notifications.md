@@ -6,10 +6,8 @@ Push notifications are great for keeping users engaged with your application. He
 
 Add the following key-value pair to `assets/manifest.json`:
 
-```json
-{
+```
     "gcm_sender_id": "103953800507"
-}
 ```
 
 This hardcoded value indicates to browsers that Firebase Cloud Messaging is authorized to send messages to your application.
