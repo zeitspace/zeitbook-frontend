@@ -108,9 +108,3 @@ If you're looking for a refresher on what Progressive Web Apps are and why they'
 - [Workbox](https://developers.google.com/web/tools/workbox/) (tools for writing and automatically generating service workers)
 - [Lighthouse](https://developers.google.com/web/tools/lighthouse/) (automated testing of PWA criteria and other web page quality metrics)
 - [Debugging PWAs using Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools/progressive-web-apps)
-
-### RAIL Performance Model
-- [Google article](https://developers.google.com/web/fundamentals/performance/rail)
-
-### App Shell
-- [Google article](https://developers.google.com/web/fundamentals/architecture/app-shell)
