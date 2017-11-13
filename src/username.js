@@ -1,1 +1,1 @@
-export default `YOUR NAME HERE`;
+export default '[NAME]';

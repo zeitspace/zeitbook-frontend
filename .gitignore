@@ -59,6 +59,3 @@ typings/
 
 # Dist folder
 dist
-
-# Username file
-src/username.js
