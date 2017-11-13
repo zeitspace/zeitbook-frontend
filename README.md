@@ -49,20 +49,24 @@ Using the service worker you created in Step 2, you'll set up your application t
 
 You'll use the Background Sync API to let users create posts and comments while offline.
 
-## Extension
-You can further enhance the user experience of ZeitBook by implementing several other common features of PWAs.
+## Other concepts
 
-### RAIL Performance Model
-The RAIL Performance Model is a user-centric performance model that has the following key ideas:
+Here are two PWA-related concepts that we don't have time to cover during the workshop:
+
+### App Shell
+
+The App Shell is a technique for building the layout of a PWA. It involves aggressively caching the minimal HTML, CSS and JS required to render the application's UI, so that it renders near-instantly on repeat visits. After rendering the app shell, the browser loads the application's dynamic content using JavaScript. The goal of this technique is to allow the user to interact with the application more quickly.
+
+### RAIL performance model
+
+RAIL is a performance model based on four key ideas:
+
 - Respond to users immediately; acknowledge user input in under 100ms
 - When animating or scrolling, produce a frame in under 10ms
 - Maximize main thread idle time
 - Keep users engaged; deliver interactive content in under 1000ms
 
-This model concentrates on making users the focal point of your app. The app doesn't necessarily have to be faster on any specific device, but the goal is to make users happy.
-
-### App Shell
-The App Shell is a technique for building the layout of a PWA. It involves aggressively caching minimal HTML, CSS and JS required for the user interface that loads almost instantly, whilst dynamic content is loaded after the shell is rendered using JavaScript. This can reduce the first meaningful load time and time until interactability, which makes the app feel smoother and faster.
+RAIL is a user-centric performance model. It suggests that you focus on the user's experience while using your application, rather than on trying to shave milliseconds off of page load times on a specific device.
 
 ## Resources
 
@@ -75,8 +79,8 @@ If you're looking for a refresher on what Progressive Web Apps are and why they'
 - [Overview of Progressive Web Apps](https://developers.google.com/web/progressive-web-apps/)
 - [Progressive Web App checklist](https://developers.google.com/web/progressive-web-apps/checklist) (contains descriptions of the audits used by Lighthouse)
 - [Google Chrome Developers Youtube Channel](https://www.youtube.com/user/ChromeDevelopers/videos) (many videos covering the latest web development trends and technologies, including progressive web apps)
-- [App Shell model](https://developers.google.com/web/fundamentals/architecture/app-shell) (using a service worker to cache the minimal amount of static assets required to render a page, with the goal of very fast page loads)
-- [RAIL performance model](https://developers.google.com/web/fundamentals/performance/rail) (a user-centric performance model for web applications)
+- [App Shell model](https://developers.google.com/web/fundamentals/architecture/app-shell)
+- [RAIL performance model](https://developers.google.com/web/fundamentals/performance/rail)
 - [Web app install banners](https://developers.google.com/web/fundamentals/app-install-banners/)
 
 ### Features and APIs
