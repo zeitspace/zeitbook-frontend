@@ -38,20 +38,20 @@ After storing the new post in IndexedDB, the code requests a background sync by 
 Replace the body of the `createComment` function in `src/api.js` with the following code:
 
 ```javascript
-const comment = { username, body, postId };
-return notificationToken.then((token) => {
-  comment.token = token;
-  return addToQueue('commentsQueue', comment);
-}).then((id) => {
-  comment.id = id;
-  return navigator.serviceWorker.getRegistration();
-}).then(reg => reg.sync.register('send-comment-queue'))
-  .then(() => {
-    const result = {
-      id: `comment-${comment.id}`, time: new Date(), user: username, comment: body, synced: false,
-    };
-    return buildComment(result);
-  });
+  const comment = { username, body, postId };
+  return notificationToken.then((token) => {
+    comment.token = token;
+    return addToQueue('commentsQueue', comment);
+  }).then((id) => {
+    comment.id = id;
+    return navigator.serviceWorker.getRegistration();
+  }).then(reg => reg.sync.register('send-comment-queue'))
+    .then(() => {
+      const result = {
+        id: `comment-${comment.id}`, time: new Date(), user: username, comment: body, synced: false,
+      };
+      return buildComment(result);
+    });
 ```
 
 The code above is nearly identical to `createPost`, except that it adds the comment to a different queue in IndexedDB.
