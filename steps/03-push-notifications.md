@@ -10,18 +10,51 @@ Add the following key-value pair to `assets/manifest.json`:
     "gcm_sender_id": "103953800507"
 ```
 
+Your `manifest.json` should now look like this:
+
+```json
+{
+    "short_name": "Zeitbook",
+    "name": "Zeitbook: A Social Network",
+    "icons": [
+    ],
+    "theme_color": "#0098fa",
+    "background_color": "#ffffff",
+    "start_url": "/",
+    "display": "standalone",
+    "icons": [
+        {
+            "src": "/icons/192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/icons/256x256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "/icons/512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "gcm_sender_id": "103953800507"
+}
+```
+
 This hardcoded value indicates to browsers that Firebase Cloud Messaging is authorized to send messages to your application.
 
 ## Configure Firebase
 
-Add the following code at the top of `src/firebase.js`:
+Add the following code at the **top** of `src/firebase.js`:
 
 ```javascript
 import * as firebase from 'firebase/app';
 import 'firebase/messaging';
 ```
 
-Then, add the following code below `import registerServiceWorker from './service-worker';`:
+Then, add the following code **below** `import registerServiceWorker from './service-worker';`:
 
 ```javascript
 const config = {
@@ -43,7 +76,7 @@ Firebase Cloud Messaging assigns your application a notification token. Zeitbook
 
 To keep this demo application simple, we've decided not to have a concept of user accounts. In a real-world application, instead of storing tokens as a part of each post and comment by a user, you would store them as attributes of users. See [the Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging/js/first-message) documentation for more details.
 
-Replace the last two lines of `src/firebase.js` with the following code:
+Replace the **last two lines** of `src/firebase.js` with the following code:
 
 ```javascript
 const messaging = firebase.messaging();
@@ -71,7 +104,7 @@ Before making POST requests to the backend, the functions in `src/api.js` wait f
 
 ## Display notifications when your application receives a message from the server
 
-Add the following code to the top of `assets/service-worker.js`:
+Add the following code to the **top** of `assets/service-worker.js`:
 
 ```javascript
 importScripts('https://www.gstatic.com/firebasejs/3.9.0/firebase-app.js');
