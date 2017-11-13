@@ -81,7 +81,7 @@ You'll define `sendPosts` and `sendComments` next.
 
 ## Modify your service worker to send posts and comments to the backend
 
-Add the following code to `assets/service-worker.js`:
+Add the following code to `assets/service-worker.js`, just above the `sync` event listener that you just added:
 
 ```javascript
 const API_ROOT = 'https://zeitbook.herokuapp.com';
