@@ -77,11 +77,11 @@ self.addEventListener('fetch', (event) => {
 ```
 
 > This code uses a `fetch` event listener to act as an intermediary between your application and the network. Whenever your application loads a resource, this event listener is called and the service worker has the opportunity to load a cached response instead of making a network request.
-
+>
 > The event listener first checks if the requested resource exists in the cache. If the resource doesn't exist, it makes a network request for the resource. This strategy of "cache, falling back to network" is the most common strategy for most applications.
-
+>
 > The event listener uses the `fetchAndCache` function to request resources over the network. This function first makes a network request for the resource, then saves it in the cache so that it can be loaded more quickly later.
-
+>
 > Note that the listener only tries to load GET requests from the cache. This is because the Cache API only supports caching GET requests.
 
 ## Set up your service worker to cache API requests
@@ -135,7 +135,7 @@ Your `fetch` event listener should now contain:
 ```
 
 > The "cache, falling back to network" strategy outlined above doesn't work well for requests to the Zeitbook API. If your device is connected to the Internet, your application should always load the latest posts and comments from the API, instead of loading stale data from the cache. Your application should only load data from the cache when you are offline. We'll refer to this strategy, which you've just implemented for Zeitbook API requests, as "network, falling back to cache".
-
+>
 > If the request is made to the Zeitbook API, the listener first tries to load fresh data using `fetchAndCache`. If this fails, it attempts to load potentially stale data from the cache.
 
 ## Check that your service worker installs correctly

@@ -95,11 +95,11 @@ export default getNotificationToken;
 ```
 
 > To keep this demo application simple, we've decided not to have a concept of user accounts. In a real-world application, instead of storing tokens as a part of each post and comment by a user, you would store them as attributes of users. See [the Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging/js/first-message) documentation for more details.
-
+>
 > Before making POST requests to the backend, the functions in `src/api.js` wait for the Promise `getNotificationToken()` to resolve, then include the resulting token in their requests to the backend.
-
+>
 > `getNotificationToken` follows a three-step process for obtaining the notification token. First, it waits for the application's service worker to be registered. Then, it specifies that the Firebase Cloud Messaging client-side library should use this service worker to receive push messages. Finally, it calls `getToken`, which retrieves the token from the FCM library.
-
+>
 > `messaging.getToken` returns `null` if the user hasn't granted permission to receive notifications. If this occurs, `getToken` calls `messaging.requestPermission` to ask for permission, then calls itself. If `messaging.requestPermission` throws an error, this indicates that the user has denied permission to your application to display notifications. In this case, `getToken` simply returns `null`.
 
 ## Display notifications when your application receives a message from the server
