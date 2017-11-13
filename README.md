@@ -52,6 +52,21 @@ Using the service worker you created in Step 2, you'll set up your application t
 
 You'll use the Background Sync API to let users create posts and comments while offline.
 
+## Extension
+You can further enhance the user experience of ZeitBook by implementing several other common features of PWAs.
+
+### RAIL Performance Model
+The RAIL Performance Model is a user-centric performance model that has the following key ideas:
+- Respond to users immediately; acknowledge user input in under 100ms
+- When animating or scrolling, produce a frame in under 10ms
+- Maximize main thread idle time
+- Keep users engaged; deliver interactive content in under 1000ms
+
+This model concentrates on making users the focal point of your app. The app doesn't necessarily have to be faster on any specific device, but the goal is to make users happy.
+
+### App Shell
+The App Shell is a technique for building the layout of a PWA. It involves aggressively caching minimal HTML, CSS and JS required for the user interface that loads almost instantly, whilst dynamic content is loaded after the shell is rendered using JavaScript. This can reduce the first meaningful load time and time until interactability, which makes the app feel smoother and faster.
+
 ## Resources
 
 If you're looking for a refresher on what Progressive Web Apps are and why they're important, we recommend [this article](https://blog.ionic.io/what-is-a-progressive-web-app/).
@@ -96,3 +111,9 @@ If you're looking for a refresher on what Progressive Web Apps are and why they'
 - [Workbox](https://developers.google.com/web/tools/workbox/) (tools for writing and automatically generating service workers)
 - [Lighthouse](https://developers.google.com/web/tools/lighthouse/) (automated testing of PWA criteria and other web page quality metrics)
 - [Debugging PWAs using Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools/progressive-web-apps)
+
+### RAIL Performance Model
+- [Google article](https://developers.google.com/web/fundamentals/performance/rail)
+
+### App Shell
+- [Google article](https://developers.google.com/web/fundamentals/architecture/app-shell)
