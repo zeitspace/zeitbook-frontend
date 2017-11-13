@@ -66,7 +66,7 @@ Add the following line within the `<head>` tags of `assets/pages/index.html` and
 
 Open your application at [localhost:3000](localhost:3000) using Google Chrome, then open Chrome DevTools (`F12` on Windows or `cmd + option + j` on macOS). In the Application tab of the DevTools, click on the Manifest menu item. You should see all the data from your application's manifest, including the icons that you just added.
 
-![](steps/screenshots/01-web-app-manifest/01-manifest.png)
+![](screenshots/01-web-app-manifest/01-manifest.png)
 
 ## Run Lighthouse
 
@@ -76,7 +76,7 @@ To run Lighthouse against your application, open the Chrome DevTools and navigat
 
 Since you've added a web app manifest to your application, it should pass the "Configured for a custom splash screen" check. However, it will not pass the "User will be prompted to Install the Web App" check, even though it has a manifest. This is because your application does not have a service worker, which you will add in the next step.
 
-![](steps/screenshots/01-web-app-manifest/02-lighthouse-results.png)
+![](screenshots/01-web-app-manifest/02-lighthouse-results.png)
 
 ## Next step
 
