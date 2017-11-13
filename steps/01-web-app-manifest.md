@@ -11,7 +11,7 @@ Open the file `assets/manifest.json` and replace the contents of the file with t
     "short_name": "Zeitbook",
     "name": "Zeitbook: A Social Network",
     "theme_color": "#0098fa",
-    "background_color": "#ffffff",
+    "background_color": "#0098fa",
     "start_url": "/",
     "display": "standalone"
 }
