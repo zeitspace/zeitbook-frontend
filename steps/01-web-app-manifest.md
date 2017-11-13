@@ -2,9 +2,9 @@
 
 The web app manifest is a JSON file that contains important information about your application. If your application provides a manifest, browsers will prompt your users to install it to their devices' homescreens. You can also use the manifest to control whether your application is displayed in portrait or landscape, to choose a theme colour for the browser's UI, or even to hide the UI altogether.
 
-## Create a manifest file
+## Manifest file
 
-Create the file `assets/manifest.json` and insert the code below:
+Open the file `assets/manifest.json` and replace the contents of the file with the code below:
 
 ```json
 {

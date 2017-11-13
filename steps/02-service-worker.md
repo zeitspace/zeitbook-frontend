@@ -4,7 +4,7 @@ A service worker is a script that your browser runs in the background. It provid
 
 ## Create a service worker to cache your application's resources
 
-Create a new file at `assets/service-worker.js`, then insert the following code:
+Open the file at `assets/service-worker.js`, then insert the following code:
 
 ```javascript
 const CACHE_NAME = 'zeitbook-cache-v1';
