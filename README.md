@@ -1,5 +1,7 @@
 # Zeitbook
 
+[ ![Codeship Status for zeitspace/zeitbook-frontend](https://app.codeship.com/projects/5656a700-a2f9-0135-15e6-76731562ca18/status?branch=master)](https://app.codeship.com/projects/254818)
+
 The starter application for Zeitspace's workshop on Progressive Web Apps.
 
 ## Arriving late?
