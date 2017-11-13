@@ -43,7 +43,7 @@ Your `manifest.json` should now look like this:
 }
 ```
 
-This hardcoded value indicates to browsers that Firebase Cloud Messaging is authorized to send messages to your application.
+> This hardcoded value indicates to browsers that Firebase Cloud Messaging is authorized to send messages to your application.
 
 ## Configure Firebase
 
@@ -68,13 +68,11 @@ const config = {
 firebase.initializeApp(config);
 ```
 
-This code sets up your application to connect to the Zeitbook API's Firebase project.
+> This code sets up your application to connect to the Zeitbook API's Firebase project.
 
 ## Include your application's notification token in API requests
 
 Firebase Cloud Messaging assigns your application a notification token. Zeitbook's backend can use this token to send push messages to your application. Here, you'll set up your application to send its notification token to the backend.
-
-To keep this demo application simple, we've decided not to have a concept of user accounts. In a real-world application, instead of storing tokens as a part of each post and comment by a user, you would store them as attributes of users. See [the Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging/js/first-message) documentation for more details.
 
 Replace the **last two lines** of `src/firebase.js` with the following code:
 
@@ -96,11 +94,13 @@ function getNotificationToken() {
 export default getNotificationToken;
 ```
 
-Before making POST requests to the backend, the functions in `src/api.js` wait for the Promise `getNotificationToken()` to resolve, then include the resulting token in their requests to the backend.
+> To keep this demo application simple, we've decided not to have a concept of user accounts. In a real-world application, instead of storing tokens as a part of each post and comment by a user, you would store them as attributes of users. See [the Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging/js/first-message) documentation for more details.
 
-`getNotificationToken` follows a three-step process for obtaining the notification token. First, it waits for the application's service worker to be registered. Then, it specifies that the Firebase Cloud Messaging client-side library should use this service worker to receive push messages. Finally, it calls `getToken`, which retrieves the token from the FCM library.
+> Before making POST requests to the backend, the functions in `src/api.js` wait for the Promise `getNotificationToken()` to resolve, then include the resulting token in their requests to the backend.
 
-`messaging.getToken` returns `null` if the user hasn't granted permission to receive notifications. If this occurs, `getToken` calls `messaging.requestPermission` to ask for permission, then calls itself. If `messaging.requestPermission` throws an error, this indicates that the user has denied permission to your application to display notifications. In this case, `getToken` simply returns `null`.
+> `getNotificationToken` follows a three-step process for obtaining the notification token. First, it waits for the application's service worker to be registered. Then, it specifies that the Firebase Cloud Messaging client-side library should use this service worker to receive push messages. Finally, it calls `getToken`, which retrieves the token from the FCM library.
+
+> `messaging.getToken` returns `null` if the user hasn't granted permission to receive notifications. If this occurs, `getToken` calls `messaging.requestPermission` to ask for permission, then calls itself. If `messaging.requestPermission` throws an error, this indicates that the user has denied permission to your application to display notifications. In this case, `getToken` simply returns `null`.
 
 ## Display notifications when your application receives a message from the server
 
@@ -117,7 +117,7 @@ firebase.initializeApp({
 firebase.messaging().setBackgroundMessageHandler();
 ```
 
-This code sets up your service worker to receive push messages from Firebase Cloud Messaging. The Cloud Messaging library will automatically display a push notification whenever a message is received.
+> This code sets up your service worker to receive push messages from Firebase Cloud Messaging. The Cloud Messaging library will automatically display a push notification whenever a message is received.
 
 ## Test that notifications work
 
