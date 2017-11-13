@@ -140,9 +140,9 @@ If the request is made to the Zeitbook API, the listener first tries to load fre
 
 Open the Google Chrome tab containing your application. In Chrome DevTools, under the Application tab, click on "Service Workers" to check that your service worker has been installed correctly. You can also click on "Cache Storage" to view the contents of your service worker's cache.
 
-![](steps/screenshots/02-service-worker/01-service-worker.png)
+![](screenshots/02-service-worker/01-service-worker.png)
 
-![](steps/screenshots/02-service-worker/02-cache-storage.png)
+![](screenshots/02-service-worker/02-cache-storage.png)
 
 ## Test your application's offline capabilities
 
@@ -154,7 +154,7 @@ Try running the Lighthouse Progressive Web App audits again. You can run Lightho
 
 Your application should now pass all Progressive Web App audits except for "Redirects HTTP traffic to HTTPS". Congratulations!
 
-![](steps/screenshots/02-service-worker/03-lighthouse.png)
+![](screenshots/02-service-worker/03-lighthouse.png)
 
 ## Next step
 
