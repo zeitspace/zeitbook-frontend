@@ -138,7 +138,7 @@ If the request is made to the Zeitbook API, the listener first tries to load fre
 
 ## Check that your service worker installs correctly
 
-Open your application using Google Chrome and open Chrome DevTools (`F12` on Windows or `cmd + option + j` on macOS). Under the Application tab, click on "Service Workers" to check that your service worker has been installed correctly. You can also click on "Cache Storage" to view the contents of your service worker's cache.
+Open the Google Chrome tab containing your application. In Chrome DevTools, under the Application tab, click on "Service Workers" to check that your service worker has been installed correctly. You can also click on "Cache Storage" to view the contents of your service worker's cache.
 
 ## Test your application's offline capabilities
 
