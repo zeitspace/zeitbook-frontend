@@ -47,7 +47,7 @@ export default navigator.serviceWorker.register('/service-worker.js');
 
 This will allow you to load the HTML for the pages displaying all posts (`localhost:3000/`) and a single post (e.g. `localhost:3000/posts/abcde`) even when you're offline.
 
-Add the following code to the bottom of `assets/service-worker.js`:
+Add the following code to the **bottom** of `assets/service-worker.js`:
 
 ```javascript
 function fetchAndCache(request, cache) {
@@ -88,7 +88,7 @@ Note that the listener only tries to load GET requests from the cache. This is b
 
 The "cache, falling back to network" strategy outlined above doesn't work well for requests to the Zeitbook API. If your device is connected to the Internet, your application should always load the latest posts and comments from the API, instead of loading stale data from the cache. Your application should only load data from the cache when you are offline. We'll refer to this strategy as "network, falling back to cache".
 
-Add the following code inside your service worker's `fetch` event listener. It should be placed after the first line of the function (`const { request } = event;`). Also, in the line `if (request.method === 'GET') {`, replace `if` with `} else if`.
+Add the following code inside your service worker's `fetch` event listener. It should be placed **after the first line of the function** (`const { request } = event;`). Also, in the line `if (request.method === 'GET') {`, replace `if` with `} else if`.
 
 ```javascript
   if (request.method === 'GET' && request.url.includes('zeitbook.herokuapp.com')) {

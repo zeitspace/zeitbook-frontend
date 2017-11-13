@@ -9,7 +9,7 @@ Background Sync is an experimental web API that lets you schedule tasks to run w
 
 ## Modify the `createPost` function to request a sync when a user creates a post
 
-Replace the body of the `createPost` function in `src/api.js` with the following code:
+Replace the **body** of the `createPost` function in `src/api.js` with the following code:
 
 ```javascript
   const post = { username, title, body };
@@ -35,7 +35,7 @@ After storing the new post in IndexedDB, the code requests a background sync by 
 
 ## Modify the `createComment` function to request a sync when a user creates a comment
 
-Replace the body of the `createComment` function in `src/api.js` with the following code:
+Replace the **body** of the `createComment` function in `src/api.js` with the following code:
 
 ```javascript
   const comment = { username, body, postId };
@@ -58,14 +58,14 @@ The code above is nearly identical to `createPost`, except that it adds the comm
 
 ## Modify your service worker to listen for `sync` events
 
-Add the following code to the top of `assets/service-worker.js`:
+Add the following code to the **top** of `assets/service-worker.js`:
 
 ```javascript
 importScripts('https://cdn.jsdelivr.net/npm/idb-keyval@2.3.0/idb-keyval.min.js');
 importScripts('./scripts/util.js');
 ```
 
-Next, add the following code to the bottom of `assets/service-worker.js`:
+Next, add the following code to the **bottom** of `assets/service-worker.js`:
 
 ```javascript
 self.addEventListener('sync', (event) => {
@@ -81,7 +81,7 @@ You'll define `sendPosts` and `sendComments` next.
 
 ## Modify your service worker to send posts and comments to the backend
 
-Add the following code to `assets/service-worker.js`, just above the `sync` event listener that you just added:
+Add the following code to `assets/service-worker.js`, just **above** the `sync` event listener that you just added:
 
 ```javascript
 const API_ROOT = 'https://zeitbook.herokuapp.com';
@@ -133,7 +133,7 @@ After sending a message for the post or comment, the code removes the created it
 
 On line 47 of `src/index.js`, change `linkToComments: true` to `linkToComments: false`. This will cause pending posts to be rendered without a link to a comments page. This is necessary because the pending post isn't stored in the backend's database, so API requests for the post will fail.
 
-Next, add the following code to the bottom of `src/index.js`:
+Next, add the following code to the **bottom** of `src/index.js`:
 
 ```javascript
 navigator.serviceWorker.addEventListener('message', (event) => {
@@ -153,7 +153,7 @@ After receiving a message of type `post-update` from the service worker, this ev
 
 ## Listen for a message from the service worker when it creates a comment
 
-Add the following code to the bottom of `src/post.js`:
+Add the following code to the **bottom** of `src/post.js`:
 
 ```javascript
 navigator.serviceWorker.addEventListener('message', (event) => {
