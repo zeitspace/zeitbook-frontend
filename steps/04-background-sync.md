@@ -27,11 +27,11 @@ Replace the **body** of the `createPost` function in `src/api.js` with the follo
   });
 ```
 
-This code first creates a post object, then adds the user's notification token to it. Next, it calls the `addToQueue` function, which adds the post to a queue of posts that haven't been sent to the backend yet. This queue is stored in IndexedDB, a client-side database. `addToQueue` returns a temporary ID for the post, which is added to the post object.
-
-After storing the new post in IndexedDB, the code requests a background sync by calling `reg.sync.register('send-post-queue')`. When this function is called, your application's service worker receives a `sync` event with the tag `send-post-queue`. In a little while, you'll change your service worker to respond to this event.
-
-`createPost` returns a post object that will be used to display the user's new post. Note that the parameter `synced: false` is passed to `buildPost`. With this parameter, the post will be rendered to indicate that it hasn't been added to the backend database yet.
+> This code first creates a post object, then adds the user's notification token to it. Next, it calls the `addToQueue` function, which adds the post to a queue of posts that haven't been sent to the backend yet. This queue is stored in IndexedDB, a client-side database. `addToQueue` returns a temporary ID for the post, which is added to the post object.
+>
+> After storing the new post in IndexedDB, the code requests a background sync by calling `reg.sync.register('send-post-queue')`. When this function is called, your application's service worker receives a `sync` event with the tag `send-post-queue`. In a little while, you'll change your service worker to respond to this event.
+>
+> `createPost` returns a post object that will be used to display the user's new post. Note that the parameter `synced: false` is passed to `buildPost`. With this parameter, the post will be rendered to indicate that it hasn't been added to the backend database yet.
 
 ## Modify the `createComment` function to request a sync when a user creates a comment
 
@@ -54,7 +54,7 @@ Replace the **body** of the `createComment` function in `src/api.js` with the fo
     });
 ```
 
-The code above is nearly identical to `createPost`, except that it adds the comment to a different queue in IndexedDB.
+> The code above is nearly identical to `createPost`, except that it adds the comment to a different queue in IndexedDB.
 
 ## Modify your service worker to listen for `sync` events
 
@@ -123,11 +123,11 @@ function sendComments() {
 }
 ```
 
-After receiving a `sync` event with the tag `send-post-queue` or `send-comment-queue`, the service worker will call `sendPosts` or `sendComments` respectively. These functions read the queues of posts and comments stored in IndexedDB and make POST requests to the backend for each post and comment to be created.
-
-After each POST request completes successfully, the code sends a message to each of the service worker's clients, which are the open web pages that have registered that service worker. The message contains the updated post or comment (which contains its permanent ID) as well as the post or comment's temporary ID. In a little while, you'll modify your application to update the UI in response to these messages.
-
-After sending a message for the post or comment, the code removes the created item from the correct queue in IndexedDB, so that the item won't be sent to the backend again when the next `sync` event is sent. Finally, once all of the posts or comments have been succesfully synced, a notification is shown to the user. (This notification will only appear when your application is in the background, i.e. when Chrome isn't the focused window or your application isn't the focused tab.)
+> After receiving a `sync` event with the tag `send-post-queue` or `send-comment-queue`, the service worker will call `sendPosts` or `sendComments` respectively. These functions read the queues of posts and comments stored in IndexedDB and make POST requests to the backend for each post and comment to be created.
+>
+> After each POST request completes successfully, the code sends a message to each of the service worker's clients, which are the open web pages that have registered that service worker. The message contains the updated post or comment (which contains its permanent ID) as well as the post or comment's temporary ID. In a little while, you'll modify your application to update the UI in response to these messages.
+>
+> After sending a message for the post or comment, the code removes the created item from the correct queue in IndexedDB, so that the item won't be sent to the backend again when the next `sync` event is sent. Finally, once all of the posts or comments have been succesfully synced, a notification is shown to the user. (This notification will only appear when your application is in the background, i.e. when Chrome isn't the focused window or your application isn't the focused tab.)
 
 ## Listen for a message from the service worker when it creates a post
 
@@ -149,7 +149,7 @@ navigator.serviceWorker.addEventListener('message', (event) => {
 });
 ```
 
-After receiving a message of type `post-update` from the service worker, this event listener updates the UI to reflect the fact that the pending post has been synced to the backend.
+> After receiving a message of type `post-update` from the service worker, this event listener updates the UI to reflect the fact that the pending post has been synced to the backend.
 
 ## Listen for a message from the service worker when it creates a comment
 
@@ -169,7 +169,7 @@ navigator.serviceWorker.addEventListener('message', (event) => {
 });
 ```
 
-This code is identical to the code you just added to `src/index.js`, except that it listens for events of type `comment-update`.
+> This code is identical to the code you just added to `src/index.js`, except that it listens for events of type `comment-update`.
 
 ## Test that Background Sync works
 

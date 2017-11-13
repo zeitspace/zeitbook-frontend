@@ -1,6 +1,6 @@
 # Service worker
 
-A service worker is a script that your browser runs in the background. It provides features such as push notifications, background data synchronization, and resource and request caching. Since it is a [JavaScript Worker](https://www.html5rocks.com/en/tutorials/workers/basics/), it doesn't have access to the DOM. However, it can interact with the DOM indirectly by communicating with your application's main thread. In this step, you'll create a service worker that caches static resources upon which your application depends, as well as API requests made by your application.
+A service worker is a piece of JavaScript code that your browser runs in the background. It provides features such as push notifications, background data synchronization, and resource and request caching. Since it is a [JavaScript Worker](https://www.html5rocks.com/en/tutorials/workers/basics/), it doesn't have access to the DOM. However, it can interact with the DOM indirectly by communicating with your application's main thread. In this step, you'll create a service worker that caches static resources upon which your application depends, as well as API requests made by your application.
 
 ## Create a service worker to cache your application's resources
 
@@ -29,11 +29,11 @@ self.addEventListener('install', (event) => {
 });
 ```
 
-`CACHE_NAME` specifies a name and version for the service worker's cache. In a production setting, you should change the cache version every time you modify any of the resources cached by the service worker.
-
-During development, you can set up Chrome DevTools to reload your application's service worker every time you refresh the page, so that you don't need to update the cache version every time you change a file. To do so, open Chrome DevTools (`F12` on Windows or `cmd + option + j` on macOS). In the Application tab of the DevTools, click on the Service Workers menu item and check the "Update on reload" checkbox.
-
-`urlsToCache` is a list of static resources that the service worker should cache. When it receives an `install` event, the service worker downloads all the listed resources, then stores them in its cache.
+> `CACHE_NAME` specifies a name and version for the service worker's cache. In a production setting, you should change the cache version every time you modify any of the resources cached by the service worker.
+>
+> During development, you can set up Chrome DevTools to reload your application's service worker every time you refresh the page, so that you don't need to update the cache version every time you change a file. To do so, open Chrome DevTools (`F12` on Windows or `cmd + option + j` on macOS). In the Application tab of the DevTools, click on the Service Workers menu item and check the "Update on reload" checkbox.
+>
+> `urlsToCache` is a list of static resources that the service worker should cache. When it receives an `install` event, the service worker downloads all the listed resources, then stores them in its cache.
 
 ## Register your service worker
 
@@ -76,17 +76,15 @@ self.addEventListener('fetch', (event) => {
 });
 ```
 
-This code uses a `fetch` event listener to act as an intermediary between your application and the network. Whenever your application loads a resource, this event listener is called and the service worker has the opportunity to load a cached response instead of making a network request.
-
-The event listener first checks if the requested resource exists in the cache. If the resource doesn't exist, it makes a network request for the resource. This strategy of "cache, falling back to network" is the most common strategy for most applications.
-
-The event listener uses the `fetchAndCache` function to request resources over the network. This function first makes a network request for the resource, then saves it in the cache so that it can be loaded more quickly later.
-
-Note that the listener only tries to load GET requests from the cache. This is because the Cache API only supports caching GET requests.
+> This code uses a `fetch` event listener to act as an intermediary between your application and the network. Whenever your application loads a resource, this event listener is called and the service worker has the opportunity to load a cached response instead of making a network request.
+>
+> The event listener first checks if the requested resource exists in the cache. If the resource doesn't exist, it makes a network request for the resource. This strategy of "cache, falling back to network" is the most common strategy for most applications.
+>
+> The event listener uses the `fetchAndCache` function to request resources over the network. This function first makes a network request for the resource, then saves it in the cache so that it can be loaded more quickly later.
+>
+> Note that the listener only tries to load GET requests from the cache. This is because the Cache API only supports caching GET requests.
 
 ## Set up your service worker to cache API requests
-
-The "cache, falling back to network" strategy outlined above doesn't work well for requests to the Zeitbook API. If your device is connected to the Internet, your application should always load the latest posts and comments from the API, instead of loading stale data from the cache. Your application should only load data from the cache when you are offline. We'll refer to this strategy as "network, falling back to cache".
 
 Add the following code inside your service worker's `fetch` event listener. It should be placed **after the first line of the function** (`const { request } = event;`). Also, in the line `if (request.method === 'GET') {`, replace `if` with `} else if`.
 
@@ -134,7 +132,9 @@ Your `fetch` event listener should now contain:
   }
 ```
 
-If the request is made to the Zeitbook API, the listener first tries to load fresh data using `fetchAndCache`. If this fails, it attempts to load potentially stale data from the cache.
+> The "cache, falling back to network" strategy outlined above doesn't work well for requests to the Zeitbook API. If your device is connected to the Internet, your application should always load the latest posts and comments from the API, instead of loading stale data from the cache. Your application should only load data from the cache when you are offline. We'll refer to this strategy, which you've just implemented for Zeitbook API requests, as "network, falling back to cache".
+>
+> If the request is made to the Zeitbook API, the listener first tries to load fresh data using `fetchAndCache`. If this fails, it attempts to load potentially stale data from the cache.
 
 ## Check that your service worker installs correctly
 
