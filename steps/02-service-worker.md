@@ -30,9 +30,9 @@ self.addEventListener('install', (event) => {
 ```
 
 > `CACHE_NAME` specifies a name and version for the service worker's cache. In a production setting, you should change the cache version every time you modify any of the resources cached by the service worker.
-
+>
 > During development, you can set up Chrome DevTools to reload your application's service worker every time you refresh the page, so that you don't need to update the cache version every time you change a file. To do so, open Chrome DevTools (`F12` on Windows or `cmd + option + j` on macOS). In the Application tab of the DevTools, click on the Service Workers menu item and check the "Update on reload" checkbox.
-
+>
 > `urlsToCache` is a list of static resources that the service worker should cache. When it receives an `install` event, the service worker downloads all the listed resources, then stores them in its cache.
 
 ## Register your service worker
