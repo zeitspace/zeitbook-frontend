@@ -29,7 +29,7 @@ Optionally, you can install the following software to improve your development e
 ## Setup
 
 1. In your command line, navigate to the directory containing the source code for this starter application.
-1. Create a new file `src/username.js` with the contents `export default '[NAME]';`, replacing `[NAME]` with a username of your choice.
+1. Create a new file `src/username.js` with the contents `export default '[NAME]';`, replacing `[NAME]` with a username of your choice. This is the name that will appear on your posts and comments on Zeitbook.
 1. Run `npm install`, then `npm start`.
 1. Open [localhost:3000](localhost:3000) in Google Chrome.
 1. If you have installed the LiveReload Chrome extension, click on its icon in the Chrome toolbar. This should change the icon so that the small circle in the center is filled in, indicating that LiveReload has been activated.
