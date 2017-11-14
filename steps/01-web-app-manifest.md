@@ -74,7 +74,7 @@ Add the following line within the `<head>` tags of `assets/pages/index.html` and
 
 ## Test the manifest
 
-Open your application at [localhost:3000](localhost:3000) using Google Chrome, then open Chrome DevTools (`F12` on Windows or `cmd + option + j` on macOS). In the Application tab of the DevTools, click on the Manifest menu item. You should see all the data from your application's manifest, including the icons that you just added.
+Open your application at [localhost:3000](localhost:3000) using Google Chrome, then open Chrome DevTools (`F12` on Windows or `cmd + option + j` on macOS). In the Application tab of the DevTools, click on the Manifest menu item. You should see all the data from your application's manifest, including the icons that you just added:
 
 ![](screenshots/01-web-app-manifest/01-manifest.png)
 

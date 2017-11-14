@@ -138,9 +138,11 @@ Your `fetch` event listener should now contain:
 
 ## Check that your service worker installs correctly
 
-Open the Google Chrome tab containing your application. In Chrome DevTools, under the Application tab, click on "Service Workers" to check that your service worker has been installed correctly. You can also click on "Cache Storage" to view the contents of your service worker's cache.
+Open the Google Chrome tab containing your application. In Chrome DevTools, under the Application tab, click on "Service Workers" to check that your service worker has been installed correctly:
 
 ![](screenshots/02-service-worker/01-service-worker.png)
+
+You can also click on "Cache Storage" to view the contents of your service worker's cache:
 
 ![](screenshots/02-service-worker/02-cache-storage.png)
 
