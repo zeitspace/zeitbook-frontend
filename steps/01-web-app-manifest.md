@@ -82,7 +82,7 @@ Open your application at [localhost:3000](localhost:3000) using Google Chrome, t
 
 Try running the Lighthouse Progressive Web App audits again. You can run Lighthouse in Chrome DevTools under the Audits tab.
 
-Your application should now pass seven of the thirteen PWA audits, up from five at the start of this step. In particular, since you've added a web app manifest to your application, it should pass the "Configured for a custom splash screen" check:
+Your application should now pass seven of the eleven PWA audits, up from five at the start of this step. In particular, since you've added a web app manifest to your application, it should pass the "Configured for a custom splash screen" check:
 
 ![](screenshots/01-web-app-manifest/02-lighthouse-results.png)
 
