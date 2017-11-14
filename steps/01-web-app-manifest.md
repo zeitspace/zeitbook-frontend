@@ -2,6 +2,16 @@
 
 The web app manifest is a JSON file that contains important information about your application. If your application provides a manifest, browsers will prompt your users to install it to their devices' homescreens. You can also use the manifest to control whether your application is displayed in portrait or landscape, to choose a theme colour for the browser's UI, or even to hide the UI altogether.
 
+## Run Lighthouse
+
+Before adding a manifest to your application, let's run Lighthouse on it. Lighthouse is an automated tool for improving the quality of web pages. You can use it to test your application against [Google's Progressive Web App checklist](https://developers.google.com/web/progressive-web-apps/checklist).
+
+To run Lighthouse against your application, open the Chrome DevTools and navigate to the Audits tab. On this page, you can run a Progressive Web App audit by clicking on "Perform an audit..." and checking the Progressive Web App checkbox.
+
+Here are the results you should see:
+
+![](./screenshots/01-web-app-manifest/03-lighthouse-results-start.png)
+
 ## Manifest file
 
 Open the file `assets/manifest.json` and replace the contents of the file with the code below:
@@ -68,15 +78,15 @@ Open your application at [localhost:3000](localhost:3000) using Google Chrome, t
 
 ![](screenshots/01-web-app-manifest/01-manifest.png)
 
-## Run Lighthouse
+## Run Lighthouse again
 
-Lighthouse is an automated tool for improving the quality of web pages. You can use it to test your application against [Google's Progressive Web App checklist](https://developers.google.com/web/progressive-web-apps/checklist).
+Try running the Lighthouse Progressive Web App audits again. You can run Lighthouse in Chrome DevTools under the Audits tab.
 
-To run Lighthouse against your application, open the Chrome DevTools and navigate to the Audits tab. On this page, you can run a Progressive Web App audit by clicking on "Perform an audit..." and checking the Progressive Web App checkbox.
-
-Since you've added a web app manifest to your application, it should pass the "Configured for a custom splash screen" check. However, it will not pass the "User will be prompted to Install the Web App" check, even though it has a manifest. This is because your application does not have a service worker, which you will add in the next step.
+Your application should now pass seven of the thirteen PWA audits, up from four at the start of this step. In particular, since you've added a web app manifest to your application, it should pass the "Configured for a custom splash screen" check:
 
 ![](screenshots/01-web-app-manifest/02-lighthouse-results.png)
+
+However, your application will not pass the "User will be prompted to Install the Web App" check, even though it has a manifest. This is because your application does not have a service worker, which you will add in the next step.
 
 ## Next step
 
