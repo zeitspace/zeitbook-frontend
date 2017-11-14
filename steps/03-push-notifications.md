@@ -96,7 +96,7 @@ function getNotificationToken() {
 export default getNotificationToken;
 ```
 
-> To keep this demo application simple, we've decided not to have a concept of user accounts. In a real-world application, instead of storing tokens as a part of each post and comment by a user, you would store them as attributes of users. See [the Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging/js/first-message) documentation for more details.
+> To keep this demo application simple, we've decided not to have a concept of user accounts. In a real-world application, instead of storing the notification token as a part of each post or comment by a user, you would store the notification token as a part of the user model.
 >
 > Before making POST requests to the backend, the functions in `src/api.js` wait for the Promise `getNotificationToken()` to resolve, then include the resulting token in their requests to the backend.
 >
