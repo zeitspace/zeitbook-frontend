@@ -70,7 +70,7 @@ RAIL is a user-centric performance model. It suggests that you focus on the user
 
 ## Resources
 
-If you're looking for a refresher on what Progressive Web Apps are and why they're important, we recommend [this article](https://blog.ionic.io/what-is-a-progressive-web-app/).
+If you're looking for a refresher on what Progressive Web Apps are and why they're important, we recommend [this article](https://blog.ionic.io/what-is-a-progressive-web-app/) from Ionic.
 
 [pwa.rocks](https://pwa.rocks/) is a collection of PWAs, and is itself a PWA!
 
