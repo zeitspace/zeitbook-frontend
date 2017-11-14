@@ -2,6 +2,8 @@
 
 A service worker is a piece of JavaScript code that your browser runs in the background. It provides features such as push notifications, background data synchronization, and resource and request caching. Since it is a [JavaScript Worker](https://www.html5rocks.com/en/tutorials/workers/basics/), it doesn't have access to the DOM. However, it can interact with the DOM indirectly by communicating with your application's main thread. In this step, you'll create a service worker that caches static resources upon which your application depends, as well as API requests made by your application.
 
+> Service workers are supported by Chrome (for desktop and mobile devices), Firefox, and Opera. They're also available in Edge and Safari behind a feature flag. They aren't supported in Internet Explorer.
+
 ## Create a service worker to cache your application's resources
 
 Open the file at `assets/service-worker.js`, then insert the following code:

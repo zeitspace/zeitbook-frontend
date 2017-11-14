@@ -2,6 +2,8 @@
 
 Push notifications are great for keeping users engaged with your application. Here, you'll use [Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging/) to display push notifications when someone comments on your post or comments on a post that you've also commented on.
 
+> We'll implement push notifications the Web Push API, which is supported by Chrome, Firefox, and Opera. It's also in development for Edge. Safari doesn't implement this API, but a Safari-specific notifications API does exist. The Web Push API isn't supported at all by IE.
+
 ## Add the `gcm_sender_id` to your web app manifest
 
 Add the following key-value pair to `assets/manifest.json`:

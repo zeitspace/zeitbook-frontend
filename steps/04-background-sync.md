@@ -7,6 +7,8 @@ Background Sync is an experimental web API that lets you schedule tasks to run w
 1. The service worker repeatedly tries to create the post or comment on the backend, sending a message to the main thread when it succeeds
 1. The main thread updates the UI to indicate that the post or comment has been created on the backend
 
+> The Background Sync API is currently only supported by Chrome (for both desktop and Android). It's also in development for Firefox.
+
 ## Modify the `createPost` function to request a sync when a user creates a post
 
 Replace the **body** of the `createPost` function in `src/api.js` with the following code:
