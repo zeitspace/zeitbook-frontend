@@ -59,6 +59,3 @@ typings/
 
 # Dist folder
 dist
-
-# Environment variables
-assets/scripts/environment.js
