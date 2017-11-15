@@ -54,20 +54,13 @@ Add the following code at the **top** of `src/firebase.js`:
 ```javascript
 import * as firebase from 'firebase/app';
 import 'firebase/messaging';
+import env from './environment';
 ```
 
-Then, add the following code **below** `import registerServiceWorker from './service-worker';`:
+Then, add the following line of code **below** `import registerServiceWorker from './service-worker';`:
 
 ```javascript
-const config = {
-  apiKey: 'AIzaSyCm6wDitw69vDYVnLcNG91LrV3ClEm_rHc',
-  authDomain: 'zeitspace-forum.firebaseapp.com',
-  databaseURL: 'https://zeitspace-forum.firebaseio.com',
-  projectId: 'zeitspace-forum',
-  storageBucket: 'zeitspace-forum.appspot.com',
-  messagingSenderId: '81782109643',
-};
-firebase.initializeApp(config);
+firebase.initializeApp(env.FIREBASE_CREDENTIALS);
 ```
 
 > This code sets up your application to connect to the Zeitbook API's Firebase project.
@@ -106,14 +99,14 @@ export default getNotificationToken;
 
 ## Display notifications when your application receives a message from the server
 
-Add the following code to the **top** of `assets/service-worker.js`:
+Add the following code **below the first two lines** of `assets/service-worker.js`:
 
 ```javascript
 importScripts('https://www.gstatic.com/firebasejs/3.9.0/firebase-app.js');
 importScripts('https://www.gstatic.com/firebasejs/3.9.0/firebase-messaging.js');
 
 firebase.initializeApp({
-  messagingSenderId: '81782109643',
+  messagingSenderId,
 });
 
 firebase.messaging().setBackgroundMessageHandler();

@@ -86,8 +86,6 @@ You'll define `sendPosts` and `sendComments` next.
 Add the following code to `assets/service-worker.js`, just **above** the `sync` event listener that you just added:
 
 ```javascript
-const API_ROOT = 'https://zeitbook.herokuapp.com';
-
 function sendPosts() {
   return getQueue('postsQueue').then((postsQueue) => {
     let postsList = postsQueue;
