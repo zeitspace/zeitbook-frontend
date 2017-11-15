@@ -4,6 +4,8 @@
 
 The starter application for Zeitspace's workshop on Progressive Web Apps.
 
+Check out the [non-PWA](https://zeitbook-nonpwa.herokuapp.com) and [PWA](https://zeitbook-pwa.herokuapp.com) versions.
+
 ## Arriving late?
 
 Complete the instructions under [Prerequisites](#prerequisites) and [Setup](#setup), with one difference. If you're cloning this repository using Git, check out either the `step-1`, `step-2`, `step-3`, or `step-4` branch based on the current step. If you're downloading this repository as a ZIP file, use one of the following links:
