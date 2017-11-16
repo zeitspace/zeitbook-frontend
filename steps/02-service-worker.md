@@ -9,6 +9,9 @@ A service worker is a piece of JavaScript code that your browser runs in the bac
 Add the following code to `assets/service-worker.js`:
 
 ```javascript
+importScripts('./scripts/environment.js');
+const { API_ROOT, FIREBASE_CREDENTIALS: { messagingSenderId } } = env;
+
 const CACHE_NAME = 'zeitbook-cache-v1';
 const urlsToCache = [
   '/',
@@ -91,7 +94,7 @@ self.addEventListener('fetch', (event) => {
 Add the following code inside your service worker's `fetch` event listener. It should be placed **after the first line of the function** (`const { request } = event;`). Also, in the line `if (request.method === 'GET') {`, replace `if` with `} else if`.
 
 ```javascript
-  if (request.method === 'GET' && request.url.includes('zeitbook.herokuapp.com')) {
+  if (request.method === 'GET' && request.url.includes(API_ROOT)) {
     const networkFirst = caches.open(CACHE_NAME)
       .then(cache => fetchAndCache(request, cache)
         .catch(error => cache.match(request)
@@ -110,7 +113,7 @@ Add the following code inside your service worker's `fetch` event listener. It s
 Your `fetch` event listener should now contain:
 
 ```javascript
-  if (request.method === 'GET' && request.url.includes('zeitbook.herokuapp.com')) {
+  if (request.method === 'GET' && request.url.includes(API_ROOT)) {
     const networkFirst = caches.open(CACHE_NAME)
       .then(cache => fetchAndCache(request, cache)
         .catch(error => cache.match(request)

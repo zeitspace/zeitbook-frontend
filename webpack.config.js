@@ -24,6 +24,9 @@ module.exports = {
     ],
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'self.WEBPACK': true,
+    }),
     new ExtractTextPlugin({
       filename: '[name].css',
     }),
