@@ -30,7 +30,7 @@ Make sure you have the following software installed:
 
 1. In your command line, navigate to the directory containing the source code for this starter application.
 1. Change the contents of `src/username.js`, replacing `[NAME]` with a username of your choice. This is the name that will appear on your posts and comments on Zeitbook.
-1. If you want to run Zeitbook using a local instance of the API server and your own Firebase project, follow [the instructions for setting up the backend server](https://github.com/zeitbook/zeitbook-backend#readme), then update `assets/scripts/environment.js` with your own API server URL and Firebase credentials.
+1. If you want to run Zeitbook using a local instance of the API server and your own Firebase project, follow [the instructions for setting up the backend server](https://github.com/zeitspace/zeitbook-backend#readme), then update `assets/scripts/environment.js` with your own API server URL and Firebase credentials.
 1. Run `npm install`, then `npm start`.
 1. Open [localhost:3000](localhost:3000) in Google Chrome.
 
