@@ -127,7 +127,7 @@ function sendComments() {
 >
 > After each POST request completes successfully, the code sends a message to each of the service worker's clients, which are the open web pages that have registered that service worker. The message contains the updated post or comment (which contains its permanent ID) as well as the post or comment's temporary ID. In a little while, you'll modify your application to update the UI in response to these messages.
 >
-> After sending a message for the post or comment, the code removes the created item from the correct queue in IndexedDB, so that the item won't be sent to the backend again when the next `sync` event is sent. Finally, once all of the posts or comments have been succesfully synced, a notification is shown to the user. (This notification will only appear when your application is in the background, i.e. when Chrome isn't the focused window or your application isn't the focused tab.)
+> After sending a message for the post or comment, the code removes the created item from the correct queue in IndexedDB, so that the item won't be sent to the backend again when the next `sync` event is sent. Finally, once all of the posts or comments have been successfully synced, a notification is shown to the user. (This notification will only appear when your application is in the background, i.e. when Chrome isn't the focused window or your application isn't the focused tab.)
 
 ## Listen for a message from the service worker when it creates a post
 
